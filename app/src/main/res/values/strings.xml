@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Trolybabau</string>
+
+    //main tab
+    <string name="tv_trang_chu">Trang chủ</string>
+    <string name="tv_trang_thai_ky">Thai kỳ</string>
+    <string name="tv_trang_nhat_ky">Nhật ký</string>
+    <string name="tv_trang_chi_so">Chỉ số</string>
+    <string name="tv_trang_kien_thuc">Kiến thức</string>
+</resources>

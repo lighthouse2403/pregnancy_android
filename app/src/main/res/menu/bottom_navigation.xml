@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navTrangChu"
+        android:icon="@drawable/tab_home"
+        android:title="@string/tv_trang_chu" />
+    <item
+        android:id="@+id/navThaiky"
+        android:icon="@drawable/tab_home"
+        android:title="@string/tv_trang_thai_ky" />
+    <item
+        android:id="@+id/navNhatky"
+        android:icon="@drawable/tab_home"
+        android:title="@string/tv_trang_nhat_ky" />
+
+    <item
+        android:id="@+id/navChiso"
+        android:icon="@drawable/tab_home"
+        android:title="@string/tv_trang_chi_so" />
+
+    <item
+        android:id="@+id/navKienthuc"
+        android:icon="@drawable/tab_home"
+        android:title="@string/tv_trang_kien_thuc" />
+</menu>
