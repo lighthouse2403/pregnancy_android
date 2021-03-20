@@ -7,4 +7,13 @@
     <string name="tv_trang_nhat_ky">Nhật ký</string>
     <string name="tv_trang_chi_so">Chỉ số</string>
     <string name="tv_trang_kien_thuc">Kiến thức</string>
+    <string name="tv_thong_tin_du_sinh">Thông tin dự sinh</string>
+    <string name="tv_ten_me">Tên của mẹ</string>
+    <string name="tv_ten_be">Tên của bé</string>
+    <string name="tv_can_nang">Cân nặng</string>
+    <string name="tv_them_chi_so_thai_nhi">Thêm chỉ số thai nhi</string>
+    <string name="tv_du_sinh">Dự sinh</string>
+    <string name="tv_tuoi_thai">Tuổi thai</string>
+    <string name="tv_close">Đóng</string>
+    <string name="tv_save">Lưu</string>
 </resources>
