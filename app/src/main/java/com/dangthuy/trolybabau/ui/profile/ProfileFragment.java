@@ -1,12 +1,16 @@
 package com.dangthuy.trolybabau.ui.profile;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.databinding.FragmentProfileBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
+import com.dangthuy.trolybabau.ui.chiso.BabyInfoFragment;
+import com.dangthuy.trolybabau.ui.chiso.BabyInforViewModel;
 import com.dangthuy.trolybabau.ui.main.MainFragment;
 import com.dangthuy.trolybabau.ui.profile.bottom_sheet.BottomSheetAgeDialog;
+import com.dangthuy.trolybabau.ui.profile.bottom_sheet.BottomSheetDateDialog;
 
 /**
  * Created by nhongthai on 20/03/2021.
@@ -21,6 +25,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     protected Class<ProfileViewModel> provideViewModelClass() {
         return ProfileViewModel.class;
@@ -37,11 +42,42 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void setOnClickListener() {
         binding.btnAge.setOnClickListener(view -> {
-            BottomSheetAgeDialog dialog = new BottomSheetAgeDialog();
+            BottomSheetAgeDialog dialog = BottomSheetAgeDialog.newInstance();
+            dialog.setListener((week, day) -> {
+                viewModel.setAge(week, day);
+                binding.btnAge.setText(week + " " + getString(R.string.tv_tuan) + " " + day + " " + getString(R.string.tv_ngay));
+                dialog.dismiss();
+            });
             dialog.show(getChildFragmentManager(), BottomSheetAgeDialog.TAG);
+        });
+        binding.btnExpect.setOnClickListener(view -> {
+            BottomSheetDateDialog dialog = BottomSheetDateDialog.newInstance();
+            dialog.setListener((year, month, day) -> {
+                viewModel.setExpect(year, month, day);
+                binding.btnExpect.setText(day + " " + getString(R.string.tv_thang) + " " + month + ", " + year);
+                dialog.dismiss();
+            });
+            dialog.show(getChildFragmentManager(), BottomSheetDateDialog.TAG);
+        });
+        binding.btnKyKinhCuoi.setOnClickListener(view -> {
+            BottomSheetDateDialog dialog = BottomSheetDateDialog.newInstance();
+            dialog.setListener((year, month, day) -> {
+                viewModel.setExpect(year, month, day);
+                binding.btnKyKinhCuoi.setText(day + " " + getString(R.string.tv_thang) + " " + month + ", " + year);
+                dialog.dismiss();
+            });
+            dialog.show(getChildFragmentManager(), BottomSheetDateDialog.TAG);
+        });
+        binding.btnBabyInfo.setOnClickListener(view -> {
+            BabyInfoFragment fragment = BabyInfoFragment.newInstance(false);
+            fragment.setListener(() -> {
+                getParentFragmentManager().popBackStack();
+            });
+            addFragment(R.id.container, fragment, BabyInfoFragment.TAG, false);
         });
         binding.btnSave.setOnClickListener(view -> viewModel.saveData());
     }

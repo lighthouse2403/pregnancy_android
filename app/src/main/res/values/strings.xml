@@ -16,4 +16,11 @@
     <string name="tv_tuoi_thai">Tuổi thai</string>
     <string name="tv_close">Đóng</string>
     <string name="tv_save">Lưu</string>
+    <string name="tv_tuan">Tuần</string>
+    <string name="tv_ngay">Ngày</string>
+    <string name="tv_ky_kinh_cuoi">Kỳ kinh cuối</string>
+    <string name="tv_huy">Hủy</string>
+    <string name="tv_today">Hôm nay</string>
+    <string name="tv_thang">Tháng</string>
+    <string name="tv_nam">Năm</string>
 </resources>

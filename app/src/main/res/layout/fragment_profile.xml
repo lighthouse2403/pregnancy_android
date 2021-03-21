@@ -115,12 +115,12 @@
             android:text="@string/tv_can_nang"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="@dimen/_5sdp"
-            app:layout_constraintTop_toTopOf="@id/btnWeight"
-            app:layout_constraintBottom_toBottomOf="@id/btnWeight"
+            app:layout_constraintTop_toTopOf="@id/btnBabyInfo"
+            app:layout_constraintBottom_toBottomOf="@id/btnBabyInfo"
             />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/btnWeight"
+            android:id="@+id/btnBabyInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
@@ -157,7 +157,7 @@
             android:text="@string/tv_them_chi_so_thai_nhi"
             app:layout_constraintStart_toEndOf="@id/guildLine"
             android:layout_marginStart="@dimen/_5sdp"
-            app:layout_constraintTop_toBottomOf="@id/btnWeight"
+            app:layout_constraintTop_toBottomOf="@id/btnBabyInfo"
             android:layout_marginTop="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"
             android:background="@drawable/ripple_react_background"/>
@@ -197,7 +197,7 @@
             android:fontFamily="@font/roboto"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:text="@string/tv_tuoi_thai"
+            android:text="@string/tv_ky_kinh_cuoi"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="@dimen/_5sdp"
             app:layout_constraintTop_toTopOf="@id/btnKyKinhCuoi"

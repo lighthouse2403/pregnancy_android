@@ -49,4 +49,5 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.45'
     implementation 'com.yangping:ypwaveview:1.0.3'
+    implementation 'com.shawnlin:number-picker:2.4.12'
 }

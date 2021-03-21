@@ -24,13 +24,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         sharedPrefs = SharedPrefsImpl.newInstance(Constants.CACHE, this);
         if (sharedPrefs.get(Constants.SET_UP, Boolean.class)) {
             addFragment(MainFragment.newInstance());
         } else {
-            addFragment(ProfileFragment.newInstance());
+            ProfileFragment fragment = ProfileFragment.newInstance();
+            fragment.setListener(() -> {
+                getSupportFragmentManager().popBackStack();
+                addFragment(MainFragment.newInstance());
+            });
+            addFragment(fragment);
         }
     }
 

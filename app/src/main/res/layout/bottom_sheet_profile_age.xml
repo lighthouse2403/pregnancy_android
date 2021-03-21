@@ -39,12 +39,76 @@
             android:textColor="@color/black"
             android:fontFamily="@font/roboto"/>
 
-        <NumberPicker
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guildLine1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guildLine2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8"/>
+
+        <com.shawnlin.numberpicker.NumberPicker
             android:id="@+id/npWeek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guildLine1"
+            app:layout_constraintEnd_toStartOf="@id/tvWeek"
             app:layout_constraintTop_toBottomOf="@id/btnClose"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:np_dividerColor="@color/transparent_background"
+            app:np_textColor="@color/black"
+            app:np_selectedTextColor="@color/green"
+            app:np_max="50"
+            app:np_min="0"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvWeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:text="@string/tv_tuan"
+            app:layout_constraintTop_toTopOf="@id/npWeek"
+            app:layout_constraintBottom_toBottomOf="@id/npWeek"
+            app:layout_constraintStart_toEndOf="@id/npWeek"
+            app:layout_constraintEnd_toStartOf="@id/npDay"
+            />
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/npDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tvWeek"
+            app:layout_constraintEnd_toStartOf="@id/tvDay"
+            app:layout_constraintTop_toBottomOf="@id/btnClose"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:np_dividerColor="@color/transparent_background"
+            app:np_textColor="@color/black"
+            app:np_selectedTextColor="@color/green"
+            app:np_max="6"
+            app:np_min="0"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:text="@string/tv_ngay"
+            app:layout_constraintTop_toTopOf="@id/npDay"
+            app:layout_constraintBottom_toBottomOf="@id/npDay"
+            app:layout_constraintStart_toEndOf="@id/npDay"
+            app:layout_constraintEnd_toStartOf="@id/guildLine2"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

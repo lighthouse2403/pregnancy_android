@@ -21,6 +21,23 @@ public class BottomSheetAgeDialog extends BottomSheetDialogFragment {
 
     private BottomSheetProfileAgeBinding binding;
 
+    public static BottomSheetAgeDialog newInstance() {
+        BottomSheetAgeDialog fragment = new BottomSheetAgeDialog();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public interface IBottomSheetListener {
+        void onClick(int week, int day);
+    }
+
+    private IBottomSheetListener listener;
+
+    public void setListener(IBottomSheetListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,16 +53,12 @@ public class BottomSheetAgeDialog extends BottomSheetDialogFragment {
     }
 
     private void initPicker() {
-        binding.npWeek.setMaxValue(50);
-        binding.npWeek.setMinValue(0);
-        binding.npWeek.setValue(25);
-        binding.npWeek.setOnValueChangedListener((numberPicker, i, i1) -> {
-            binding.npWeek.setValue(i1);
-
-        });
+        binding.npWeek.setOnValueChangedListener((numberPicker, i, i1) -> binding.npWeek.setValue(i1));
+        binding.npDay.setOnValueChangedListener((picker, oldVal, newVal) -> binding.npDay.setValue(newVal));
     }
 
     private void setOnClickListener() {
-
+        binding.btnClose.setOnClickListener(view -> this.dismiss());
+        binding.btnSave.setOnClickListener(view -> listener.onClick(binding.npWeek.getValue(), binding.npDay.getValue()));
     }
 }
