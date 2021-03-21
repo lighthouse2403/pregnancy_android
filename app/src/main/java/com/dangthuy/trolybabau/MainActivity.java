@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         if (sharedPrefs.get(Constants.SET_UP, Boolean.class)) {
             addFragment(MainFragment.newInstance());
         } else {
-            ProfileFragment fragment = ProfileFragment.newInstance();
+            ProfileFragment fragment = ProfileFragment.newInstance(true);
             fragment.setListener(() -> {
                 getSupportFragmentManager().popBackStack();
                 addFragment(MainFragment.newInstance());

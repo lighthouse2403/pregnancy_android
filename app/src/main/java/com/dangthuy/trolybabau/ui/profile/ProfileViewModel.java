@@ -12,6 +12,7 @@ import com.dangthuy.trolybabau.ui.base.BaseViewModel;
  */
 public class ProfileViewModel extends BaseViewModel {
     private int week, day, year, month, dayExpect;
+    private boolean isSetup;
 
     public ProfileViewModel(@NonNull Application application) {
         super(application);
@@ -30,5 +31,13 @@ public class ProfileViewModel extends BaseViewModel {
         this.year = year;
         this.month = month;
         this.dayExpect = day;
+    }
+
+    public void setIsSetup(boolean isSetup) {
+        this.isSetup = isSetup;
+    }
+
+    public boolean isSetup() {
+        return isSetup;
     }
 }

@@ -82,7 +82,7 @@ public class ToolBar extends ConstraintLayout {
     }
 
     public void setLayoutView(ToolBarType type) {
-        if (type.equals(ToolBarType.EXPECT)) {
+        if (type.equals(ToolBarType.SETUP)) {
             binding.btnAdd.setVisibility(View.GONE);
             binding.btnBack.setVisibility(View.GONE);
             binding.btnSave.setVisibility(View.VISIBLE);
@@ -96,6 +96,11 @@ public class ToolBar extends ConstraintLayout {
             binding.btnAdd.setVisibility(View.VISIBLE);
             binding.btnBack.setVisibility(View.GONE);
             binding.btnSave.setVisibility(View.GONE);
+            binding.tvTitle.setText(type.getName());
+        } else if(type.equals(ToolBarType.EXPECT)) {
+            binding.btnAdd.setVisibility(View.GONE);
+            binding.btnBack.setVisibility(View.VISIBLE);
+            binding.btnSave.setVisibility(View.VISIBLE);
             binding.tvTitle.setText(type.getName());
         }
         else {

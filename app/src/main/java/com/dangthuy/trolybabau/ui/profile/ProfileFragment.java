@@ -2,8 +2,11 @@ package com.dangthuy.trolybabau.ui.profile;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.customview.ToolBar;
+import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.databinding.FragmentProfileBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.chiso.BabyInfoFragment;
@@ -16,12 +19,28 @@ import com.dangthuy.trolybabau.ui.profile.bottom_sheet.BottomSheetDateDialog;
  * Created by nhongthai on 20/03/2021.
  */
 public class ProfileFragment extends BaseFragment<ProfileViewModel> {
-    private static final String TAG = "ProfileFragment";
+    public static final String TAG = "ProfileFragment";
     private FragmentProfileBinding binding;
+    private ToolBar.OnItemToolBarClickListener onToolBarClickListener = item -> {
+        switch (item) {
+            case SAVE:
+                viewModel.saveData();
+                if (viewModel.isSetup()) {
+                    listener.onClick();
+                } else {
+                    getParentFragmentManager().popBackStack();
+                }
+                break;
+            case BACK:
+                getParentFragmentManager().popBackStack();
+                break;
+        }
+    };
 
-    public static ProfileFragment newInstance() {
+    public static ProfileFragment newInstance(boolean isSetup) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
+        args.putBoolean(TAG, isSetup);
         fragment.setArguments(args);
         return fragment;
     }
@@ -39,7 +58,14 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
     @Override
     protected void initView() {
         binding = (FragmentProfileBinding) getBinding();
+        if (getArguments() != null) {
+            viewModel.setIsSetup(getArguments().getBoolean(TAG));
+            setLayoutView(viewModel.isSetup());
+        }
+    }
 
+    private void setLayoutView(boolean isSetup) {
+        binding.toolBar.setLayoutView(isSetup ? ToolBarType.SETUP : ToolBarType.EXPECT);
     }
 
     @SuppressLint("SetTextI18n")
@@ -73,13 +99,9 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
             dialog.show(getChildFragmentManager(), BottomSheetDateDialog.TAG);
         });
         binding.btnBabyInfo.setOnClickListener(view -> {
-            BabyInfoFragment fragment = BabyInfoFragment.newInstance(false);
-            fragment.setListener(() -> {
-                getParentFragmentManager().popBackStack();
-            });
-            addFragment(R.id.container, fragment, BabyInfoFragment.TAG, false);
+            addFragment(R.id.container, BabyInfoFragment.newInstance(false), BabyInfoFragment.TAG, false);
         });
-        binding.btnSave.setOnClickListener(view -> viewModel.saveData());
+        binding.toolBar.setListener(onToolBarClickListener);
     }
 
     @Override

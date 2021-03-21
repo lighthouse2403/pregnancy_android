@@ -9,6 +9,7 @@ import com.dangthuy.trolybabau.databinding.FragmentHomeBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.home.adapter.HomeAdapter;
 import com.dangthuy.trolybabau.ui.main.MainFragment;
+import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
 
 import java.util.ArrayList;
 
@@ -54,7 +55,13 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
 
     @Override
     protected void setOnClickListener() {
+        binding.tvName.setOnClickListener(view -> {
+            gotoProfile();
+        });
+    }
 
+    private void gotoProfile() {
+        addFragment(R.id.container, ProfileFragment.newInstance(false), ProfileFragment.TAG, false);
     }
 
     @Override

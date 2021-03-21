@@ -21,7 +21,7 @@ public class BabyInfoFragment extends BaseFragment<BabyInforViewModel> {
 
                 break;
             case BACK:
-                listener.onClick();
+                getParentFragmentManager().popBackStack();
                 break;
         }
     };
