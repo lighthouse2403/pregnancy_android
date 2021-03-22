@@ -50,4 +50,5 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.45'
     implementation 'com.yangping:ypwaveview:1.0.3'
     implementation 'com.shawnlin:number-picker:2.4.12'
+    implementation 'com.liaoinstan.springview:library:1.7.0'
 }

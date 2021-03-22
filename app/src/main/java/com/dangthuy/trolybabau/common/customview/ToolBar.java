@@ -110,4 +110,8 @@ public class ToolBar extends ConstraintLayout {
             binding.tvTitle.setVisibility(View.GONE);
         }
     }
+
+    public void setTitle(String title) {
+        binding.tvTitle.setText(title);
+    }
 }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_item_share">
+
+    <ImageView
+        android:id="@+id/ivComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_comment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/blue" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="23 tuần ngứa nổi mẩn đỏ"
+        android:fontFamily="@font/roboto"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintStart_toEndOf="@id/ivComment"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPregnancy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_pregnancy"
+        app:layout_constraintBottom_toBottomOf="@id/ivComment"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        android:tint="@color/green"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/ivPregnancy"
+        app:layout_constraintTop_toTopOf="@id/ivPregnancy"
+        app:layout_constraintBottom_toBottomOf="@id/ivPregnancy"
+        android:fontFamily="@font/roboto"
+        android:textSize="12sp"
+        android:textColor="@color/green"
+        android:text="Kim phúc"
+        android:layout_marginStart="@dimen/_4sdp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvViewCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/ivComment"
+        app:layout_constraintTop_toBottomOf="@id/ivComment"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:text="28 \nđã đọc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_4sdp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCommentCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:text="1 bình luận"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintBottom_toBottomOf="@id/tvViewCount"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tvViewCount"
+        android:fontFamily="@font/roboto"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:text="16 tháng 3, 2021 06:22"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

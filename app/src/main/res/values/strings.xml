@@ -23,4 +23,8 @@
     <string name="tv_today">Hôm nay</string>
     <string name="tv_thang">Tháng</string>
     <string name="tv_nam">Năm</string>
+    <string name="tv_goc_chia_se">Góc chia sẻ</string>
+    <string name="tv_tim_kiem_theo_chu_de">Tìm kiếm theo chủ đề</string>
+    <string name="tv_all">Tất cả</string>
+    <string name="tv_my_share">Bài viết của tôi</string>
 </resources>

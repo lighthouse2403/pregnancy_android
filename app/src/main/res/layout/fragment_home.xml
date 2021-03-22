@@ -33,6 +33,16 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.4"/>
 
+        <View
+            android:id="@+id/btnExpect"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@id/guildLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvAge"
+            app:layout_constraintBottom_toBottomOf="@id/tvRemain"
+            android:background="@drawable/ripple_react_background"/>
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAge"
             android:layout_width="wrap_content"

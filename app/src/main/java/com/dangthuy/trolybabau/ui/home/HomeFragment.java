@@ -4,12 +4,15 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.data.model.HomeMenu;
 import com.dangthuy.trolybabau.databinding.FragmentHomeBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.home.adapter.HomeAdapter;
 import com.dangthuy.trolybabau.ui.main.MainFragment;
 import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
+import com.dangthuy.trolybabau.ui.share_corner.ShareCornerFragment;
 
 import java.util.ArrayList;
 
@@ -21,6 +24,15 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
     private static final String TAG = "HomeFragment";
     private FragmentHomeBinding binding;
     private HomeAdapter mHomeAdapter;
+    private final HomeAdapter.IClickItemListener onItemClickListener = item -> {
+        switch (item.getTitle()) {
+            case HomeMenu.GOC_CHIA_SE:
+                addFragment(R.id.container, ShareCornerFragment.newInstance(), ShareCornerFragment.TAG, false);
+                break;
+            case HomeMenu.NHAC_CHO_THAI_NHI:
+                break;
+        }
+    };
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -51,13 +63,13 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
         mHomeAdapter = new HomeAdapter(new ArrayList<>());
         binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         binding.recyclerView.setAdapter(mHomeAdapter);
+        mHomeAdapter.setListener(onItemClickListener);
     }
 
     @Override
     protected void setOnClickListener() {
-        binding.tvName.setOnClickListener(view -> {
-            gotoProfile();
-        });
+        binding.tvName.setOnClickListener(view -> gotoProfile());
+        binding.btnExpect.setOnClickListener(view -> gotoProfile());
     }
 
     private void gotoProfile() {
