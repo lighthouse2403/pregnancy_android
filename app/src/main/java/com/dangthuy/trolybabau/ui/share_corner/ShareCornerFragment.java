@@ -114,6 +114,15 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
                         case 1:
                             title.setText(R.string.tv_my_share);
                             break;
+                        case 2:
+                            title.setText(R.string.tv_hot);
+                            break;
+                        case 3:
+                            title.setText(R.string.tv_love);
+                            break;
+                        case 4:
+                            title.setText(R.string.tv_bai_viet_trong_tuan);
+                            break;
                     }
                 }
             }

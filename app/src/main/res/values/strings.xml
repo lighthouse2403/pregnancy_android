@@ -27,4 +27,7 @@
     <string name="tv_tim_kiem_theo_chu_de">Tìm kiếm theo chủ đề</string>
     <string name="tv_all">Tất cả</string>
     <string name="tv_my_share">Bài viết của tôi</string>
+    <string name="tv_hot">Hot</string>
+    <string name="tv_love">Yêu thích</string>
+    <string name="tv_bai_viet_trong_tuan">Bài viết trong tuần</string>
 </resources>

@@ -26,12 +26,18 @@ public class ShareCornerPagerAdapter extends FragmentStatePagerAdapter {
                 return AllShareCornerFragment.newInstance();
             case 1:
                 return MyShareCornerFragment.newInstance();
+            case 2:
+                return MyShareCornerFragment.newInstance();
+            case 3:
+                return MyShareCornerFragment.newInstance();
+            case 4:
+                return MyShareCornerFragment.newInstance();
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 5;
     }
 }
