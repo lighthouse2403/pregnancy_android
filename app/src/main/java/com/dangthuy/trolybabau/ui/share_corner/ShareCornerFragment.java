@@ -13,6 +13,7 @@ import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.databinding.FragmentShareCornerBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.share_corner.adapter.ShareCornerPagerAdapter;
+import com.dangthuy.trolybabau.ui.share_corner.add.AddShareCornerFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Objects;
@@ -32,7 +33,7 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
                 getParentFragmentManager().popBackStack();
                 break;
             case ADD:
-
+                addFragment(R.id.container, AddShareCornerFragment.newInstance(), AddShareCornerFragment.TAG, false);
                 break;
         }
     };
@@ -106,7 +107,7 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
                 View view = tab.getCustomView();
                 if (view != null) {
                     AppCompatTextView title = view.findViewById(R.id.tvTitle);
-                    switch (i){
+                    switch (i) {
                         case 0:
                             title.setText(R.string.tv_all);
                             title.setTextColor(requireContext().getColor(R.color.green));

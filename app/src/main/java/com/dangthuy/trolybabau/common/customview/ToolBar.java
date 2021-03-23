@@ -102,12 +102,16 @@ public class ToolBar extends ConstraintLayout {
             binding.btnBack.setVisibility(View.VISIBLE);
             binding.btnSave.setVisibility(View.VISIBLE);
             binding.tvTitle.setText(type.getName());
+        } else if (type.equals(ToolBarType.DEFAULT)) {
+            binding.btnAdd.setVisibility(View.GONE);
+            binding.btnBack.setVisibility(View.VISIBLE);
+            binding.btnSave.setVisibility(View.GONE);
         }
         else {
             binding.btnAdd.setVisibility(View.GONE);
             binding.btnBack.setVisibility(View.VISIBLE);
             binding.btnSave.setVisibility(View.GONE);
-            binding.tvTitle.setVisibility(View.GONE);
+            binding.tvTitle.setVisibility(View.INVISIBLE);
         }
     }
 

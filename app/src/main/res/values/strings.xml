@@ -30,4 +30,8 @@
     <string name="tv_hot">Hot</string>
     <string name="tv_love">Yêu thích</string>
     <string name="tv_bai_viet_trong_tuan">Bài viết trong tuần</string>
+    <string name="tv_tieu_de">Tiêu đề</string>
+    <string name="tv_tao_chu_de_moi">Tạo chủ đề mới</string>
+    <string name="tv_invalid_title_content">Xin mời nhập dữ liệu chủ đề và nội dung</string>
+    <string name="tv_binh_luan">Bình luận</string>
 </resources>

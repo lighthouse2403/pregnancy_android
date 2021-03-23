@@ -11,6 +11,7 @@ import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.share_corner.ShareCornerFragment;
 import com.dangthuy.trolybabau.ui.share_corner.ShareCornerViewModel;
 import com.dangthuy.trolybabau.ui.share_corner.adapter.ShareAdapter;
+import com.dangthuy.trolybabau.ui.share_corner.detail.DetailShareCornerFragment;
 
 import java.util.ArrayList;
 
@@ -54,6 +55,7 @@ public class AllShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         binding.recyclerView.addItemDecoration(new BetweenSpacesItemDecoration(4, 0));
         binding.recyclerView.setAdapter(mShareAdapter);
+        mShareAdapter.setListener(item -> addFragment(R.id.container, DetailShareCornerFragment.newInstance(item),DetailShareCornerFragment.TAG, false));
     }
 
     private void setLayoutView() {

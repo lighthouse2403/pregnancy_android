@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPregnancy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_pregnancy"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:tint="@color/pink"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textSize="13sp"
+        android:textColor="@color/white"
+        android:text="Heo con"
+        app:layout_constraintStart_toEndOf="@id/ivPregnancy"
+        app:layout_constraintBottom_toBottomOf="@id/ivPregnancy"
+        android:layout_marginStart="@dimen/_4sdp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        android:text="Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7"
+        app:layout_constraintTop_toBottomOf="@id/ivPregnancy"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvContent"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:text="18 tháng 3,2021 13:34"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivLove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_heart"
+        app:layout_constraintTop_toTopOf="@id/tvTime"
+        app:layout_constraintBottom_toBottomOf="@id/tvTime"
+        app:layout_constraintEnd_toStartOf="@id/tvLove"
+        android:layout_marginEnd="@dimen/_2sdp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:text="1"
+        app:layout_constraintTop_toTopOf="@id/tvTime"
+        app:layout_constraintBottom_toBottomOf="@id/tvTime"
+        app:layout_constraintEnd_toStartOf="@id/tvTime"
+        android:layout_marginEnd="@dimen/_20sdp"/>
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/tvTime"
+        android:layout_marginTop="@dimen/_5sdp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,4 +32,9 @@ public abstract class BaseViewModel extends AndroidViewModel {
         return liveData;
     }
 
+    protected final MutableLiveData<String> liveToast = new MutableLiveData<>();
+
+    public MutableLiveData<String> getLiveToast() {
+        return liveToast;
+    }
 }
