@@ -1,4 +1,4 @@
-package com.dangthuy.trolybabau.ui.born_story;
+package com.dangthuy.trolybabau.ui.music;
 
 import android.os.Bundle;
 
@@ -7,34 +7,32 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.customview.BetweenSpacesItemDecoration;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
-import com.dangthuy.trolybabau.data.model.BornStory;
 import com.dangthuy.trolybabau.data.model.HomeMenu;
 import com.dangthuy.trolybabau.databinding.FragmentCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
-import com.dangthuy.trolybabau.ui.born_story.adapter.BornStoryAdapter;
-import com.dangthuy.trolybabau.ui.born_story.detail.DetailBornStoryFragment;
-import com.dangthuy.trolybabau.ui.home.HomeFragment;
+import com.dangthuy.trolybabau.ui.music.adapter.MusicAdapter;
+import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
 
 import java.util.ArrayList;
 
 /**
- * Created by nhongthai on 3/24/2021.
+ * Created by nhongthai on 3/25/2021.
  */
-public class BornStoryFragment extends BaseFragment<BornStoryViewModel> {
-    public static final String TAG = "BornStoryFragment";
-    private BornStoryAdapter mBornStoryAdapter;
+public class MusicFragment extends BaseFragment<MusicViewModel> {
+    public static final String TAG = "MusicFragment";
     private FragmentCommonBinding binding;
+    private MusicAdapter mMusicAdapter;
 
-    public static BornStoryFragment newInstance() {
-        BornStoryFragment fragment = new BornStoryFragment();
+    public static MusicFragment newInstance() {
+        MusicFragment fragment = new MusicFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    protected Class<BornStoryViewModel> provideViewModelClass() {
-        return BornStoryViewModel.class;
+    protected Class<MusicViewModel> provideViewModelClass() {
+        return MusicViewModel.class;
     }
 
     @Override
@@ -49,25 +47,25 @@ public class BornStoryFragment extends BaseFragment<BornStoryViewModel> {
             setLayoutView();
         }
         initAdapter();
-        viewModel.getBornStories().observe(this, bornStories -> mBornStoryAdapter.setNewData(bornStories));
+        viewModel.getMusic().observe(this, music -> mMusicAdapter.setNewData(music));
     }
 
     private void initAdapter() {
-        mBornStoryAdapter = new BornStoryAdapter(new ArrayList<>());
+        mMusicAdapter = new MusicAdapter(new ArrayList<>());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         binding.recyclerView.addItemDecoration(new BetweenSpacesItemDecoration(5, 0));
-        binding.recyclerView.setAdapter(mBornStoryAdapter);
+        binding.recyclerView.setAdapter(mMusicAdapter);
     }
 
     private void setLayoutView() {
         binding.toolBar.setLayoutView(ToolBarType.DEFAULT);
-        binding.toolBar.setTitle(HomeMenu.CAU_CHUYEN_SINH_NO);
+        binding.toolBar.setTitle(HomeMenu.NHAC_BAU_CHO_BE);
     }
 
     @Override
     protected void setOnClickListener() {
         binding.toolBar.setListener(item -> getParentFragmentManager().popBackStack());
-        mBornStoryAdapter.setListener(item -> addFragment(R.id.container, DetailBornStoryFragment.newInstance(), DetailBornStoryFragment.TAG, false));
+
     }
 
     @Override

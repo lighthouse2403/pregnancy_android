@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void addFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.container, fragment)
+        fragmentTransaction.add(R.id.mainContainer, fragment)
                 .commit();
     }
 }

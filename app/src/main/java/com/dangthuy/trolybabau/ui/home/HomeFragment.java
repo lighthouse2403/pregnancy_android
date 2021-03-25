@@ -12,6 +12,7 @@ import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.born_story.BornStoryFragment;
 import com.dangthuy.trolybabau.ui.home.adapter.HomeAdapter;
 import com.dangthuy.trolybabau.ui.main.MainFragment;
+import com.dangthuy.trolybabau.ui.music.MusicFragment;
 import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
 import com.dangthuy.trolybabau.ui.share_corner.ShareCornerFragment;
 
@@ -30,7 +31,8 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
             case HomeMenu.GOC_CHIA_SE:
                 addFragment(R.id.container, ShareCornerFragment.newInstance(), ShareCornerFragment.TAG, false);
                 break;
-            case HomeMenu.NHAC_CHO_THAI_NHI:
+            case HomeMenu.NHAC_BAU_CHO_BE:
+                addFragment(R.id.container, MusicFragment.newInstance(), MusicFragment.TAG, false);
                 break;
             case HomeMenu.CAU_CHUYEN_SINH_NO:
                 addFragment(R.id.container, BornStoryFragment.newInstance(), BornStoryFragment.TAG, false);
