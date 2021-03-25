@@ -9,6 +9,7 @@ import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.data.model.HomeMenu;
 import com.dangthuy.trolybabau.databinding.FragmentHomeBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
+import com.dangthuy.trolybabau.ui.born_story.BornStoryFragment;
 import com.dangthuy.trolybabau.ui.home.adapter.HomeAdapter;
 import com.dangthuy.trolybabau.ui.main.MainFragment;
 import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
@@ -30,6 +31,9 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
                 addFragment(R.id.container, ShareCornerFragment.newInstance(), ShareCornerFragment.TAG, false);
                 break;
             case HomeMenu.NHAC_CHO_THAI_NHI:
+                break;
+            case HomeMenu.CAU_CHUYEN_SINH_NO:
+                addFragment(R.id.container, BornStoryFragment.newInstance(), BornStoryFragment.TAG, false);
                 break;
         }
     };

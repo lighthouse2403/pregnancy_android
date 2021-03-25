@@ -34,4 +34,5 @@
     <string name="tv_tao_chu_de_moi">Tạo chủ đề mới</string>
     <string name="tv_invalid_title_content">Xin mời nhập dữ liệu chủ đề và nội dung</string>
     <string name="tv_binh_luan">Bình luận</string>
+    <string name="tv_gui">Gửi</string>
 </resources>

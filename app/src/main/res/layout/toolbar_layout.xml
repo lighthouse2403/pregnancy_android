@@ -24,7 +24,7 @@
             android:textSize="13sp"
             android:textColor="@color/white"
             android:padding="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_24sdp"
             />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -39,7 +39,7 @@
             android:tint="@color/white"
             android:padding="@dimen/_10sdp"
             android:background="@drawable/ripple_react_background"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_24sdp"
             android:visibility="gone"
             />
 
@@ -55,7 +55,7 @@
             android:tint="@color/white"
             android:padding="@dimen/_10sdp"
             android:background="@drawable/ripple_react_background"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_24sdp"
             />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -70,7 +70,7 @@
             android:tint="@color/white"
             android:padding="@dimen/_10sdp"
             android:background="@drawable/ripple_react_background"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_24sdp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

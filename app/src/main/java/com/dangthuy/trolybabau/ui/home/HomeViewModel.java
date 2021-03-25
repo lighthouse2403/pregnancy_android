@@ -25,6 +25,7 @@ public class HomeViewModel extends BaseViewModel {
         ArrayList<HomeMenu> list = new ArrayList<>();
         list.add(new HomeMenu(HomeMenu.GOC_CHIA_SE, ""));
         list.add(new HomeMenu(HomeMenu.NHAC_CHO_THAI_NHI, ""));
+        list.add(new HomeMenu(HomeMenu.CAU_CHUYEN_SINH_NO, ""));
         homeMenus.postValue(list);
     }
 

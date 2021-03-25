@@ -59,13 +59,13 @@ public class DetailShareCornerFragment extends BaseFragment<ShareCornerViewModel
     }
 
     private void setLayoutView() {
-        binding.toolBar.setLayoutView(ToolBarType.DEFAULT);
-        binding.toolBar.setTitle(viewModel.getmShare().getTitle());
+        binding.tvTitle.setText(viewModel.getmShare().getTitle());
     }
 
     @Override
     protected void setOnClickListener() {
-        binding.toolBar.setListener(item -> getParentFragmentManager().popBackStack());
+        binding.btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
+        binding.tvSend.setOnClickListener(view -> {});
     }
 
     @Override
