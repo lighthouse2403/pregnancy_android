@@ -27,7 +27,7 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
     private FragmentShareCornerBinding binding;
     private ShareCornerPagerAdapter mShareCornerPagerAdapter;
 
-    private ToolBar.OnItemToolBarClickListener onToolBarItemClickListener = item -> {
+    private final ToolBar.OnItemToolBarClickListener onToolBarItemClickListener = item -> {
         switch (item) {
             case BACK:
                 getParentFragmentManager().popBackStack();

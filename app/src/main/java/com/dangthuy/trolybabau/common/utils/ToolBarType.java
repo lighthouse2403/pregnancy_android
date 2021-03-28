@@ -8,7 +8,8 @@ public enum ToolBarType {
     EXPECT(1, "Thông tin dự sinh"),
     BABY_INFO(2, "Thông tin thai nhi"),
     BABY_INFO_TAB(3, "Thông tin thai nhi"),
-    DEFAULT(4, "");
+    PREGNANT_TIME(4, "Thai kỳ"),
+    DEFAULT(100, "");
 
     private int type;
     private String name;

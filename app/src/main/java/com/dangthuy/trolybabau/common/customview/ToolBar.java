@@ -20,7 +20,7 @@ public class ToolBar extends ConstraintLayout {
     private ToolbarLayoutBinding binding;
 
     public enum Item {
-        BACK, SAVE, ADD
+        BACK, SAVE, ADD, SETUP, NOTIFY
     }
 
     private OnItemToolBarClickListener listener;
@@ -58,6 +58,12 @@ public class ToolBar extends ConstraintLayout {
             case R.id.btnBack:
                 item = Item.BACK;
                 break;
+            case R.id.btnSetting:
+                item = Item.SETUP;
+                break;
+            case R.id.btnNoti:
+                item = Item.NOTIFY;
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + view.getId());
         }
@@ -79,6 +85,8 @@ public class ToolBar extends ConstraintLayout {
         binding.btnSave.setOnClickListener(onClickListerer);
         binding.btnAdd.setOnClickListener(onClickListerer);
         binding.btnBack.setOnClickListener(onClickListerer);
+        binding.btnSetting.setOnClickListener(onClickListerer);
+        binding.btnNoti.setOnClickListener(onClickListerer);
     }
 
     public void setLayoutView(ToolBarType type) {
@@ -106,6 +114,13 @@ public class ToolBar extends ConstraintLayout {
             binding.btnAdd.setVisibility(View.GONE);
             binding.btnBack.setVisibility(View.VISIBLE);
             binding.btnSave.setVisibility(View.GONE);
+        } else if (type.equals(ToolBarType.PREGNANT_TIME)) {
+            binding.btnAdd.setVisibility(View.GONE);
+            binding.btnBack.setVisibility(View.GONE);
+            binding.btnSave.setVisibility(View.GONE);
+            binding.btnSetting.setVisibility(View.VISIBLE);
+            binding.btnNoti.setVisibility(View.VISIBLE);
+            binding.tvTitle.setText(type.getName());
         }
         else {
             binding.btnAdd.setVisibility(View.GONE);

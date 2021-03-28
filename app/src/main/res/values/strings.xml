@@ -35,4 +35,8 @@
     <string name="tv_invalid_title_content">Xin mời nhập dữ liệu chủ đề và nội dung</string>
     <string name="tv_binh_luan">Bình luận</string>
     <string name="tv_gui">Gửi</string>
+    <string name="tv_thong_bao">Thông báo</string>
+    <string name="tv_cai_dat_mau_nen">Cài đặt màu nền</string>
+    <string name="tv_vip">Nhập mã ứng dụng để ẩn banner quảng cáo bên dưới cùng của ứng dụng. Mỗi mã này có thời hạn vĩnh viễn. Nó chỉ mất đi khi bạn xóa ứng dụng.</string>
+    <string name="tv_nhap_ma">Nhập mã</string>
 </resources>
