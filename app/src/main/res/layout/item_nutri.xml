@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/clContent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_edittext_profile">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_story"
+        android:padding="@dimen/_10sdp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTitle"
+        style="@style/TextViewStyle.Black"
+        android:text="Nuoc cam"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintStart_toEndOf="@id/ivImage"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        style="@style/TextViewStyle.Black"
+        android:textSize="11sp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        android:id="@+id/tvContent"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:text="Chứa hàm lượng aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

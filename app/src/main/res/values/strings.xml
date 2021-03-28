@@ -42,4 +42,10 @@
     <string name="tv_nhat_ky_bi_mat">Nhật ký bí mật</string>
     <string name="tv_nhat_ky">Nhật ký</string>
     <string name="tv_no_nhat_ky">Bạn chưa ghi nhật ký</string>
+    <string name="tv_kien_thuc">Kiến thức</string>
+    <string name="tv_kien_thuc_s">Kiến thức %s</string>
+    <string name="tv_dinh_duong">Dinh dưỡng</string>
+    <string name="tv_food">Thực phẩm</string>
+    <string name="tv_vitamin">Vitamin</string>
+    <string name="tv_fruit">Trái cây</string>
 </resources>

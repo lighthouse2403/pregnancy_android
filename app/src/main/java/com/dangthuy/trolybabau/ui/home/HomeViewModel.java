@@ -15,6 +15,9 @@ import java.util.List;
  * Created by nhongthai on 20/03/2021.
  */
 public class HomeViewModel extends BaseViewModel {
+    public static final String GOC_CHIA_SE = "Góc chia sẻ";
+    public static final String CAU_CHUYEN_SINH_NO = "Câu chuyện sinh nở";
+    public static final String NHAC_BAU_CHO_BE = "Nhạc bầu cho bé";
     private MutableLiveData<List<HomeMenu>> homeMenus = new MutableLiveData<>();
 
     public HomeViewModel(@NonNull Application application) {
@@ -23,9 +26,9 @@ public class HomeViewModel extends BaseViewModel {
 
     public void fetchData() {
         ArrayList<HomeMenu> list = new ArrayList<>();
-        list.add(new HomeMenu(HomeMenu.GOC_CHIA_SE, ""));
-        list.add(new HomeMenu(HomeMenu.CAU_CHUYEN_SINH_NO, ""));
-        list.add(new HomeMenu(HomeMenu.NHAC_BAU_CHO_BE, ""));
+        list.add(new HomeMenu(GOC_CHIA_SE, ""));
+        list.add(new HomeMenu(CAU_CHUYEN_SINH_NO, ""));
+        list.add(new HomeMenu(NHAC_BAU_CHO_BE, ""));
         homeMenus.postValue(list);
     }
 

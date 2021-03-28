@@ -10,6 +10,7 @@ import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.data.model.HomeMenu;
 import com.dangthuy.trolybabau.databinding.FragmentCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
+import com.dangthuy.trolybabau.ui.home.HomeViewModel;
 import com.dangthuy.trolybabau.ui.music.adapter.MusicAdapter;
 import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
 
@@ -59,7 +60,7 @@ public class MusicFragment extends BaseFragment<MusicViewModel> {
 
     private void setLayoutView() {
         binding.toolBar.setLayoutView(ToolBarType.DEFAULT);
-        binding.toolBar.setTitle(HomeMenu.NHAC_BAU_CHO_BE);
+        binding.toolBar.setTitle(HomeViewModel.NHAC_BAU_CHO_BE);
     }
 
     @Override

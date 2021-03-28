@@ -14,6 +14,7 @@ import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.born_story.adapter.BornStoryAdapter;
 import com.dangthuy.trolybabau.ui.born_story.detail.DetailBornStoryFragment;
 import com.dangthuy.trolybabau.ui.home.HomeFragment;
+import com.dangthuy.trolybabau.ui.home.HomeViewModel;
 
 import java.util.ArrayList;
 
@@ -61,7 +62,7 @@ public class BornStoryFragment extends BaseFragment<BornStoryViewModel> {
 
     private void setLayoutView() {
         binding.toolBar.setLayoutView(ToolBarType.DEFAULT);
-        binding.toolBar.setTitle(HomeMenu.CAU_CHUYEN_SINH_NO);
+        binding.toolBar.setTitle(HomeViewModel.CAU_CHUYEN_SINH_NO);
     }
 
     @Override

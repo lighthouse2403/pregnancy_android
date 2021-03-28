@@ -28,13 +28,13 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
     private HomeAdapter mHomeAdapter;
     private final HomeAdapter.IClickItemListener onItemClickListener = item -> {
         switch (item.getTitle()) {
-            case HomeMenu.GOC_CHIA_SE:
+            case HomeViewModel.GOC_CHIA_SE:
                 addFragment(R.id.container, ShareCornerFragment.newInstance(), ShareCornerFragment.TAG, false);
                 break;
-            case HomeMenu.NHAC_BAU_CHO_BE:
+            case HomeViewModel.NHAC_BAU_CHO_BE:
                 addFragment(R.id.container, MusicFragment.newInstance(), MusicFragment.TAG, false);
                 break;
-            case HomeMenu.CAU_CHUYEN_SINH_NO:
+            case HomeViewModel.CAU_CHUYEN_SINH_NO:
                 addFragment(R.id.container, BornStoryFragment.newInstance(), BornStoryFragment.TAG, false);
                 break;
         }
