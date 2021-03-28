@@ -39,4 +39,7 @@
     <string name="tv_cai_dat_mau_nen">Cài đặt màu nền</string>
     <string name="tv_vip">Nhập mã ứng dụng để ẩn banner quảng cáo bên dưới cùng của ứng dụng. Mỗi mã này có thời hạn vĩnh viễn. Nó chỉ mất đi khi bạn xóa ứng dụng.</string>
     <string name="tv_nhap_ma">Nhập mã</string>
+    <string name="tv_nhat_ky_bi_mat">Nhật ký bí mật</string>
+    <string name="tv_nhat_ky">Nhật ký</string>
+    <string name="tv_no_nhat_ky">Bạn chưa ghi nhật ký</string>
 </resources>

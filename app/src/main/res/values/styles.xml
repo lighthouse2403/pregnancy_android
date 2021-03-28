@@ -16,4 +16,20 @@
         <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 
+    <style name="TextViewStyle" parent="AppTheme">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextViewStyle.Black" parent="TextViewStyle">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextViewStyle.White" parent="TextViewStyle">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextViewStyle.Green" parent="TextViewStyle">
+        <item name="android:textColor">@color/green</item>
+    </style>
 </resources>

@@ -20,7 +20,7 @@ public class ToolBar extends ConstraintLayout {
     private ToolbarLayoutBinding binding;
 
     public enum Item {
-        BACK, SAVE, ADD, SETUP, NOTIFY
+        BACK, SAVE, ADD, SETUP, NOTIFY, CAMERA
     }
 
     private OnItemToolBarClickListener listener;
@@ -64,6 +64,9 @@ public class ToolBar extends ConstraintLayout {
             case R.id.btnNoti:
                 item = Item.NOTIFY;
                 break;
+            case R.id.btnCapture:
+                item = Item.CAMERA;
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + view.getId());
         }
@@ -87,46 +90,34 @@ public class ToolBar extends ConstraintLayout {
         binding.btnBack.setOnClickListener(onClickListerer);
         binding.btnSetting.setOnClickListener(onClickListerer);
         binding.btnNoti.setOnClickListener(onClickListerer);
+        binding.btnCapture.setOnClickListener(onClickListerer);
     }
 
     public void setLayoutView(ToolBarType type) {
         if (type.equals(ToolBarType.SETUP)) {
-            binding.btnAdd.setVisibility(View.GONE);
-            binding.btnBack.setVisibility(View.GONE);
             binding.btnSave.setVisibility(View.VISIBLE);
             binding.tvTitle.setText(type.getName());
         } else if (type.equals(ToolBarType.BABY_INFO)) {
             binding.btnAdd.setVisibility(View.VISIBLE);
             binding.btnBack.setVisibility(View.VISIBLE);
-            binding.btnSave.setVisibility(View.GONE);
             binding.tvTitle.setText(type.getName());
         } else if (type.equals(ToolBarType.BABY_INFO_TAB)) {
             binding.btnAdd.setVisibility(View.VISIBLE);
-            binding.btnBack.setVisibility(View.GONE);
-            binding.btnSave.setVisibility(View.GONE);
             binding.tvTitle.setText(type.getName());
         } else if(type.equals(ToolBarType.EXPECT)) {
-            binding.btnAdd.setVisibility(View.GONE);
             binding.btnBack.setVisibility(View.VISIBLE);
             binding.btnSave.setVisibility(View.VISIBLE);
             binding.tvTitle.setText(type.getName());
         } else if (type.equals(ToolBarType.DEFAULT)) {
-            binding.btnAdd.setVisibility(View.GONE);
             binding.btnBack.setVisibility(View.VISIBLE);
-            binding.btnSave.setVisibility(View.GONE);
         } else if (type.equals(ToolBarType.PREGNANT_TIME)) {
-            binding.btnAdd.setVisibility(View.GONE);
-            binding.btnBack.setVisibility(View.GONE);
-            binding.btnSave.setVisibility(View.GONE);
             binding.btnSetting.setVisibility(View.VISIBLE);
             binding.btnNoti.setVisibility(View.VISIBLE);
             binding.tvTitle.setText(type.getName());
-        }
-        else {
-            binding.btnAdd.setVisibility(View.GONE);
+        } else if (type.equals(ToolBarType.DIARY_ADD)) {
+            binding.btnCapture.setVisibility(View.VISIBLE);
             binding.btnBack.setVisibility(View.VISIBLE);
-            binding.btnSave.setVisibility(View.GONE);
-            binding.tvTitle.setVisibility(View.INVISIBLE);
+            binding.tvTitle.setText(type.getName());
         }
     }
 

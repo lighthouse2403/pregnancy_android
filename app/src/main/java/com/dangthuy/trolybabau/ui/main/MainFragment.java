@@ -1,6 +1,7 @@
 package com.dangthuy.trolybabau.ui.main;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.databinding.FragmentMainBinding;
@@ -43,6 +44,9 @@ public class MainFragment extends BaseFragment<MainViewModel> {
     private void setupBottomBar() {
         binding.bottomNavigation.setItemIconTintList(null);
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
+            for (int i = 0; i < getParentFragmentManager().getBackStackEntryCount(); i++) {
+                getParentFragmentManager().popBackStack();
+            }
             switch (item.getItemId()) {
                 case R.id.navTrangChu:
                     binding.viewPager.setCurrentItem(0);

@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.dangthuy.trolybabau.ui.chiso.BabyInfoFragment;
+import com.dangthuy.trolybabau.ui.diary.DiaryFragment;
 import com.dangthuy.trolybabau.ui.home.HomeFragment;
 import com.dangthuy.trolybabau.ui.thaiky.ThaikyFragment;
 
@@ -27,7 +28,7 @@ public class MainAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return ThaikyFragment.newInstance();
             case 2:
-                return HomeFragment.newInstance();
+                return DiaryFragment.newInstance();
             case 3:
                 return HomeFragment.newInstance();
             case 4:

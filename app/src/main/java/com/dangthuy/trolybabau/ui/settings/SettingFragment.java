@@ -80,6 +80,7 @@ public class SettingFragment extends BaseFragment<SettingViewModel> {
     @Override
     protected void setOnClickListener() {
         mSettingAdapter.setListener(setttingListener);
+        binding.toolBar.setListener(item -> getParentFragmentManager().popBackStack());
     }
 
     @Override
