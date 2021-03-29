@@ -97,7 +97,7 @@ public class ToolBar extends ConstraintLayout {
         if (type.equals(ToolBarType.SETUP)) {
             binding.btnSave.setVisibility(View.VISIBLE);
             binding.tvTitle.setText(type.getName());
-        } else if (type.equals(ToolBarType.BABY_INFO)) {
+        } else if (type.equals(ToolBarType.INFOMATION)) {
             binding.btnAdd.setVisibility(View.VISIBLE);
             binding.btnBack.setVisibility(View.VISIBLE);
             binding.tvTitle.setText(type.getName());

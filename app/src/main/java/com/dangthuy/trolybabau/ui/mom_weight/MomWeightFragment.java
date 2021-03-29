@@ -1,4 +1,4 @@
-package com.dangthuy.trolybabau.ui.chiso;
+package com.dangthuy.trolybabau.ui.mom_weight;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,38 +10,38 @@ import com.dangthuy.trolybabau.common.customview.ToolBar;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.databinding.FragmentInfomationCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
-import com.dangthuy.trolybabau.ui.chiso.adapter.BabyInfoPagerAdapter;
+import com.dangthuy.trolybabau.ui.home.HomeViewModel;
+import com.dangthuy.trolybabau.ui.mom_weight.adapter.MomWeightPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 /**
- * Created by nhongthai on 21/03/2021.
+ * Created by nhongthai on 3/29/2021.
  */
-public class BabyInfoFragment extends BaseFragment<BabyInforViewModel> {
-    public static final String TAG = "BabyInfoFragment";
+public class MomWeightFragment extends BaseFragment<MomWeightViewModel> {
+    public static final String TAG = "MomWeightFragment";
     private FragmentInfomationCommonBinding binding;
-    private BabyInfoPagerAdapter mBabyInfoPagerAdapter;
-    private ToolBar.OnItemToolBarClickListener onToolBarClickListener = item -> {
+    private MomWeightPagerAdapter mMomWeightPagerAdapter;
+    private final ToolBar.OnItemToolBarClickListener toolbarListener = item -> {
         switch (item) {
+            case BACK:
+                getParentFragmentManager().popBackStack();;
+                break;
             case ADD:
 
-                break;
-            case BACK:
-                getParentFragmentManager().popBackStack();
                 break;
         }
     };
 
-    public static BabyInfoFragment newInstance(boolean isTab) {
-        BabyInfoFragment fragment = new BabyInfoFragment();
+    public static MomWeightFragment newInstance() {
+        MomWeightFragment fragment = new MomWeightFragment();
         Bundle args = new Bundle();
-        args.putBoolean(TAG, isTab);
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    protected Class<BabyInforViewModel> provideViewModelClass() {
-        return BabyInforViewModel.class;
+    protected Class<MomWeightViewModel> provideViewModelClass() {
+        return MomWeightViewModel.class;
     }
 
     @Override
@@ -52,29 +52,29 @@ public class BabyInfoFragment extends BaseFragment<BabyInforViewModel> {
     @Override
     protected void initView() {
         binding = (FragmentInfomationCommonBinding) getBinding();
-        if (getArguments() != null) {
-            setLayoutView(getArguments().getBoolean(TAG));
+        if (getArguments() != null){
+            setLayoutView();
         }
         setupViewPager();
     }
 
+    private void setLayoutView() {
+        binding.toolBar.setLayoutView(ToolBarType.INFOMATION);
+        binding.toolBar.setTitle(HomeViewModel.CAN_NANG_CUA_ME);
+    }
+
     private void setupViewPager() {
-        mBabyInfoPagerAdapter = new BabyInfoPagerAdapter(getChildFragmentManager());
-        binding.viewPager.setAdapter(mBabyInfoPagerAdapter);
+        mMomWeightPagerAdapter = new MomWeightPagerAdapter(getChildFragmentManager());
+        binding.viewPager.setAdapter(mMomWeightPagerAdapter);
         binding.tabs.setupWithViewPager(binding.viewPager);
         customTabs();
         binding.tabs.addOnTabSelectedListener(onTabLayout);
         binding.viewPager.setOffscreenPageLimit(2);
-
-    }
-
-    private void setLayoutView(boolean isTab) {
-        binding.toolBar.setLayoutView(isTab ? ToolBarType.BABY_INFO_TAB : ToolBarType.INFOMATION);
     }
 
     @Override
     protected void setOnClickListener() {
-        binding.toolBar.setListener(onToolBarClickListener);
+        binding.toolBar.setListener(toolbarListener);
     }
 
     @Override

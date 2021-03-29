@@ -2,8 +2,6 @@ package com.dangthuy.trolybabau.ui.share_corner;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
@@ -15,8 +13,6 @@ import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.share_corner.adapter.ShareCornerPagerAdapter;
 import com.dangthuy.trolybabau.ui.share_corner.add.AddShareCornerFragment;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.Objects;
 
 /**
  * Created by nhongthai on 3/22/2021.
@@ -131,7 +127,7 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
     }
 
     private void setLayoutView() {
-        binding.toolBar.setLayoutView(ToolBarType.BABY_INFO);
+        binding.toolBar.setLayoutView(ToolBarType.INFOMATION);
         binding.toolBar.setTitle(getString(R.string.tv_goc_chia_se));
     }
 

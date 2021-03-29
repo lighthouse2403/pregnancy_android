@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_edittext_profile"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="52"
+        style="@style/TextViewStyle.Black"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="@dimen/_20sdp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/tvWeight"
+        app:layout_constraintBottom_toTopOf="@id/tvAge"
+        app:layout_constraintStart_toEndOf="@id/tvWeight"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:text="17 tháng 3, 2021"
+        style="@style/TextViewStyle.White"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/tvWeight"
+        app:layout_constraintTop_toBottomOf="@id/tvDate"
+        app:layout_constraintStart_toEndOf="@id/tvWeight"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:text="32 tuần 5 ngày"
+        style="@style/TextViewStyle.Black"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

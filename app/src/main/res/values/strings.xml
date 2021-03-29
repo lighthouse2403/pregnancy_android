@@ -48,4 +48,6 @@
     <string name="tv_food">Thực phẩm</string>
     <string name="tv_vitamin">Vitamin</string>
     <string name="tv_fruit">Trái cây</string>
+    <string name="tv_danh_sach">Danh sách</string>
+    <string name="tv_bieu_do">Biểu đồ</string>
 </resources>
