@@ -1,4 +1,4 @@
-package com.dangthuy.trolybabau.ui.profile.bottom_sheet;
+package com.dangthuy.trolybabau.ui.bottom_sheet;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

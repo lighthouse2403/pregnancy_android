@@ -50,4 +50,5 @@
     <string name="tv_fruit">Trái cây</string>
     <string name="tv_danh_sach">Danh sách</string>
     <string name="tv_bieu_do">Biểu đồ</string>
+    <string name="tv_ngay_can">Ngày cân</string>
 </resources>

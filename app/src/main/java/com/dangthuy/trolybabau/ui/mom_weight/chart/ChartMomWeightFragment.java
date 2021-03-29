@@ -13,8 +13,8 @@ import com.dangthuy.trolybabau.ui.mom_weight.MomWeightViewModel;
 public class ChartMomWeightFragment extends BaseFragment<MomWeightViewModel> {
     public static final String TAG = "ChartMomWeightFragment";
 
-    public static MomWeightFragment newInstance() {
-        MomWeightFragment fragment = new MomWeightFragment();
+    public static ChartMomWeightFragment newInstance() {
+        ChartMomWeightFragment fragment = new ChartMomWeightFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;

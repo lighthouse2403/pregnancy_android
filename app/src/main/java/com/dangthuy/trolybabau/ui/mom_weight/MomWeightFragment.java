@@ -12,6 +12,7 @@ import com.dangthuy.trolybabau.databinding.FragmentInfomationCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.home.HomeViewModel;
 import com.dangthuy.trolybabau.ui.mom_weight.adapter.MomWeightPagerAdapter;
+import com.dangthuy.trolybabau.ui.mom_weight.add.AddMomWeightFragment;
 import com.google.android.material.tabs.TabLayout;
 
 /**
@@ -27,7 +28,7 @@ public class MomWeightFragment extends BaseFragment<MomWeightViewModel> {
                 getParentFragmentManager().popBackStack();;
                 break;
             case ADD:
-
+                addFragment(R.id.container, AddMomWeightFragment.newInstance(), AddMomWeightFragment.TAG, false);
                 break;
         }
     };

@@ -14,4 +14,8 @@ public class MomWeightViewModel extends BaseViewModel {
     public MomWeightViewModel(@NonNull Application application) {
         super(application);
     }
+
+    public void setDate(int year, int month, int day) {
+
+    }
 }

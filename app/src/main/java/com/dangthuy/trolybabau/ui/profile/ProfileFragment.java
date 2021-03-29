@@ -2,7 +2,6 @@ package com.dangthuy.trolybabau.ui.profile;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.customview.ToolBar;
@@ -10,10 +9,8 @@ import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.databinding.FragmentProfileBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.chiso.BabyInfoFragment;
-import com.dangthuy.trolybabau.ui.chiso.BabyInforViewModel;
-import com.dangthuy.trolybabau.ui.main.MainFragment;
-import com.dangthuy.trolybabau.ui.profile.bottom_sheet.BottomSheetAgeDialog;
-import com.dangthuy.trolybabau.ui.profile.bottom_sheet.BottomSheetDateDialog;
+import com.dangthuy.trolybabau.ui.bottom_sheet.BottomSheetAgeDialog;
+import com.dangthuy.trolybabau.ui.bottom_sheet.BottomSheetDateDialog;
 
 /**
  * Created by nhongthai on 20/03/2021.

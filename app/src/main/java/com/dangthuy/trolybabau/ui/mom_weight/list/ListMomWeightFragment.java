@@ -22,8 +22,8 @@ public class ListMomWeightFragment extends BaseFragment<MomWeightViewModel> {
     private FragmentPagerCommonBinding binding;
     private MomWeightAdapter mMomWeightAdapter;
 
-    public static MomWeightFragment newInstance() {
-        MomWeightFragment fragment = new MomWeightFragment();
+    public static ListMomWeightFragment newInstance() {
+        ListMomWeightFragment fragment = new ListMomWeightFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
