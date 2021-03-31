@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Created by nhongthai on 3/29/2021.
  */
-public class MomWeightAdapter extends BaseQuickAdapter<MomWeight, BaseViewHolder> {
-    public MomWeightAdapter(@Nullable List<MomWeight> data) {
+public class InformationAdapter extends BaseQuickAdapter<MomWeight, BaseViewHolder> {
+    public InformationAdapter(@Nullable List<MomWeight> data) {
         super(R.layout.item_mom_weight ,data);
     }
 

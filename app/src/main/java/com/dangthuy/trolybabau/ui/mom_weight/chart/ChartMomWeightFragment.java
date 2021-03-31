@@ -4,13 +4,12 @@ import android.os.Bundle;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
-import com.dangthuy.trolybabau.ui.mom_weight.MomWeightFragment;
-import com.dangthuy.trolybabau.ui.mom_weight.MomWeightViewModel;
+import com.dangthuy.trolybabau.ui.mom_weight.InfomartionViewModel;
 
 /**
  * Created by nhongthai on 3/29/2021.
  */
-public class ChartMomWeightFragment extends BaseFragment<MomWeightViewModel> {
+public class ChartMomWeightFragment extends BaseFragment<InfomartionViewModel> {
     public static final String TAG = "ChartMomWeightFragment";
 
     public static ChartMomWeightFragment newInstance() {
@@ -21,8 +20,8 @@ public class ChartMomWeightFragment extends BaseFragment<MomWeightViewModel> {
     }
 
     @Override
-    protected Class<MomWeightViewModel> provideViewModelClass() {
-        return MomWeightViewModel.class;
+    protected Class<InfomartionViewModel> provideViewModelClass() {
+        return InfomartionViewModel.class;
     }
 
     @Override

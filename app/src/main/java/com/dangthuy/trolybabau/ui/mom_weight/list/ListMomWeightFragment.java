@@ -8,19 +8,18 @@ import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.customview.BetweenSpacesItemDecoration;
 import com.dangthuy.trolybabau.databinding.FragmentPagerCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
-import com.dangthuy.trolybabau.ui.mom_weight.MomWeightFragment;
-import com.dangthuy.trolybabau.ui.mom_weight.MomWeightViewModel;
-import com.dangthuy.trolybabau.ui.mom_weight.adapter.MomWeightAdapter;
+import com.dangthuy.trolybabau.ui.mom_weight.InfomartionViewModel;
+import com.dangthuy.trolybabau.ui.mom_weight.adapter.InformationAdapter;
 
 import java.util.ArrayList;
 
 /**
  * Created by nhongthai on 3/29/2021.
  */
-public class ListMomWeightFragment extends BaseFragment<MomWeightViewModel> {
+public class ListMomWeightFragment extends BaseFragment<InfomartionViewModel> {
     public static final String TAG = "ListMomWeightFragment";
     private FragmentPagerCommonBinding binding;
-    private MomWeightAdapter mMomWeightAdapter;
+    private InformationAdapter mInformationAdapter;
 
     public static ListMomWeightFragment newInstance() {
         ListMomWeightFragment fragment = new ListMomWeightFragment();
@@ -30,8 +29,8 @@ public class ListMomWeightFragment extends BaseFragment<MomWeightViewModel> {
     }
 
     @Override
-    protected Class<MomWeightViewModel> provideViewModelClass() {
-        return MomWeightViewModel.class;
+    protected Class<InfomartionViewModel> provideViewModelClass() {
+        return InfomartionViewModel.class;
     }
 
     @Override
@@ -49,10 +48,10 @@ public class ListMomWeightFragment extends BaseFragment<MomWeightViewModel> {
     }
 
     private void initAdapter() {
-        mMomWeightAdapter = new MomWeightAdapter(new ArrayList<>());
+        mInformationAdapter = new InformationAdapter(new ArrayList<>());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         binding.recyclerView.addItemDecoration(new BetweenSpacesItemDecoration(5,0));
-        binding.recyclerView.setAdapter(mMomWeightAdapter);
+        binding.recyclerView.setAdapter(mInformationAdapter);
     }
 
     @Override

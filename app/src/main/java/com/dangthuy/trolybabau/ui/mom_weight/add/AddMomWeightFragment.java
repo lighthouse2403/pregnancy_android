@@ -8,13 +8,12 @@ import com.dangthuy.trolybabau.databinding.FragmentMomWeightAddBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.bottom_sheet.BottomSheetDateDialog;
 import com.dangthuy.trolybabau.ui.home.HomeViewModel;
-import com.dangthuy.trolybabau.ui.mom_weight.MomWeightViewModel;
-import com.dangthuy.trolybabau.ui.mom_weight.chart.ChartMomWeightFragment;
+import com.dangthuy.trolybabau.ui.mom_weight.InfomartionViewModel;
 
 /**
  * Created by nhongthai on 3/29/2021.
  */
-public class AddMomWeightFragment extends BaseFragment<MomWeightViewModel> {
+public class AddMomWeightFragment extends BaseFragment<InfomartionViewModel> {
     public static final String TAG = "AddMomWeightFragment";
     private FragmentMomWeightAddBinding binding;
 
@@ -26,8 +25,8 @@ public class AddMomWeightFragment extends BaseFragment<MomWeightViewModel> {
     }
 
     @Override
-    protected Class<MomWeightViewModel> provideViewModelClass() {
-        return MomWeightViewModel.class;
+    protected Class<InfomartionViewModel> provideViewModelClass() {
+        return InfomartionViewModel.class;
     }
 
     @Override

@@ -4,15 +4,13 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dangthuy.trolybabau.R;
-import com.dangthuy.trolybabau.data.model.HomeMenu;
 import com.dangthuy.trolybabau.databinding.FragmentHomeBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.born_story.BornStoryFragment;
 import com.dangthuy.trolybabau.ui.home.adapter.HomeAdapter;
-import com.dangthuy.trolybabau.ui.main.MainFragment;
-import com.dangthuy.trolybabau.ui.mom_weight.MomWeightFragment;
+import com.dangthuy.trolybabau.ui.mom_weight.InfomartionViewModel;
+import com.dangthuy.trolybabau.ui.mom_weight.InfomationFragment;
 import com.dangthuy.trolybabau.ui.music.MusicFragment;
 import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
 import com.dangthuy.trolybabau.ui.share_corner.ShareCornerFragment;
@@ -39,10 +37,10 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
                 addFragment(R.id.container, BornStoryFragment.newInstance(), BornStoryFragment.TAG, false);
                 break;
             case HomeViewModel.CAN_NANG_CUA_ME:
-                addFragment(R.id.container, MomWeightFragment.newInstance(), MomWeightFragment.TAG, false);
+                addFragment(R.id.container, InfomationFragment.newInstance(InfomartionViewModel.TYPE_MOM), InfomationFragment.TAG, false);
                 break;
             case HomeViewModel.THEO_DOI_SO_LAN_DAP:
-
+                addFragment(R.id.container, InfomationFragment.newInstance(InfomartionViewModel.TYPE_BABY), InfomationFragment.TAG, false);
                 break;
         }
     };
