@@ -16,7 +16,7 @@ public class KnowledgeRepository extends BaseRepository {
         void onLoadNutriFinished(NutriResponse response);
     }
 
-    public void loadFruit(int raw, LoadNutriListener listener) {
+    public void loadNutrition(int raw, LoadNutriListener listener) {
         loadDataFromRaw(NutriResponse.class, raw, listener::onLoadNutriFinished);
     }
 }

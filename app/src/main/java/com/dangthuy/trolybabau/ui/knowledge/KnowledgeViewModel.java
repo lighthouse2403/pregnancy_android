@@ -34,10 +34,16 @@ public class KnowledgeViewModel extends BaseViewModel {
 
     private String mMenu;
     private int mNutri;
-    private KnowledgeRepository.LoadNutriListener nutriListener = response -> {
+    private final KnowledgeRepository.LoadNutriListener nutriListener = response -> {
         if (response != null) {
+            if(response.getFood() != null) {
+                nutries.postValue(response.getFood());
+            }
             if(response.getFruits() != null) {
                 nutries.postValue(response.getFruits());
+            }
+            if(response.getVitamin() != null) {
+                nutries.postValue(response.getVitamin());
             }
         }
     };
@@ -100,13 +106,13 @@ public class KnowledgeViewModel extends BaseViewModel {
         ArrayList<Nutri> list;
         switch (mNutri) {
             case 0: //Food
-
+                repository.loadNutrition(R.raw.food, nutriListener);
                 break;
             case 1: //Fruit
-                repository.loadFruit(R.raw.fruit, nutriListener);
+                repository.loadNutrition(R.raw.fruit, nutriListener);
                 break;
             case 2: //Vitamin
-
+                repository.loadNutrition(R.raw.vitamin, nutriListener);
                 break;
         }
     }

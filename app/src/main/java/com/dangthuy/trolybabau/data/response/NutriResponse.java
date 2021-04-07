@@ -13,6 +13,10 @@ public class NutriResponse extends BaseResponse{
     private List<Nutri> nutrition;
     @SerializedName("fruit")
     private List<Nutri> fruits;
+    @SerializedName("food")
+    private List<Nutri> food;
+    @SerializedName("vitamin")
+    private List<Nutri> vitamin;
 
     public List<Nutri> getNutrition() {
         return nutrition;
@@ -20,5 +24,13 @@ public class NutriResponse extends BaseResponse{
 
     public List<Nutri> getFruits() {
         return fruits;
+    }
+
+    public List<Nutri> getFood() {
+        return food;
+    }
+
+    public List<Nutri> getVitamin() {
+        return vitamin;
     }
 }
