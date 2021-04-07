@@ -1,7 +1,10 @@
 package com.dangthuy.trolybabau.ui.knowledge.adapter;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.dangthuy.trolybabau.R;
@@ -33,6 +36,10 @@ public class NutriAdapter extends BaseQuickAdapter<Nutri, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, Nutri item) {
         ItemNutriBinding binding = ItemNutriBinding.bind(helper.itemView);
+        binding.tvTitle.setText(item.getName());
+        binding.tvContent.setText(item.getShortDescription());
+        final int resourceId = mContext.getResources().getIdentifier(item.getImage(), "drawable", mContext.getPackageName());
+        Glide.with(mContext).load(resourceId).into(binding.ivImage);
         binding.clContent.setOnClickListener(view -> listener.onClick(item));
     }
 }

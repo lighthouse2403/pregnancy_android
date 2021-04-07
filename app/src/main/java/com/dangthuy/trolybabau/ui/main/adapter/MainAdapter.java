@@ -23,7 +23,7 @@ public class MainAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 return HomeFragment.newInstance();
             case 1:
@@ -31,9 +31,9 @@ public class MainAdapter extends FragmentStatePagerAdapter {
             case 2:
                 return DiaryFragment.newInstance();
             case 3:
-                return KnowledgePageFragment.newInstance();
-            case 4:
                 return BabyInfoFragment.newInstance(true);
+            case 4:
+                return KnowledgePageFragment.newInstance();
         }
         return null;
     }

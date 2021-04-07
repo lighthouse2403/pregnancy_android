@@ -49,6 +49,11 @@ public class NutriFragment extends BaseFragment<KnowledgeViewModel> {
         }
         initAdapter();
         viewModel.getNutries().observe(this, nutris -> mNutriAdapter.setNewData(nutris));
+        setLayoutView();
+    }
+
+    private void setLayoutView() {
+
     }
 
     private void initAdapter() {
@@ -64,12 +69,11 @@ public class NutriFragment extends BaseFragment<KnowledgeViewModel> {
     }
 
     private void showDialog(Nutri nutri) {
-        NutriDialog dialog = new NutriDialog(getContext());
-        //fake
-        nutri.setTitle("hello");
-        nutri.setContent("hehe");
-        dialog.setmNutri(nutri);
-        dialog.show();
+        if (getContext() != null) {
+            NutriDialog dialog = new NutriDialog(getContext());
+            dialog.setmNutri(nutri);
+            dialog.show();
+        }
     }
 
     @Override

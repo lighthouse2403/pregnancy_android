@@ -17,6 +17,7 @@
             android:paddingBottom="@dimen/_20sdp"
             android:textAlignment="center"
             style="@style/TextViewStyle.Green"
+            android:textSize="@dimen/_15sdp"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -30,7 +31,7 @@
             android:layout_marginEnd="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"/>
         
-        <androidx.appcompat.widget.AppCompatTextView
+        <WebView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tvContent"

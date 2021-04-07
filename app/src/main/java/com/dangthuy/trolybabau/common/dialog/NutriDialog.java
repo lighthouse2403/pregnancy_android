@@ -34,8 +34,9 @@ public class NutriDialog extends BaseDialog{
     }
 
     private void setLayoutView() {
-        binding.tvTitle.setText(mNutri.getTitle());
-        binding.tvContent.setText(mNutri.getContent());
+        binding.tvTitle.setText(mNutri.getName());
+//        binding.tvContent.setText(mNutri.getFullDescription());
+        binding.tvContent.loadData(mNutri.getFullDescription(), "text/html", "UTF-8");
     }
 
     private void setOnClickListener() {
