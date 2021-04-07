@@ -3,8 +3,10 @@ package com.dangthuy.trolybabau.ui.knowledge;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.MutableLiveData;
 
+import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.data.model.HomeMenu;
 import com.dangthuy.trolybabau.data.model.Knowledge;
 import com.dangthuy.trolybabau.data.model.Nutri;
@@ -38,12 +40,12 @@ public class KnowledgeViewModel extends BaseViewModel {
 
     public void fetchData() {
         ArrayList<HomeMenu> list = new ArrayList<>();
-        list.add(new HomeMenu(TRUOC_THAI_KY, ""));
-        list.add(new HomeMenu(TRONG_THAI_KY, ""));
-        list.add(new HomeMenu(CHUYEN_DA_VA_DA_SINH, ""));
-        list.add(new HomeMenu(SAU_SINH, ""));
-        list.add(new HomeMenu(CHIA_SE_KINH_NGHIEM, ""));
-        list.add(new HomeMenu(DINH_DUONG, ""));
+        list.add(new HomeMenu(TRUOC_THAI_KY, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
+        list.add(new HomeMenu(TRONG_THAI_KY, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
+        list.add(new HomeMenu(CHUYEN_DA_VA_DA_SINH, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
+        list.add(new HomeMenu(SAU_SINH, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
+        list.add(new HomeMenu(CHIA_SE_KINH_NGHIEM, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
+        list.add(new HomeMenu(DINH_DUONG, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
 
         menus.postValue(list);
     }

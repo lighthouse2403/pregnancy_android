@@ -1,13 +1,17 @@
 package com.dangthuy.trolybabau.data.model;
 
+import android.graphics.drawable.Drawable;
+
+import androidx.annotation.IdRes;
+
 /**
  * Created by nhongthai on 20/03/2021.
  */
 public class HomeMenu {
     private final String title;
-    private final String image;
+    private final Drawable image;
 
-    public HomeMenu(String title, String image) {
+    public HomeMenu(String title, Drawable image) {
         this.title = title;
         this.image = image;
     }
@@ -16,7 +20,7 @@ public class HomeMenu {
         return title;
     }
 
-    public String getImage() {
+    public Drawable getImage() {
         return image;
     }
 }
