@@ -67,11 +67,11 @@ public class KnowledgeFragment extends BaseFragment<KnowledgeViewModel> {
     @Override
     protected void setOnClickListener() {
         binding.toolBar.setListener(item -> getParentFragmentManager().popBackStack());
-        mDetailKnowledgeAdapter.setListener(item -> addFragment(R.id.container, DetailKnowledgeFragment.newInstance(), DetailKnowledgeFragment.TAG, false));
+        mDetailKnowledgeAdapter.setListener(item -> addFragment(R.id.container, DetailKnowledgeFragment.newInstance(item), DetailKnowledgeFragment.TAG, false));
     }
 
     @Override
     protected void onRefreshData() {
-        viewModel.fetchDataDetail();
+        viewModel.fetchKnowledge();
     }
 }

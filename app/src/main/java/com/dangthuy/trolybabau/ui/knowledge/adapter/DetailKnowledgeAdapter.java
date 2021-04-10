@@ -32,5 +32,6 @@ public class DetailKnowledgeAdapter extends BaseQuickAdapter<Knowledge, BaseView
     protected void convert(BaseViewHolder helper, Knowledge item) {
         ItemCommonBinding binding = ItemCommonBinding.bind(helper.itemView);
         binding.clContent.setOnClickListener(view -> listener.onClick(item));
+        binding.tvTitle.setText(item.getTitle());
     }
 }

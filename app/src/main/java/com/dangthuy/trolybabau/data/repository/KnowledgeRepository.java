@@ -2,6 +2,7 @@ package com.dangthuy.trolybabau.data.repository;
 
 import android.content.Context;
 
+import com.dangthuy.trolybabau.data.response.KnowledgeResponse;
 import com.dangthuy.trolybabau.data.response.NutriResponse;
 
 /**
@@ -16,7 +17,15 @@ public class KnowledgeRepository extends BaseRepository {
         void onLoadNutriFinished(NutriResponse response);
     }
 
+    public interface LoadKnowledgeListener {
+        void onLoadKnowledgeFinished(KnowledgeResponse response);
+    }
+
     public void loadNutrition(int raw, LoadNutriListener listener) {
         loadDataFromRaw(NutriResponse.class, raw, listener::onLoadNutriFinished);
+    }
+
+    public void loadKnowledgeListener(int raw, LoadKnowledgeListener listener) {
+        loadDataFromRaw(KnowledgeResponse.class, raw, listener::onLoadKnowledgeFinished);
     }
 }

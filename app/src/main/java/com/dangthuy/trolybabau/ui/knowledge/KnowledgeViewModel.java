@@ -1,6 +1,7 @@
 package com.dangthuy.trolybabau.ui.knowledge;
 
 import android.app.Application;
+import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -36,17 +37,23 @@ public class KnowledgeViewModel extends BaseViewModel {
     private int mNutri;
     private final KnowledgeRepository.LoadNutriListener nutriListener = response -> {
         if (response != null) {
-            if(response.getFood() != null) {
+            if (response.getFood() != null) {
                 nutries.postValue(response.getFood());
             }
-            if(response.getFruits() != null) {
+            if (response.getFruits() != null) {
                 nutries.postValue(response.getFruits());
             }
-            if(response.getVitamin() != null) {
+            if (response.getVitamin() != null) {
                 nutries.postValue(response.getVitamin());
             }
         }
     };
+    private final KnowledgeRepository.LoadKnowledgeListener knowledgeListener = response -> {
+        if (response != null && response.getData() != null) {
+            knowledges.postValue(response.getData());
+        }
+    };
+    private Knowledge mItem;
 
     public KnowledgeViewModel(@NonNull Application application) {
         super(application);
@@ -76,19 +83,6 @@ public class KnowledgeViewModel extends BaseViewModel {
         return mMenu;
     }
 
-    public void fetchDataDetail() {
-        ArrayList<Knowledge> list;
-        switch (mMenu) {
-            case TRUOC_THAI_KY:
-                list = new ArrayList<>();
-                list.add(new Knowledge());
-                list.add(new Knowledge());
-                list.add(new Knowledge());
-                knowledges.postValue(list);
-                break;
-        }
-    }
-
     public MutableLiveData<List<Knowledge>> getKnowledges() {
         return knowledges;
     }
@@ -103,7 +97,6 @@ public class KnowledgeViewModel extends BaseViewModel {
 
     public void fetchDataNutri() {
         KnowledgeRepository repository = new KnowledgeRepository(mContext);
-        ArrayList<Nutri> list;
         switch (mNutri) {
             case 0: //Food
                 repository.loadNutrition(R.raw.food, nutriListener);
@@ -115,5 +108,22 @@ public class KnowledgeViewModel extends BaseViewModel {
                 repository.loadNutrition(R.raw.vitamin, nutriListener);
                 break;
         }
+    }
+
+    public void fetchKnowledge() {
+        KnowledgeRepository repository = new KnowledgeRepository(mContext);
+        switch (mMenu) {
+            case TRUOC_THAI_KY:
+                repository.loadKnowledgeListener(R.raw.before_pregnancy_knowledge, knowledgeListener);
+                break;
+        }
+    }
+
+    public void setItemKnowledge(Knowledge item) {
+        this.mItem = item;
+    }
+
+    public Knowledge getmItem() {
+        return mItem;
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
+import com.dangthuy.trolybabau.data.model.Knowledge;
 import com.dangthuy.trolybabau.databinding.FragmentDetailCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.home.HomeFragment;
@@ -16,9 +17,10 @@ public class DetailKnowledgeFragment extends BaseFragment<KnowledgeViewModel> {
     public static final String TAG = "DetailKnowledgeFragment";
     private FragmentDetailCommonBinding binding;
 
-    public static DetailKnowledgeFragment newInstance() {
+    public static DetailKnowledgeFragment newInstance(Knowledge item) {
         DetailKnowledgeFragment fragment = new DetailKnowledgeFragment();
         Bundle args = new Bundle();
+        args.putParcelable(TAG, item);
         fragment.setArguments(args);
         return fragment;
     }
@@ -37,13 +39,17 @@ public class DetailKnowledgeFragment extends BaseFragment<KnowledgeViewModel> {
     protected void initView() {
         binding = (FragmentDetailCommonBinding) getBinding();
         if (getArguments() != null) {
+            if (getArguments().getParcelable(TAG) != null) {
+                viewModel.setItemKnowledge(getArguments().getParcelable(TAG));
+            }
             setLayoutView();
         }
     }
 
     private void setLayoutView() {
         binding.toolBar.setLayoutView(ToolBarType.DEFAULT);
-        binding.toolBar.setTitle("bla");
+        binding.toolBar.setTitle(viewModel.getmItem().getTitle());
+        binding.tvContent.setText(viewModel.getmItem().getContent());
     }
 
     @Override
