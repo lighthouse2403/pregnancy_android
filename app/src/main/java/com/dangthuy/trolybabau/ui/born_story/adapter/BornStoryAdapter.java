@@ -32,5 +32,6 @@ public class BornStoryAdapter extends BaseQuickAdapter<BornStory, BaseViewHolder
     protected void convert(BaseViewHolder helper, BornStory item) {
         ItemBornStoryBinding binding = ItemBornStoryBinding.bind(helper.itemView);
         binding.clContent.setOnClickListener(view -> listener.onClick(item));
+        binding.tvTitle.setText(item.getTitle());
     }
 }

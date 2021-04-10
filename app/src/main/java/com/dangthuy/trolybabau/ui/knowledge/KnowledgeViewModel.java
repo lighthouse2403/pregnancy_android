@@ -111,11 +111,27 @@ public class KnowledgeViewModel extends BaseViewModel {
     }
 
     public void fetchKnowledge() {
-        KnowledgeRepository repository = new KnowledgeRepository(mContext);
+        int raw = 0;
         switch (mMenu) {
             case TRUOC_THAI_KY:
-                repository.loadKnowledgeListener(R.raw.before_pregnancy_knowledge, knowledgeListener);
+                raw = R.raw.before_pregnancy_knowledge;
                 break;
+            case TRONG_THAI_KY:
+                raw = R.raw.pregnancy_knowledge;
+                break;
+            case CHUYEN_DA_VA_DA_SINH:
+                raw = R.raw.labor_and_birth;
+                break;
+            case SAU_SINH:
+                raw = R.raw.after_knowledge;
+                break;
+            case CHIA_SE_KINH_NGHIEM:
+                raw = R.raw.review_hospital;
+                break;
+        }
+        if (raw != 0) {
+            KnowledgeRepository repository = new KnowledgeRepository(mContext);
+            repository.loadKnowledgeListener(raw, knowledgeListener);
         }
     }
 

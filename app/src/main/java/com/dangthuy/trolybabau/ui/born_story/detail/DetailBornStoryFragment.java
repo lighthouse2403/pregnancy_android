@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
+import com.dangthuy.trolybabau.data.model.BornStory;
 import com.dangthuy.trolybabau.databinding.FragmentDetailCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.born_story.BornStoryViewModel;
@@ -14,9 +15,10 @@ import com.dangthuy.trolybabau.ui.born_story.BornStoryViewModel;
 public class DetailBornStoryFragment extends BaseFragment<BornStoryViewModel> {
     public static final String TAG = "DetailBornStoryFragment";
     private FragmentDetailCommonBinding binding;
-    public static DetailBornStoryFragment newInstance() {
+    public static DetailBornStoryFragment newInstance(BornStory item) {
         DetailBornStoryFragment fragment = new DetailBornStoryFragment();
         Bundle args = new Bundle();
+        args.putParcelable(TAG, item);
         fragment.setArguments(args);
         return fragment;
     }
@@ -34,13 +36,17 @@ public class DetailBornStoryFragment extends BaseFragment<BornStoryViewModel> {
     protected void initView() {
         binding = (FragmentDetailCommonBinding) getBinding();
         if (getArguments() != null) {
+            if (getArguments().getParcelable(TAG) != null) {
+                viewModel.setItem(getArguments().getParcelable(TAG));
+            }
             setLayoutView();
         }
     }
 
     private void setLayoutView() {
         binding.toolBar.setLayoutView(ToolBarType.DEFAULT);
-        binding.toolBar.setTitle("bla");
+        binding.toolBar.setTitle(viewModel.getmItem().getTitle());
+        binding.tvContent.setText(viewModel.getmItem().getContent());
     }
 
     @Override

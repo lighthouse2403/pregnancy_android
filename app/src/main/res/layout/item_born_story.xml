@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:maxLines="2"
         android:ellipsize="end"
-        android:text="Sinh mổ cũng là sinh phải khong con alo Sinh mổ cũng là sinh phải khong con alo Sinh mổ cũng là sinh phải khong con alo Sinh mổ cũng là sinh phải khong con alo"
         app:layout_constraintStart_toEndOf="@id/ivImage"
         app:layout_constraintEnd_toEndOf="parent"
         android:paddingEnd="@dimen/_5sdp"

@@ -68,7 +68,7 @@ public class BornStoryFragment extends BaseFragment<BornStoryViewModel> {
     @Override
     protected void setOnClickListener() {
         binding.toolBar.setListener(item -> getParentFragmentManager().popBackStack());
-        mBornStoryAdapter.setListener(item -> addFragment(R.id.container, DetailBornStoryFragment.newInstance(), DetailBornStoryFragment.TAG, false));
+        mBornStoryAdapter.setListener(item -> addFragment(R.id.container, DetailBornStoryFragment.newInstance(item), DetailBornStoryFragment.TAG, false));
     }
 
     @Override
