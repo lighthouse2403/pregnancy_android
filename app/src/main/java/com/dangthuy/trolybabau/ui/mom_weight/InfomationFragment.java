@@ -32,8 +32,14 @@ public class InfomationFragment extends BaseFragment<InfomartionViewModel> {
             case ADD:
                 if (viewModel.getmType() == InfomartionViewModel.TYPE_MOM)
                     addFragment(R.id.container, AddMomWeightFragment.newInstance(), AddMomWeightFragment.TAG, false);
-                else
-                    addFragment(R.id.container, AddBabyFootFragment.newInstance(), AddBabyFootFragment.TAG, false);
+                else {
+                    AddBabyFootFragment addBabyFootFragment = AddBabyFootFragment.newInstance();
+                    addBabyFootFragment.setAddBabyFootListener(() -> {
+                        mInformationPagerAdapter.notifyDataSetChanged();
+                        customTabs();
+                    });
+                    addFragment(R.id.container, addBabyFootFragment, AddBabyFootFragment.TAG, false);
+                }
                 break;
         }
     };

@@ -3,12 +3,14 @@ package com.dangthuy.trolybabau;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.room.Room;
 
 import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.dangthuy.trolybabau.common.sharePrefs.SharedPrefsImpl;
 import com.dangthuy.trolybabau.common.utils.Constants;
+import com.dangthuy.trolybabau.data.database.BabyFootDatabase;
 import com.dangthuy.trolybabau.databinding.ActivityMainBinding;
 import com.dangthuy.trolybabau.ui.main.MainFragment;
 import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private SharedPrefsImpl sharedPrefs;
+    public static BabyFootDatabase babyFootDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
             });
             addFragment(fragment);
         }
+        initDatabase();
+    }
+
+    private void initDatabase() {
+        babyFootDatabase = Room.databaseBuilder(getApplicationContext(), BabyFootDatabase.class, "baby-foot").build();
     }
 
     private void addFragment(Fragment fragment) {

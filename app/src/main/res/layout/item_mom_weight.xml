@@ -25,7 +25,7 @@
         app:layout_constraintStart_toEndOf="@id/tvWeight"
         android:layout_marginStart="@dimen/_5sdp"
         android:text="17 tháng 3, 2021"
-        style="@style/TextViewStyle.White"
+        style="@style/TextViewStyle.Black"
         />
 
     <androidx.appcompat.widget.AppCompatTextView

@@ -1,6 +1,7 @@
 package com.dangthuy.trolybabau.ui.mom_weight.list;
 
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -45,6 +46,10 @@ public class ListMomWeightFragment extends BaseFragment<InfomartionViewModel> {
 
         }
         initAdapter();
+        viewModel.getBabyFoots().observe(this, babyFoots -> {
+            loadingDialog.dismiss();
+            mInformationAdapter.setNewData(babyFoots);
+        });
     }
 
     private void initAdapter() {
@@ -61,6 +66,7 @@ public class ListMomWeightFragment extends BaseFragment<InfomartionViewModel> {
 
     @Override
     protected void onRefreshData() {
-
+        loadingDialog.show();
+        new Handler().postDelayed(() -> viewModel.fetchBabyFootDb(),1000);
     }
 }

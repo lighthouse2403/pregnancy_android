@@ -1,5 +1,7 @@
 package com.dangthuy.trolybabau.ui.mom_weight.adapter;
 
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,7 +21,7 @@ public class InformationPagerAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        if(position == 0)
+        if (position == 0)
             return ListMomWeightFragment.newInstance();
         else
             return ChartMomWeightFragment.newInstance();
@@ -28,5 +30,10 @@ public class InformationPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return 2;
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return POSITION_NONE;
     }
 }

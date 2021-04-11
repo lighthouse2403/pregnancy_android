@@ -45,7 +45,6 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
                 Log.d(TAG, "isUpdate " + isUpdate);
             }
         });
-
     }
 
     @Nullable

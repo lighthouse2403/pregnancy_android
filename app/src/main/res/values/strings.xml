@@ -52,4 +52,7 @@
     <string name="tv_bieu_do">Biểu đồ</string>
     <string name="tv_ngay_can">Ngày cân</string>
     <string name="tv_tuan_s">Tuần %s</string>
+    <string name="tv_warning_begin_record">Vui lòng nhấn nút bắt đầu</string>
+    <string name="tv_warning_finish_record">Vui lòng nhấn nút kết thúc</string>
+    <string name="tv_warning_no_have_any_foot">Bạn chưa theo dõi số lần đạp của bé</string>
 </resources>

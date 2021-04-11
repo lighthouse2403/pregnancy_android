@@ -16,7 +16,7 @@
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/toolBar"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/background_main"/>
+            android:background="@drawable/home_background"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guildLine"

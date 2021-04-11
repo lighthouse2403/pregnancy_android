@@ -5,12 +5,11 @@ import android.os.Bundle;
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.databinding.FragmentInfomationCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
-import com.dangthuy.trolybabau.ui.home.HomeFragment;
 
 /**
  * Created by nhongthai on 3/31/2021.
  */
-public class FootFragment extends BaseFragment<FoodViewModel> {
+public class FootFragment extends BaseFragment<FootViewModel> {
     public static final String TAG = "FootFragment";
     private FragmentInfomationCommonBinding binding;
 
@@ -22,8 +21,8 @@ public class FootFragment extends BaseFragment<FoodViewModel> {
     }
 
     @Override
-    protected Class<FoodViewModel> provideViewModelClass() {
-        return FoodViewModel.class;
+    protected Class<FootViewModel> provideViewModelClass() {
+        return FootViewModel.class;
     }
 
     @Override

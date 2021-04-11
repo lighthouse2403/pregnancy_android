@@ -9,8 +9,8 @@ import com.dangthuy.trolybabau.ui.base.BaseViewModel;
 /**
  * Created by nhongthai on 3/31/2021.
  */
-public class FoodViewModel extends BaseViewModel {
-    public FoodViewModel(@NonNull Application application) {
+public class FootViewModel extends BaseViewModel {
+    public FootViewModel(@NonNull Application application) {
         super(application);
     }
 }

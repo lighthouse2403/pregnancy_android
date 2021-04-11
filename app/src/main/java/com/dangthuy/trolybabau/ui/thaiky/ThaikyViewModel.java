@@ -91,7 +91,7 @@ public class ThaikyViewModel extends BaseViewModel {
         ArrayList<ThaiKyDetail> list = new ArrayList<>();
         list.add(new ThaiKyDetail("Những thay đổi của mẹ", mPregnancy.getMom()));
         list.add(new ThaiKyDetail("Những thay đổi của bé", mPregnancy.getBaby()));
-        list.add(new ThaiKyDetail("Lời khuyên", mPregnancy.getAdvice()));
+        list.add(new ThaiKyDetail("Lời khuyên cho mẹ", mPregnancy.getAdvice()));
         thaikyDetails.postValue(list);
     }
 

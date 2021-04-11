@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.1"
 
     defaultConfig {
-        applicationId "com.dangthuy.trolybabau"
+        applicationId "pregnancy.beacon"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -44,6 +44,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.3.0'
     implementation 'androidx.navigation:navigation-ui:2.3.0'
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation "androidx.room:room-runtime:2.2.6"
+    annotationProcessor "androidx.room:room-compiler:2.2.6"
 
     //3rd party
     implementation 'com.airbnb.android:lottie:3.4.1'
