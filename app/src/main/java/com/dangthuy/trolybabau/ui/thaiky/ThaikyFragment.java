@@ -1,6 +1,7 @@
 package com.dangthuy.trolybabau.ui.thaiky;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.appcompat.widget.AppCompatTextView;
@@ -59,16 +60,26 @@ public class ThaikyFragment extends BaseFragment<ThaikyViewModel> {
         if (getArguments() != null) {
             setLayoutView();
         }
-        setupViewPager();
+        viewModel.getPregnancies().observe(this, pregnancies -> {
+            loadingDialog.dismiss();
+            viewModel.setPregnancies(pregnancies);
+            setupViewPager();
+        });
+        viewModel.getBabyIndexs().observe(this, babyIndices -> {
+            viewModel.setBabyIndexList(babyIndices);
+            setupViewPager();
+        });
     }
 
     private void setupViewPager() {
-        mThaiKyPagerAdapter = new ThaiKyPagerAdapter(getChildFragmentManager());
-        binding.viewPager.setAdapter(mThaiKyPagerAdapter);
-        binding.tabs.setupWithViewPager(binding.viewPager);
-        customTabs();
-        binding.tabs.addOnTabSelectedListener(onTabLayout);
-        binding.viewPager.setOffscreenPageLimit(3);
+        if (viewModel.getPregnancyList() != null && viewModel.getBabyIndexList() != null) {
+            mThaiKyPagerAdapter = new ThaiKyPagerAdapter(getChildFragmentManager(), viewModel.getPregnancyList(), viewModel.getBabyIndexList());
+            binding.viewPager.setAdapter(mThaiKyPagerAdapter);
+            binding.tabs.setupWithViewPager(binding.viewPager);
+            customTabs();
+            binding.tabs.addOnTabSelectedListener(onTabLayout);
+            binding.viewPager.setOffscreenPageLimit(3);
+        }
     }
 
     private TabLayout.OnTabSelectedListener onTabLayout = new TabLayout.OnTabSelectedListener() {
@@ -110,7 +121,7 @@ public class ThaikyFragment extends BaseFragment<ThaikyViewModel> {
                 if (view != null) {
                     AppCompatTextView title = view.findViewById(R.id.tvTitle);
                     AppCompatTextView date = view.findViewById(R.id.tvDate);
-                    title.setText("Tuần " + i);
+                    title.setText("Tuần " + (i + 1));
                     date.setText("03/05");
                 }
             }
@@ -129,6 +140,7 @@ public class ThaikyFragment extends BaseFragment<ThaikyViewModel> {
 
     @Override
     protected void onRefreshData() {
-
+        loadingDialog.show();
+        new Handler().postDelayed(() -> viewModel.fetchData(), 2000);
     }
 }

@@ -3,14 +3,84 @@ package com.dangthuy.trolybabau.ui.thaiky;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 
+import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.data.model.BabyIndex;
+import com.dangthuy.trolybabau.data.model.Pregnancy;
+import com.dangthuy.trolybabau.data.repository.PregnancyRepository;
 import com.dangthuy.trolybabau.ui.base.BaseViewModel;
+
+import java.util.List;
 
 /**
  * Created by nhongthai on 20/03/2021.
  */
 public class ThaikyViewModel extends BaseViewModel {
+    private final MutableLiveData<List<Pregnancy>> pregnancies = new MutableLiveData<>();
+    private final MutableLiveData<List<BabyIndex>> babyIndexs = new MutableLiveData<>();
+    private final PregnancyRepository.LoadPregnancyListener pregnancyListener = response -> {
+        if (response != null && response.getPregnancy() != null) {
+            pregnancies.postValue(response.getPregnancy());
+        }
+    };
+    private Pregnancy mPregnancy;
+    private BabyIndex mBabyIndex;
+    private List<Pregnancy> pregnancyList;
+    private List<BabyIndex> babyIndexList;
+    private final PregnancyRepository.LoadBabyIndexListener babyIndexListener = response -> {
+        if (response != null && response.getDetails() != null) {
+            babyIndexs.postValue(response.getDetails());
+        }
+    };
+
     public ThaikyViewModel(@NonNull Application application) {
         super(application);
+    }
+
+    public void fetchData() {
+        PregnancyRepository repository = new PregnancyRepository(mContext);
+        repository.loadPregnancy(R.raw.pregnancy_process, pregnancyListener);
+        repository.loadBabyIndex(R.raw.baby_index_detail, babyIndexListener);
+    }
+
+    public MutableLiveData<List<Pregnancy>> getPregnancies() {
+        return pregnancies;
+    }
+
+    public void setPregnancy(Pregnancy item) {
+        this.mPregnancy = item;
+    }
+
+    public Pregnancy getmPregnancy() {
+        return mPregnancy;
+    }
+
+    public void setPregnancies(List<Pregnancy> pregnancies) {
+        this.pregnancyList = pregnancies;
+    }
+
+    public List<Pregnancy> getPregnancyList() {
+        return pregnancyList;
+    }
+
+    public List<BabyIndex> getBabyIndexList() {
+        return babyIndexList;
+    }
+
+    public void setBabyIndexList(List<BabyIndex> babyIndexList) {
+        this.babyIndexList = babyIndexList;
+    }
+
+    public BabyIndex getmBabyIndex() {
+        return mBabyIndex;
+    }
+
+    public void setmBabyIndex(BabyIndex mBabyIndex) {
+        this.mBabyIndex = mBabyIndex;
+    }
+
+    public MutableLiveData<List<BabyIndex>> getBabyIndexs() {
+        return babyIndexs;
     }
 }
