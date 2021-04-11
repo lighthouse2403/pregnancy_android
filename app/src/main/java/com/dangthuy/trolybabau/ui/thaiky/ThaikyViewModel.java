@@ -8,9 +8,11 @@ import androidx.lifecycle.MutableLiveData;
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.data.model.BabyIndex;
 import com.dangthuy.trolybabau.data.model.Pregnancy;
+import com.dangthuy.trolybabau.data.model.ThaiKyDetail;
 import com.dangthuy.trolybabau.data.repository.PregnancyRepository;
 import com.dangthuy.trolybabau.ui.base.BaseViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +21,7 @@ import java.util.List;
 public class ThaikyViewModel extends BaseViewModel {
     private final MutableLiveData<List<Pregnancy>> pregnancies = new MutableLiveData<>();
     private final MutableLiveData<List<BabyIndex>> babyIndexs = new MutableLiveData<>();
+    private final MutableLiveData<List<ThaiKyDetail>> thaikyDetails = new MutableLiveData<>();
     private final PregnancyRepository.LoadPregnancyListener pregnancyListener = response -> {
         if (response != null && response.getPregnancy() != null) {
             pregnancies.postValue(response.getPregnancy());
@@ -82,5 +85,17 @@ public class ThaikyViewModel extends BaseViewModel {
 
     public MutableLiveData<List<BabyIndex>> getBabyIndexs() {
         return babyIndexs;
+    }
+
+    public void fetchDetail() {
+        ArrayList<ThaiKyDetail> list = new ArrayList<>();
+        list.add(new ThaiKyDetail("Những thay đổi của mẹ", mPregnancy.getMom()));
+        list.add(new ThaiKyDetail("Những thay đổi của bé", mPregnancy.getBaby()));
+        list.add(new ThaiKyDetail("Lời khuyên", mPregnancy.getAdvice()));
+        thaikyDetails.postValue(list);
+    }
+
+    public MutableLiveData<List<ThaiKyDetail>> getThaikyDetails() {
+        return thaikyDetails;
     }
 }

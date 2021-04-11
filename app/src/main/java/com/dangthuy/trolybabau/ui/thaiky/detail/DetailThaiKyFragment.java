@@ -3,13 +3,19 @@ package com.dangthuy.trolybabau.ui.thaiky.detail;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.bumptech.glide.Glide;
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.customview.BetweenSpacesItemDecoration;
 import com.dangthuy.trolybabau.data.model.BabyIndex;
 import com.dangthuy.trolybabau.data.model.Pregnancy;
 import com.dangthuy.trolybabau.databinding.FragmentThaikyDetailBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.thaiky.ThaikyViewModel;
+import com.dangthuy.trolybabau.ui.thaiky.adapter.ThaiKyDetailAdapter;
+
+import java.util.ArrayList;
 
 /**
  * Created by nhongthai on 3/28/2021.
@@ -19,6 +25,7 @@ public class DetailThaiKyFragment extends BaseFragment<ThaikyViewModel> {
     private static final String PREGNANCY = "pregnancy";
     private static final String BABYINDEX = "baby_index";
     private FragmentThaikyDetailBinding binding;
+    private ThaiKyDetailAdapter mThaiKyDetailAdapter;
 
     public static DetailThaiKyFragment newInstance(int position, Pregnancy pregnancy, BabyIndex babyIndex) {
         DetailThaiKyFragment fragment = new DetailThaiKyFragment();
@@ -49,18 +56,25 @@ public class DetailThaiKyFragment extends BaseFragment<ThaikyViewModel> {
                 if (getArguments().getParcelable(BABYINDEX) != null) {
                     viewModel.setmBabyIndex(getArguments().getParcelable(BABYINDEX));
                     setLayoutView();
+                    viewModel.fetchDetail();
                 }
             }
         }
+        initAdapter();
+        viewModel.getThaikyDetails().observe(this, thaiKyDetails -> mThaiKyDetailAdapter.setNewData(thaiKyDetails));
+    }
+
+    private void initAdapter() {
+        mThaiKyDetailAdapter = new ThaiKyDetailAdapter(new ArrayList<>());
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        binding.recyclerView.addItemDecoration(new BetweenSpacesItemDecoration(10, 0));
+        binding.recyclerView.setAdapter(mThaiKyDetailAdapter);
     }
 
     private void setLayoutView() {
-//        binding.tvContent.setText(viewModel.getmItem().getMom());
         Glide.with(this).load(R.drawable.babyyearold).into(binding.ivImage);
         binding.tvTime.setText(String.format(getString(R.string.tv_tuan_s), viewModel.getmPregnancy().getWeek()));
         binding.tvWeight.setText(viewModel.getmBabyIndex().getEfwGh());
-        binding.tvContent.setText(viewModel.getmPregnancy().getMom());
-        binding.tvContent.setMovementMethod(new ScrollingMovementMethod());
     }
 
     @Override
