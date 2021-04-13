@@ -25,14 +25,14 @@ public class AddBabyFootFragment extends BaseFragment<InfomartionViewModel> {
     private Timer mTimer;
     private TimerTask mTimerTask;
 
-    public interface IAddBabyFootListener {
+    public interface IAddListener {
         void onSaved();
     }
 
-    private IAddBabyFootListener addBabyFootListener;
+    private IAddListener addListener;
 
-    public void setAddBabyFootListener(IAddBabyFootListener listener) {
-        this.addBabyFootListener = listener;
+    public void setAddListener(IAddListener listener) {
+        this.addListener = listener;
     }
 
     public static AddBabyFootFragment newInstance() {
@@ -80,7 +80,7 @@ public class AddBabyFootFragment extends BaseFragment<InfomartionViewModel> {
         binding.btnSave.setOnClickListener(view -> {
             if (!mIsPlay && viewModel.getCount() != 0 && (viewModel.getmHour() != 0 || viewModel.getmMin() != 0 || viewModel.getmSecond() != 0)) {
                 viewModel.saveToDb();
-                addBabyFootListener.onSaved();
+                addListener.onSaved();
                 getParentFragmentManager().popBackStack();
             } else {
                 if (mIsPlay) {

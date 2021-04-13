@@ -4,7 +4,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/green">
+        android:background="@color/green"
+        android:clickable="true"
+        android:focusable="true">
 
         <com.dangthuy.trolybabau.common.customview.ToolBar
             android:layout_width="match_parent"
@@ -45,9 +47,9 @@
             android:id="@+id/tvDateValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="@dimen/_50sdp"
             app:layout_constraintTop_toTopOf="@id/tvDate"
             app:layout_constraintBottom_toBottomOf="@id/tvDate"
-            android:text="23 tháng 3, 2021 08:39"
             style="@style/TextViewStyle.Black"
             app:layout_constraintEnd_toEndOf="parent"
             android:paddingTop="@dimen/_10sdp"
@@ -78,19 +80,20 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etWeight"
             android:layout_width="wrap_content"
+            android:minWidth="@dimen/_50sdp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@id/tvWeight"
             app:layout_constraintBottom_toBottomOf="@id/tvWeight"
-            android:text="23 tháng 3, 2021 08:39"
             style="@style/TextViewStyle.Black"
             android:textColor="@color/red"
             android:textAlignment="textEnd"
-            android:hint="32"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             android:paddingTop="@dimen/_10sdp"
             android:paddingBottom="@dimen/_10sdp"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSave"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_30sdp"
             app:layout_constraintTop_toBottomOf="@id/tvWeight"

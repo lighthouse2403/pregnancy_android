@@ -78,8 +78,8 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
             dialog.show(getChildFragmentManager(), BottomSheetAgeDialog.TAG);
         });
         binding.btnExpect.setOnClickListener(view -> {
-            BottomSheetDateDialog dialog = BottomSheetDateDialog.newInstance();
-            dialog.setListener((year, month, day) -> {
+            BottomSheetDateDialog dialog = BottomSheetDateDialog.newInstance(false);
+            dialog.setListener((year, month, day, hour, min) -> {
                 viewModel.setExpect(year, month, day);
                 binding.btnExpect.setText(day + " " + getString(R.string.tv_thang) + " " + month + ", " + year);
                 dialog.dismiss();
@@ -87,8 +87,8 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
             dialog.show(getChildFragmentManager(), BottomSheetDateDialog.TAG);
         });
         binding.btnKyKinhCuoi.setOnClickListener(view -> {
-            BottomSheetDateDialog dialog = BottomSheetDateDialog.newInstance();
-            dialog.setListener((year, month, day) -> {
+            BottomSheetDateDialog dialog = BottomSheetDateDialog.newInstance(false);
+            dialog.setListener((year, month, day, hour, min) -> {
                 viewModel.setExpect(year, month, day);
                 binding.btnKyKinhCuoi.setText(day + " " + getString(R.string.tv_thang) + " " + month + ", " + year);
                 dialog.dismiss();

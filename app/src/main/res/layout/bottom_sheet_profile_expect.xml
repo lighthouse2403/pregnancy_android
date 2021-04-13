@@ -52,11 +52,23 @@
 
         <DatePicker
             android:id="@+id/calendar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/btnClose"
+            app:layout_constraintStart_toEndOf="@id/clock"
+            app:layout_constraintEnd_toEndOf="parent"
             android:theme="@android:style/Theme.Holo.Light"
             android:calendarViewShown="false"
+            />
+
+        <TimePicker
+            android:id="@+id/clock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/calendar"
+            app:layout_constraintStart_toStartOf="parent"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:visibility="gone"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

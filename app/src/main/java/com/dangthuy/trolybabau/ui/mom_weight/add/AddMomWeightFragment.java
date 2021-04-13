@@ -24,6 +24,16 @@ public class AddMomWeightFragment extends BaseFragment<InfomartionViewModel> {
         return fragment;
     }
 
+    public interface IAddListener {
+        void onSaved();
+    }
+
+    private IAddListener addListener;
+
+    public void setAddListener(IAddListener listener) {
+        this.addListener = listener;
+    }
+
     @Override
     protected Class<InfomartionViewModel> provideViewModelClass() {
         return InfomartionViewModel.class;
@@ -51,13 +61,22 @@ public class AddMomWeightFragment extends BaseFragment<InfomartionViewModel> {
     protected void setOnClickListener() {
         binding.toolBar.setListener(item -> getParentFragmentManager().popBackStack());
         binding.tvDateValue.setOnClickListener(view -> {
-            BottomSheetDateDialog dialog = BottomSheetDateDialog.newInstance();
-            dialog.setListener((year, month, day) -> {
-                viewModel.setDate(year, month, day);
-                binding.tvDateValue.setText(day + " " + getString(R.string.tv_thang) + " " + month + ", " + year);
+            BottomSheetDateDialog dialog = BottomSheetDateDialog.newInstance(true);
+            dialog.setListener((year, month, day, hour, min) -> {
+                viewModel.setDate(year, month, day, hour, min);
+                binding.tvDateValue.setText(day + " " + getString(R.string.tv_thang) + " " + month + ", " + year + " " + hour + ":" + min);
                 dialog.dismiss();
             });
             dialog.show(getChildFragmentManager(), BottomSheetDateDialog.TAG);
+        });
+        binding.btnSave.setOnClickListener(view -> {
+            if(binding.tvDateValue.getText().toString().isEmpty() || binding.etWeight.getText().toString().isEmpty()) {
+                showToast("Bạn cần nhập ngày cân và cân nặng");
+                return;
+            }
+            viewModel.saveMomWeightToDb(binding.etWeight.getText().toString());
+            addListener.onSaved();
+            getParentFragmentManager().popBackStack();
         });
     }
 

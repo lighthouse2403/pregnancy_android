@@ -14,15 +14,17 @@ import com.dangthuy.trolybabau.ui.mom_weight.list.ListMomWeightFragment;
  * Created by nhongthai on 3/29/2021.
  */
 public class InformationPagerAdapter extends FragmentStatePagerAdapter {
-    public InformationPagerAdapter(@NonNull FragmentManager fm) {
+    private final int mType;
+    public InformationPagerAdapter(@NonNull FragmentManager fm, int type) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        this.mType = type;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
         if (position == 0)
-            return ListMomWeightFragment.newInstance();
+            return ListMomWeightFragment.newInstance(mType);
         else
             return ChartMomWeightFragment.newInstance();
     }

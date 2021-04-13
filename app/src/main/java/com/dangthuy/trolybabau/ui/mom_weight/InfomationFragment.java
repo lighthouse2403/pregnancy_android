@@ -30,11 +30,16 @@ public class InfomationFragment extends BaseFragment<InfomartionViewModel> {
                 ;
                 break;
             case ADD:
-                if (viewModel.getmType() == InfomartionViewModel.TYPE_MOM)
-                    addFragment(R.id.container, AddMomWeightFragment.newInstance(), AddMomWeightFragment.TAG, false);
-                else {
+                if (viewModel.getmType() == InfomartionViewModel.TYPE_MOM) {
+                    AddMomWeightFragment addMomWeightFragment = AddMomWeightFragment.newInstance();
+                    addMomWeightFragment.setAddListener(() -> {
+                        mInformationPagerAdapter.notifyDataSetChanged();
+                        customTabs();
+                    });
+                    addFragment(R.id.container, addMomWeightFragment, AddMomWeightFragment.TAG, false);
+                } else {
                     AddBabyFootFragment addBabyFootFragment = AddBabyFootFragment.newInstance();
-                    addBabyFootFragment.setAddBabyFootListener(() -> {
+                    addBabyFootFragment.setAddListener(() -> {
                         mInformationPagerAdapter.notifyDataSetChanged();
                         customTabs();
                     });
@@ -82,7 +87,7 @@ public class InfomationFragment extends BaseFragment<InfomartionViewModel> {
     }
 
     private void setupViewPager() {
-        mInformationPagerAdapter = new InformationPagerAdapter(getChildFragmentManager());
+        mInformationPagerAdapter = new InformationPagerAdapter(getChildFragmentManager(), viewModel.getmType());
         binding.viewPager.setAdapter(mInformationPagerAdapter);
         binding.tabs.setupWithViewPager(binding.viewPager);
         customTabs();
