@@ -25,7 +25,9 @@ public class MainAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return HomeFragment.newInstance();
+                HomeFragment fragment = HomeFragment.newInstance();
+                fragment.setUpdateListener(this::notifyDataSetChanged);
+                return fragment;
             case 1:
                 return ThaikyFragment.newInstance();
             case 2:
@@ -41,5 +43,10 @@ public class MainAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return 5;
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return POSITION_NONE;
     }
 }

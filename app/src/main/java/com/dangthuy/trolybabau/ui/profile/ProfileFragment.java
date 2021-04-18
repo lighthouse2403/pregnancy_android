@@ -18,6 +18,17 @@ import com.dangthuy.trolybabau.ui.bottom_sheet.BottomSheetDateDialog;
 public class ProfileFragment extends BaseFragment<ProfileViewModel> {
     public static final String TAG = "ProfileFragment";
     private FragmentProfileBinding binding;
+
+    public interface IUpdateListener {
+        void onUpdate();
+    }
+
+    private IUpdateListener updateListener;
+
+    public void setUpdateListener(IUpdateListener updateListener) {
+        this.updateListener = updateListener;
+    }
+
     private ToolBar.OnItemToolBarClickListener onToolBarClickListener = item -> {
         switch (item) {
             case SAVE:
@@ -25,6 +36,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
                 if (viewModel.isSetup()) {
                     listener.onClick();
                 } else {
+                    updateListener.onUpdate();
                     getParentFragmentManager().popBackStack();
                 }
                 break;
@@ -73,6 +85,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
             dialog.setListener((week, day) -> {
                 viewModel.setAge(week, day);
                 binding.btnAge.setText(week + " " + getString(R.string.tv_tuan) + " " + day + " " + getString(R.string.tv_ngay));
+                binding.btnExpect.setText(viewModel.getDayExpect() + " " + getString(R.string.tv_thang) + " " + viewModel.getMonth() + ", " + viewModel.getYear());
                 dialog.dismiss();
             });
             dialog.show(getChildFragmentManager(), BottomSheetAgeDialog.TAG);
@@ -82,6 +95,8 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
             dialog.setListener((year, month, day, hour, min) -> {
                 viewModel.setExpect(year, month, day);
                 binding.btnExpect.setText(day + " " + getString(R.string.tv_thang) + " " + month + ", " + year);
+                binding.btnAge.setText(viewModel.getWeek() + " " + getString(R.string.tv_tuan) + ((viewModel.getDay() > 0) ? (" " + viewModel.getDay() + " " + getString(R.string.tv_ngay)) : ""));
+                binding.btnKyKinhCuoi.setText(viewModel.getBeginDay() + " " + getString(R.string.tv_thang) + " " + viewModel.getBeginMonth() + ", " + viewModel.getBeginYear());
                 dialog.dismiss();
             });
             dialog.show(getChildFragmentManager(), BottomSheetDateDialog.TAG);
@@ -89,8 +104,10 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
         binding.btnKyKinhCuoi.setOnClickListener(view -> {
             BottomSheetDateDialog dialog = BottomSheetDateDialog.newInstance(false);
             dialog.setListener((year, month, day, hour, min) -> {
-                viewModel.setExpect(year, month, day);
+                viewModel.setBegin(year, month, day);
                 binding.btnKyKinhCuoi.setText(day + " " + getString(R.string.tv_thang) + " " + month + ", " + year);
+                binding.btnExpect.setText(viewModel.getDayExpect() + " " + getString(R.string.tv_thang) + " " + viewModel.getMonth() + ", " + viewModel.getYear());
+                binding.btnAge.setText(viewModel.getWeek() + " " + getString(R.string.tv_tuan) + ((viewModel.getDay() > 0) ? (" " + viewModel.getDay() + " " + getString(R.string.tv_ngay)) : ""));
                 dialog.dismiss();
             });
             dialog.show(getChildFragmentManager(), BottomSheetDateDialog.TAG);

@@ -25,6 +25,17 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
     private static final String TAG = "HomeFragment";
     private FragmentHomeBinding binding;
     private HomeAdapter mHomeAdapter;
+
+    public interface IUpdateListener {
+        void onUpdate();
+    }
+
+    private IUpdateListener updateListener;
+
+    public void setUpdateListener(IUpdateListener updateListener) {
+        this.updateListener = updateListener;
+    }
+
     private final HomeAdapter.IClickItemListener onItemClickListener = item -> {
         switch (item.getTitle()) {
             case HomeViewModel.GOC_CHIA_SE:
@@ -84,7 +95,9 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
     }
 
     private void gotoProfile() {
-        addFragment(R.id.container, ProfileFragment.newInstance(false), ProfileFragment.TAG, false);
+        ProfileFragment fragment = ProfileFragment.newInstance(false);
+        fragment.setUpdateListener(() -> updateListener.onUpdate());
+        addFragment(R.id.container, fragment, ProfileFragment.TAG, false);
     }
 
     @Override

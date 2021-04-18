@@ -79,6 +79,7 @@ public class ThaikyFragment extends BaseFragment<ThaikyViewModel> {
             customTabs();
             binding.tabs.addOnTabSelectedListener(onTabLayout);
             binding.viewPager.setOffscreenPageLimit(3);
+            binding.viewPager.setCurrentItem(viewModel.getWeek() + 1);
         }
     }
 
@@ -121,8 +122,8 @@ public class ThaikyFragment extends BaseFragment<ThaikyViewModel> {
                 if (view != null) {
                     AppCompatTextView title = view.findViewById(R.id.tvTitle);
                     AppCompatTextView date = view.findViewById(R.id.tvDate);
-                    title.setText("Tuần " + (i + 1));
-                    date.setText("03/05");
+                    title.setText(String.format(getString(R.string.tv_tuan_s), String.valueOf(i + 1)));
+                    date.setText(viewModel.getDate(i + 1));
                 }
             }
         }
