@@ -1,4 +1,4 @@
-package com.dangthuy.trolybabau.ui.mom_weight.adapter;
+package com.dangthuy.trolybabau.ui.information.adapter;
 
 import androidx.annotation.Nullable;
 

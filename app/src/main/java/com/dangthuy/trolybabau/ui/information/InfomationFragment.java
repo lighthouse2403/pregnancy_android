@@ -1,4 +1,4 @@
-package com.dangthuy.trolybabau.ui.mom_weight;
+package com.dangthuy.trolybabau.ui.information;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +11,9 @@ import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.databinding.FragmentInfomationCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.home.HomeViewModel;
-import com.dangthuy.trolybabau.ui.mom_weight.adapter.InformationPagerAdapter;
-import com.dangthuy.trolybabau.ui.mom_weight.add.AddBabyFootFragment;
-import com.dangthuy.trolybabau.ui.mom_weight.add.AddMomWeightFragment;
+import com.dangthuy.trolybabau.ui.information.adapter.InformationPagerAdapter;
+import com.dangthuy.trolybabau.ui.information.add.AddBabyFootFragment;
+import com.dangthuy.trolybabau.ui.information.add.AddMomWeightFragment;
 import com.google.android.material.tabs.TabLayout;
 
 /**

@@ -1,4 +1,4 @@
-package com.dangthuy.trolybabau.ui.mom_weight.list;
+package com.dangthuy.trolybabau.ui.information.list;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,9 +9,9 @@ import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.customview.BetweenSpacesItemDecoration;
 import com.dangthuy.trolybabau.databinding.FragmentPagerCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
-import com.dangthuy.trolybabau.ui.mom_weight.InfomartionViewModel;
-import com.dangthuy.trolybabau.ui.mom_weight.adapter.BabyFootAdapter;
-import com.dangthuy.trolybabau.ui.mom_weight.adapter.MomWeightAdapter;
+import com.dangthuy.trolybabau.ui.information.InfomartionViewModel;
+import com.dangthuy.trolybabau.ui.information.adapter.BabyFootAdapter;
+import com.dangthuy.trolybabau.ui.information.adapter.MomWeightAdapter;
 
 import java.util.ArrayList;
 

@@ -1,15 +1,14 @@
-package com.dangthuy.trolybabau.ui.mom_weight.add;
+package com.dangthuy.trolybabau.ui.information.add;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.utils.DateUtils;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.databinding.FragmentBabyFootAddBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
-import com.dangthuy.trolybabau.ui.mom_weight.InfomartionViewModel;
+import com.dangthuy.trolybabau.ui.information.InfomartionViewModel;
 
 import java.util.Date;
 import java.util.Timer;

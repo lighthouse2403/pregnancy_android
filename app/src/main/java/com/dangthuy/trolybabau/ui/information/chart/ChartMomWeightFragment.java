@@ -1,10 +1,10 @@
-package com.dangthuy.trolybabau.ui.mom_weight.chart;
+package com.dangthuy.trolybabau.ui.information.chart;
 
 import android.os.Bundle;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
-import com.dangthuy.trolybabau.ui.mom_weight.InfomartionViewModel;
+import com.dangthuy.trolybabau.ui.information.InfomartionViewModel;
 
 /**
  * Created by nhongthai on 3/29/2021.

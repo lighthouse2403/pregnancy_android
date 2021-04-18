@@ -1,4 +1,4 @@
-package com.dangthuy.trolybabau.ui.mom_weight.add;
+package com.dangthuy.trolybabau.ui.information.add;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import com.dangthuy.trolybabau.databinding.FragmentMomWeightAddBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.bottom_sheet.BottomSheetDateDialog;
 import com.dangthuy.trolybabau.ui.home.HomeViewModel;
-import com.dangthuy.trolybabau.ui.mom_weight.InfomartionViewModel;
+import com.dangthuy.trolybabau.ui.information.InfomartionViewModel;
 
 /**
  * Created by nhongthai on 3/29/2021.

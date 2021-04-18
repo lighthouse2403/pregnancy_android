@@ -1,4 +1,4 @@
-package com.dangthuy.trolybabau.ui.mom_weight;
+package com.dangthuy.trolybabau.ui.information;
 
 import android.app.Application;
 

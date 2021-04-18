@@ -1,14 +1,12 @@
-package com.dangthuy.trolybabau.ui.mom_weight.adapter;
-
-import android.view.ViewGroup;
+package com.dangthuy.trolybabau.ui.information.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.dangthuy.trolybabau.ui.mom_weight.chart.ChartMomWeightFragment;
-import com.dangthuy.trolybabau.ui.mom_weight.list.ListMomWeightFragment;
+import com.dangthuy.trolybabau.ui.information.chart.ChartMomWeightFragment;
+import com.dangthuy.trolybabau.ui.information.list.ListMomWeightFragment;
 
 /**
  * Created by nhongthai on 3/29/2021.
