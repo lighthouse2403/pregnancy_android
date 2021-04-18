@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/_10sdp"
         android:text="17 tháng 3, 2021"
-        style="@style/TextViewStyle.White"
+        style="@style/TextViewStyle.Black"
         android:textAlignment="center"
         />
 
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guildLine"
-        style="@style/TextViewStyle.White"
+        style="@style/TextViewStyle.Black"
         android:layout_marginTop="@dimen/_10sdp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -45,8 +45,8 @@
         app:layout_constraintEnd_toStartOf="@id/guildLine"
         android:text="1500 gram"
         android:layout_marginTop="@dimen/_10sdp"
-        style="@style/TextViewStyle.White"
-        android:textColor="@color/pink"/>
+        style="@style/TextViewStyle.Black"
+        android:textColor="@color/red"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAge"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guildLine"
-        style="@style/TextViewStyle.White"
+        style="@style/TextViewStyle.Black"
         android:layout_marginTop="@dimen/_10sdp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -68,7 +68,7 @@
         app:layout_constraintStart_toEndOf="@id/guildLine"
         android:text="17 tuần 0 ngày"
         android:layout_marginTop="@dimen/_10sdp"
-        style="@style/TextViewStyle.White" />
+        style="@style/TextViewStyle.Black" />
 
     <View
         android:layout_width="match_parent"

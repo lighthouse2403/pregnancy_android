@@ -15,11 +15,19 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_45sdp"
             app:layout_constraintTop_toBottomOf="@id/toolBar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="0.5"/>
+            app:layout_constraintWidth_percent="0.5"
+            android:background="@drawable/background_edittext_profile"
+            app:tabIndicator="@drawable/background_tab"
+            app:tabIndicatorColor="@color/green"
+            app:tabIndicatorFullWidth="true"
+            app:tabIndicatorGravity="stretch"
+            android:padding="@dimen/_2sdp"
+            app:tabMode="fixed"
+            />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"

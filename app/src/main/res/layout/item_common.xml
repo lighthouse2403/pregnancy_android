@@ -3,8 +3,6 @@
     android:id="@+id/clContent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/_5sdp"
-    android:layout_marginEnd="@dimen/_5sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_edittext_profile">
 
@@ -15,7 +13,7 @@
         app:layout_constraintTop_toTopOf="@id/tvTitle"
         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:src="@drawable/knowledge"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -25,7 +23,7 @@
         app:fontFamily="@font/roboto"
         android:textSize="12sp"
         android:text="Ảnh nền"
-        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:padding="@dimen/_15sdp"
         app:layout_constraintStart_toEndOf="@id/ivImage"
         app:layout_constraintTop_toTopOf="parent"/>

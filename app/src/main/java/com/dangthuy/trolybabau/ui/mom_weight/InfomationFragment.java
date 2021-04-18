@@ -127,9 +127,9 @@ public class InfomationFragment extends BaseFragment<InfomartionViewModel> {
         if (view != null) {
             AppCompatTextView title = view.findViewById(R.id.tvTitle);
             if (isPick) {
-                title.setTextColor(requireContext().getColor(R.color.green));
+//                title.setTextColor(requireContext().getColor(R.color.green));
             } else {
-                title.setTextColor(requireContext().getColor(R.color.black));
+//                title.setTextColor(requireContext().getColor(R.color.black));
             }
         }
     }
@@ -145,7 +145,7 @@ public class InfomationFragment extends BaseFragment<InfomartionViewModel> {
                     switch (i) {
                         case 0:
                             title.setText(R.string.tv_danh_sach);
-                            title.setTextColor(requireContext().getColor(R.color.green));
+//                            title.setTextColor(requireContext().getColor(R.color.green));
                             break;
                         case 1:
                             title.setText(R.string.tv_bieu_do);

@@ -104,15 +104,15 @@ public class BabyInfoFragment extends BaseFragment<BabyInforViewModel> {
         if (view != null) {
             AppCompatTextView title = view.findViewById(R.id.tvTitle);
             if (isPick) {
-                title.setTextColor(requireContext().getColor(R.color.green));
+//                title.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_tab));
             } else {
-                title.setTextColor(requireContext().getColor(R.color.black));
+//                title.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_edittext_profile));
             }
         }
     }
 
     private void customTabs() {
-        for (int i = 0; i < binding.tabs.getTabCount(); i++) {
+        for (int i = 0; i < 5; i++) {
             TabLayout.Tab tab = binding.tabs.getTabAt(i);
             if (tab != null) {
                 tab.setCustomView(R.layout.custom_tab);
@@ -122,7 +122,7 @@ public class BabyInfoFragment extends BaseFragment<BabyInforViewModel> {
                     switch (i) {
                         case 0:
                             title.setText(R.string.tv_danh_sach);
-                            title.setTextColor(requireContext().getColor(R.color.green));
+//                            title.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_tab));
                             break;
                         case 1:
                             title.setText(R.string.tv_bieu_do);

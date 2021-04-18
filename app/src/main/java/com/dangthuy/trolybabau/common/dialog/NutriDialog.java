@@ -1,9 +1,17 @@
 package com.dangthuy.trolybabau.common.dialog;
 
 import android.content.Context;
+import android.net.http.SslError;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 
@@ -13,9 +21,11 @@ import com.dangthuy.trolybabau.databinding.DialogNutriBinding;
 /**
  * Created by nhongthai on 3/28/2021.
  */
-public class NutriDialog extends BaseDialog{
+public class NutriDialog extends BaseDialog {
+    private static final String TAG = "NutriDialog";
     private DialogNutriBinding binding;
     private Nutri mNutri;
+
     public NutriDialog(@NonNull Context context) {
         super(context);
     }
@@ -36,7 +46,8 @@ public class NutriDialog extends BaseDialog{
     private void setLayoutView() {
         binding.tvTitle.setText(mNutri.getName());
 //        binding.tvContent.setText(mNutri.getFullDescription());
-        binding.tvContent.loadData(mNutri.getFullDescription(), "text/html", "UTF-8");
+
+        binding.tvContent.loadDataWithBaseURL(null, mNutri.getFullDescription(), "text/html; charset=UTF-8", "utf-8", null);
     }
 
     private void setOnClickListener() {

@@ -33,7 +33,7 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
                 break;
         }
     };
-    private TabLayout.OnTabSelectedListener onTabLayout = new TabLayout.OnTabSelectedListener() {
+    private final TabLayout.OnTabSelectedListener onTabLayout = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
             pickTab(tab, true);
@@ -55,9 +55,9 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
         if (view != null) {
             AppCompatTextView title = view.findViewById(R.id.tvTitle);
             if (isPick) {
-                title.setTextColor(requireContext().getColor(R.color.green));
+//                title.setTextColor(requireContext().getColor(R.color.green));
             } else {
-                title.setTextColor(requireContext().getColor(R.color.black));
+//                title.setTextColor(requireContext().getColor(R.color.black));
             }
         }
     }
@@ -106,7 +106,7 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
                     switch (i) {
                         case 0:
                             title.setText(R.string.tv_all);
-                            title.setTextColor(requireContext().getColor(R.color.green));
+//                            title.setTextColor(requireContext().getColor(R.color.green));
                             break;
                         case 1:
                             title.setText(R.string.tv_my_share);
