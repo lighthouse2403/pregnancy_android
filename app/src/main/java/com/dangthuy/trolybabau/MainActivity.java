@@ -1,11 +1,16 @@
 package com.dangthuy.trolybabau;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.dangthuy.trolybabau.common.sharePrefs.SharedPrefsImpl;
 import com.dangthuy.trolybabau.common.utils.Constants;
@@ -15,19 +20,18 @@ import com.dangthuy.trolybabau.ui.main.MainFragment;
 import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ActivityMainBinding binding;
-    private SharedPrefsImpl sharedPrefs;
+    private static final String TAG = "MainActivity";
     public static AppDatabase appDatabase;
+    private final String[] permission = {Manifest.permission.READ_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        com.dangthuy.trolybabau.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        sharedPrefs = SharedPrefsImpl.newInstance(Constants.CACHE, this);
+        SharedPrefsImpl sharedPrefs = SharedPrefsImpl.newInstance(Constants.CACHE, this);
         if (sharedPrefs.get(Constants.SET_UP, Boolean.class)) {
             addFragment(MainFragment.newInstance());
         } else {
@@ -39,10 +43,23 @@ public class MainActivity extends AppCompatActivity {
             addFragment(fragment);
         }
         initDatabase();
+        initPermission();
+    }
+
+    private void initPermission() {
+        if (ContextCompat.checkSelfPermission(this, permission[0]) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(permission, 200);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.d(TAG, " " + requestCode);
     }
 
     private void initDatabase() {
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "baby-foot").build();
+        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "pregnancy-database").build();
     }
 
     private void addFragment(Fragment fragment) {

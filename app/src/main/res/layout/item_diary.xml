@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:alpha="0.5"
     android:background="@drawable/background_edittext_profile">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -12,11 +11,10 @@
         android:layout_height="wrap_content"
         style="@style/TextViewStyle.White"
         android:textColor="@color/gray"
-        android:text="bacds"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -36,17 +34,16 @@
         app:layout_constraintBottom_toBottomOf="@id/ivImage"
         android:layout_marginStart="@dimen/_10sdp"
         app:layout_constraintStart_toEndOf="@id/ivImage"
-        style="@style/TextViewStyle.Black"
-        android:text="sdfafdsfda"/>
+        style="@style/TextViewStyle.Black" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="17 tháng 3, 2021 15:30"
         style="@style/TextViewStyle.White"
         android:textColor="@color/gray"
         app:layout_constraintTop_toBottomOf="@id/ivImage"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="@dimen/_5sdp"/>
+        android:layout_marginEnd="@dimen/_10sdp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

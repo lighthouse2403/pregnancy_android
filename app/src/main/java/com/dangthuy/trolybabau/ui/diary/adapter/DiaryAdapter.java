@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.utils.DateUtils;
 import com.dangthuy.trolybabau.data.model.Diary;
+import com.dangthuy.trolybabau.databinding.ItemDiaryBinding;
 
 import java.util.List;
 
@@ -19,6 +21,9 @@ public class DiaryAdapter extends BaseQuickAdapter<Diary, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, Diary item) {
-
+        ItemDiaryBinding binding = ItemDiaryBinding.bind(helper.itemView);
+        binding.tvTitle.setText(item.title);
+        binding.tvContent.setText(item.content);
+        binding.tvTime.setText(item.createdDate);
     }
 }

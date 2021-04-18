@@ -1,6 +1,7 @@
 package com.dangthuy.trolybabau.ui.diary;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,6 +49,7 @@ public class DiaryFragment extends BaseFragment<DiaryViewModel> {
         }
         initAdapter();
         viewModel.getDiaries().observe(this, diaries -> {
+            loadingDialog.dismiss();
             if (diaries.size() > 0) {
                 setLayoutView(true);
                 mDiaryAdapter.setNewData(diaries);
@@ -74,11 +76,16 @@ public class DiaryFragment extends BaseFragment<DiaryViewModel> {
 
     @Override
     protected void setOnClickListener() {
-        binding.btnAdd.setOnClickListener(view -> addFragment(R.id.container, AddDiaryFragment.newInstance(), AddDiaryFragment.TAG, false));
+        binding.btnAdd.setOnClickListener(view -> {
+            AddDiaryFragment fragment = AddDiaryFragment.newInstance();
+            fragment.setAddListener(this::onRefreshData);
+            addFragment(R.id.container, fragment, AddDiaryFragment.TAG, false);
+        });
     }
 
     @Override
     protected void onRefreshData() {
-        viewModel.fetchData();
+        loadingDialog.show();
+        new Handler().postDelayed(() -> viewModel.fetchData(), 500);
     }
 }
