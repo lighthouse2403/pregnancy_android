@@ -34,11 +34,6 @@ public class HomeViewModel extends BaseViewModel {
 
     private int week, day, year, month, dayExpect, remainDay, percent;
     private final MutableLiveData<List<HomeMenu>> homeMenus = new MutableLiveData<>();
-    private final HomeRepository.LoadHomeListener babyNameListener = response -> {
-        if (response != null) {
-
-        }
-    };
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -53,10 +48,10 @@ public class HomeViewModel extends BaseViewModel {
         list.add(new HomeMenu(NHAC_BAU_CHO_BE, AppCompatResources.getDrawable(mContext, R.drawable.playlist)));
         list.add(new HomeMenu(BAC_SI, AppCompatResources.getDrawable(mContext, R.drawable.doctor_list)));
         list.add(new HomeMenu(DO_SO_SINH, AppCompatResources.getDrawable(mContext, R.drawable.newbornthings)));
+        list.add(new HomeMenu(TEN_HAY_CHO_BE, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
         list.add(new HomeMenu(DIA_CHI_TIEM_PHONG, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
         list.add(new HomeMenu(MON_NGON_MOI_NGAY, AppCompatResources.getDrawable(mContext, R.drawable.mon_an)));
         list.add(new HomeMenu(NHAC_NHO, AppCompatResources.getDrawable(mContext, R.drawable.calendar)));
-        fetchBabyName();
         this.week = sharedPrefs.get(Constants.WEEK_AGE, Integer.class);
         this.day = sharedPrefs.get(Constants.DAY_AGE, Integer.class);
         this.year = sharedPrefs.get(Constants.YEAR_BORN, Integer.class);
@@ -69,10 +64,6 @@ public class HomeViewModel extends BaseViewModel {
 
     public MutableLiveData<List<HomeMenu>> getHomeMenus() {
         return homeMenus;
-    }
-
-    public void fetchBabyName() {
-        new HomeRepository(mContext).loadBabyName(babyNameListener, R.raw.babyname);
     }
 
     public int getWeek() {

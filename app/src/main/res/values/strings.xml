@@ -1,6 +1,31 @@
 <resources>
     <string name="app_name">Trolybabau</string>
 
+    <array name="character">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>K</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+        <item>O</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
+        <item>U</item>
+        <item>V</item>
+        <item>X</item>
+        <item>Y</item>
+    </array>
+
     //main tab
     <string name="tv_trang_chu">Trang chủ</string>
     <string name="tv_trang_thai_ky">Thai kỳ</string>
@@ -57,4 +82,10 @@
     <string name="tv_warning_no_have_any_foot">Bạn chưa theo dõi số lần đạp của bé</string>
     <string name="tv_thong_bao_nhap_noi_dung">Bạn cần nhập tiêu đề và nội dung</string>
     <string name="tv_con_lai">Còn lại</string>
+    <string name="tv_tim_theo_ten">Tìm theo tên"</string>
+    <string name="tv_tim_kiem_theo_ten">Tìm kiếm theo tên</string>
+    <string name="tv_gioi_tinh_be">Giới tính bé:</string>
+    <string name="tv_bat_dau_bang_chu">Bắt đầu bằng chữ:</string>
+    <string name="tv_be_trai">Bé trai</string>
+    <string name="tv_be_gai">Bé gái</string>
 </resources>

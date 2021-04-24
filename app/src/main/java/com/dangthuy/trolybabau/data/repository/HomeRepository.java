@@ -21,11 +21,4 @@ public class HomeRepository extends BaseRepository {
         super(mContext);
     }
 
-    public interface LoadHomeListener {
-        void onLoadBabyNameFinished(BabyNameResponse response);
-    }
-
-    public void loadBabyName(LoadHomeListener listener, int raw) {
-        loadDataFromRaw(BabyNameResponse.class, raw, listener::onLoadBabyNameFinished);
-    }
 }

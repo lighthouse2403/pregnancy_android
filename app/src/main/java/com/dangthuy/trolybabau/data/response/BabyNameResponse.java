@@ -10,9 +10,9 @@ import java.util.List;
  */
 public class BabyNameResponse extends BaseResponse{
     @SerializedName("baby_name")
-    private List<BabyName> babyName;
+    private List<BabyName> babyNames;
 
-    public List<BabyName> getBabyName() {
-        return babyName;
+    public List<BabyName> getBabyNames() {
+        return babyNames;
     }
 }
