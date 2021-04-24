@@ -1,5 +1,6 @@
 package com.dangthuy.trolybabau.ui.home;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -76,9 +77,25 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
     @Override
     protected void initView() {
         binding = (FragmentHomeBinding) getBinding();
-        binding.progressbar.startAnimation();
+        if (getArguments() != null) {
+        }
+
         initAdapter();
-        viewModel.getHomeMenus().observe(this, homeMenus -> mHomeAdapter.setNewData(homeMenus));
+        viewModel.getHomeMenus().observe(this, homeMenus -> {
+            mHomeAdapter.setNewData(homeMenus);
+            setLayoutView();
+        });
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void setLayoutView() {
+        binding.tvAge.setText(getString(R.string.tv_tuoi_thai) + ": " + viewModel.getWeek() + " " + getString(R.string.tv_tuan) + ((viewModel.getDay() > 0) ? (" " + viewModel.getDay() + " " + getString(R.string.tv_ngay)) : ""));
+        binding.tvWeight.setText(getString(R.string.tv_can_nang) + ": " + "- gram");
+        binding.tvExpect.setText(getString(R.string.tv_du_sinh) + ": " + viewModel.getDayExpect() + " " + getString(R.string.tv_thang) + " " + viewModel.getMonth() + ", " + viewModel.getYear());
+        binding.tvRemain.setText(getString(R.string.tv_con_lai) + ": " + viewModel.getRemainDay() + " " + getString(R.string.tv_ngay));
+        binding.progressbar.setProgress(viewModel.getPercent());
+        binding.progressbar.setWaveStrong(viewModel.getPercent());
+        binding.progressbar.startAnimation();
     }
 
     private void initAdapter() {

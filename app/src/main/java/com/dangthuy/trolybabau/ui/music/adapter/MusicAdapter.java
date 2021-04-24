@@ -6,6 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.data.model.Music;
+import com.dangthuy.trolybabau.databinding.ItemMusicBinding;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class MusicAdapter extends BaseQuickAdapter<Music, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, Music item) {
-
+        ItemMusicBinding binding = ItemMusicBinding.bind(helper.itemView);
+        binding.tvTitle.setText(item.getTitle());
     }
 }

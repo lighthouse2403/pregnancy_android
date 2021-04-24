@@ -40,20 +40,20 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_10sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp"/>
+            android:padding="@dimen/_10sdp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDateValue"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tvDate"
             android:minWidth="@dimen/_50sdp"
             app:layout_constraintTop_toTopOf="@id/tvDate"
             app:layout_constraintBottom_toBottomOf="@id/tvDate"
+            android:textAlignment="viewEnd"
+            android:padding="@dimen/_10sdp"
             style="@style/TextViewStyle.Black"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <View
             android:layout_width="0dp"
@@ -74,8 +74,8 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_10sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp"/>
+            android:padding="@dimen/_10sdp"
+            />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etWeight"
@@ -89,8 +89,8 @@
             android:textAlignment="textEnd"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp"/>
+            android:padding="@dimen/_10sdp"
+            />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSave"

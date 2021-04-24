@@ -29,7 +29,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
         this.updateListener = updateListener;
     }
 
-    private ToolBar.OnItemToolBarClickListener onToolBarClickListener = item -> {
+    private final ToolBar.OnItemToolBarClickListener onToolBarClickListener = item -> {
         switch (item) {
             case SAVE:
                 viewModel.saveData();

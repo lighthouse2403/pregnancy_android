@@ -56,4 +56,5 @@
     <string name="tv_warning_finish_record">Vui lòng nhấn nút kết thúc</string>
     <string name="tv_warning_no_have_any_foot">Bạn chưa theo dõi số lần đạp của bé</string>
     <string name="tv_thong_bao_nhap_noi_dung">Bạn cần nhập tiêu đề và nội dung</string>
+    <string name="tv_con_lai">Còn lại</string>
 </resources>

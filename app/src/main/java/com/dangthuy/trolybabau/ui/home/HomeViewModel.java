@@ -8,6 +8,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.MutableLiveData;
 
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.utils.Constants;
 import com.dangthuy.trolybabau.data.model.HomeMenu;
 import com.dangthuy.trolybabau.data.repository.HomeRepository;
 import com.dangthuy.trolybabau.ui.base.BaseViewModel;
@@ -30,6 +31,8 @@ public class HomeViewModel extends BaseViewModel {
     public static final String DIA_CHI_TIEM_PHONG = "Địa chỉ tiêm phòng uy tín";
     public static final String MON_NGON_MOI_NGAY = "Món ngon mỗi ngày";
     public static final String NHAC_NHO = "Nhắc nhở";
+
+    private int week, day, year, month, dayExpect, remainDay, percent;
     private final MutableLiveData<List<HomeMenu>> homeMenus = new MutableLiveData<>();
     private final HomeRepository.LoadHomeListener babyNameListener = response -> {
         if (response != null) {
@@ -54,6 +57,13 @@ public class HomeViewModel extends BaseViewModel {
         list.add(new HomeMenu(MON_NGON_MOI_NGAY, AppCompatResources.getDrawable(mContext, R.drawable.mon_an)));
         list.add(new HomeMenu(NHAC_NHO, AppCompatResources.getDrawable(mContext, R.drawable.calendar)));
         fetchBabyName();
+        this.week = sharedPrefs.get(Constants.WEEK_AGE, Integer.class);
+        this.day = sharedPrefs.get(Constants.DAY_AGE, Integer.class);
+        this.year = sharedPrefs.get(Constants.YEAR_BORN, Integer.class);
+        this.month = sharedPrefs.get(Constants.MONTH_BORN, Integer.class);
+        this.dayExpect = sharedPrefs.get(Constants.DAY_BORN, Integer.class);
+        this.remainDay = 280 - this.week * 7 - this.day;
+        this.percent = this.remainDay * 100 / 280;
         homeMenus.postValue(list);
     }
 
@@ -63,5 +73,33 @@ public class HomeViewModel extends BaseViewModel {
 
     public void fetchBabyName() {
         new HomeRepository(mContext).loadBabyName(babyNameListener, R.raw.babyname);
+    }
+
+    public int getWeek() {
+        return week;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getDayExpect() {
+        return dayExpect;
+    }
+
+    public int getRemainDay() {
+        return remainDay;
+    }
+
+    public int getPercent() {
+        return percent;
     }
 }

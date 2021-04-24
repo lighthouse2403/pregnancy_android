@@ -23,10 +23,11 @@ public class MusicViewModel extends BaseViewModel {
 
     public void fetchData() {
         ArrayList<Music> list = new ArrayList<>();
-        list.add(new Music());
-        list.add(new Music());
-        list.add(new Music());
-        list.add(new Music());
+        list.add(new Music("Nhạc bầu cho bé yêu 1", ""));
+        list.add(new Music("Nhạc bầu cho bé yêu 2", ""));
+        list.add(new Music("Nhạc bầu cho bé yêu 3", ""));
+        list.add(new Music("Nhạc bầu cho bé yêu 4", ""));
+        list.add(new Music("Nhạc bầu cho bé yêu 5", ""));
         music.postValue(list);
     }
 

@@ -11,16 +11,10 @@
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nhạc bầu cho bé yêu"
-        android:textSize="12sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/roboto"
+        style="@style/TextViewStyle.Black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:paddingStart="@dimen/_10sdp"
-        android:paddingEnd="@dimen/_10sdp"
-        android:paddingTop="@dimen/_10sdp"
-        android:paddingBottom="@dimen/_10sdp"/>
+        android:padding="@dimen/_10sdp" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivPause"
@@ -30,6 +24,7 @@
         app:layout_constraintTop_toTopOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="@id/tvTitle"
         android:layout_marginEnd="@dimen/_5sdp"
-        android:src="@drawable/ic_pause"/>
+        android:src="@drawable/pause"
+        android:visibility="invisible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
