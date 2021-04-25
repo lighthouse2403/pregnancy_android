@@ -24,7 +24,7 @@ public class RecipeViewModel extends BaseViewModel {
     private final MutableLiveData<List<Nutri>> nutries = new MutableLiveData<>();
     private List<Nutri> mNutriList;
     private boolean isSearch;
-    private final KnowledgeRepository.LoadNutriListener recipeListener = response -> {
+    private final RecipeRepository.LoadNutriListener recipeListener = response -> {
         if (response != null && response.getFood() != null) {
             nutries.postValue(response.getFood());
             if (!isSearch) {

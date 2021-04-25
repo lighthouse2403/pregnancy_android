@@ -17,6 +17,7 @@ import com.dangthuy.trolybabau.ui.music.MusicFragment;
 import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
 import com.dangthuy.trolybabau.ui.recipe.RecipeFragment;
 import com.dangthuy.trolybabau.ui.share_corner.ShareCornerFragment;
+import com.dangthuy.trolybabau.ui.vaccine.VaccineAddressFragment;
 
 import java.util.ArrayList;
 
@@ -61,6 +62,9 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
                 break;
             case HomeViewModel.MON_NGON_MOI_NGAY:
                 addFragment(R.id.container, RecipeFragment.newInstance(), RecipeFragment.TAG, false);
+                break;
+            case HomeViewModel.DIA_CHI_TIEM_PHONG:
+                addFragment(R.id.container, VaccineAddressFragment.newInstance(), VaccineAddressFragment.TAG, false);
                 break;
         }
     };

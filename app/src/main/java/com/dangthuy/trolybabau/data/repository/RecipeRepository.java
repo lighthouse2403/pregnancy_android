@@ -16,7 +16,7 @@ public class RecipeRepository extends BaseRepository{
         void onLoadNutriFinished(NutriResponse response);
     }
 
-    public void loadNutrition(int raw, KnowledgeRepository.LoadNutriListener listener) {
+    public void loadNutrition(int raw, LoadNutriListener listener) {
         loadDataFromRaw(NutriResponse.class, raw, listener::onLoadNutriFinished);
     }
 }

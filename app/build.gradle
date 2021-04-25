@@ -64,5 +64,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation "com.github.bumptech.glide:okhttp3-integration:4.7.1"
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-
+    implementation 'org.zakariya.stickyheaders:stickyheaders:0.7.10'
 }
