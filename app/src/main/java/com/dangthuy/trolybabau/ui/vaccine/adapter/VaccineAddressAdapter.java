@@ -1,6 +1,7 @@
 package com.dangthuy.trolybabau.ui.vaccine.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.dangthuy.trolybabau.data.model.VaccineAddress;
@@ -18,9 +19,6 @@ import java.util.List;
  * Created by nhongthai on 4/25/2021.
  */
 public class VaccineAddressAdapter extends SectioningAdapter {
-    private ItemVaccineAddressBinding itemBinding;
-    private ItemHeaderVaccineAddressBinding headerBinding;
-
     private List<VaccineAddressSection> mData = new ArrayList<>();
 
     public void setData(List<VaccineAddressSection> mData) {
@@ -30,28 +28,25 @@ public class VaccineAddressAdapter extends SectioningAdapter {
 
     @Override
     public ItemViewHolder onCreateItemViewHolder(ViewGroup parent, int itemUserType) {
-        itemBinding = ItemVaccineAddressBinding.inflate(LayoutInflater.from(parent.getContext()));
-        return new ItemViewHolder(itemBinding.getRoot());
+        return new ItemViewHolder((ItemVaccineAddressBinding.inflate(LayoutInflater.from(parent.getContext()))).getRoot());
     }
 
     @Override
-    public void onBindItemViewHolder(ItemViewHolder viewHolder, int sectionIndex, int itemIndex, int itemUserType) {
+    public void onBindItemViewHolder(SectioningAdapter.ItemViewHolder viewHolder, int sectionIndex, int itemIndex, int itemUserType) {
         VaccineAddress address = mData.get(sectionIndex).getAddresses().get(itemIndex);
-        itemBinding.tvName.setText(address.getName());
-        itemBinding.tvPlace.setText(address.getAddress());
-        itemBinding.tvPhone.setText(address.getPhone());
+        ((ItemViewHolder) viewHolder).bind(address);
     }
+
 
     @Override
     public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int headerUserType) {
-        headerBinding = ItemHeaderVaccineAddressBinding.inflate(LayoutInflater.from(parent.getContext()));
-        return new HeaderViewHolder(headerBinding.getRoot());
+        return new HeaderViewHolder((ItemHeaderVaccineAddressBinding.inflate(LayoutInflater.from(parent.getContext()))).getRoot());
     }
 
     @Override
-    public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int sectionIndex, int headerUserType) {
+    public void onBindHeaderViewHolder(SectioningAdapter.HeaderViewHolder viewHolder, int sectionIndex, int headerUserType) {
         String header = mData.get(sectionIndex).getSection();
-        headerBinding.tvName.setText(header);
+        ((HeaderViewHolder) viewHolder).bind(header);
     }
 
     @Override
@@ -72,5 +67,33 @@ public class VaccineAddressAdapter extends SectioningAdapter {
     @Override
     public boolean doesSectionHaveFooter(int sectionIndex) {
         return false;
+    }
+
+    public class ItemViewHolder extends SectioningAdapter.ItemViewHolder {
+        private ItemVaccineAddressBinding itemBinding;
+
+        public ItemViewHolder(View itemView) {
+            super(itemView);
+            itemBinding = ItemVaccineAddressBinding.bind(itemView);
+        }
+
+        public void bind(VaccineAddress item) {
+            itemBinding.tvName.setText(item.getName());
+            itemBinding.tvPlace.setText(item.getAddress());
+            itemBinding.tvPhone.setText(item.getPhone());
+        }
+    }
+
+    public class HeaderViewHolder extends SectioningAdapter.HeaderViewHolder {
+        private ItemHeaderVaccineAddressBinding headerBinding;
+
+        public HeaderViewHolder(View itemView) {
+            super(itemView);
+            headerBinding = ItemHeaderVaccineAddressBinding.bind(itemView);
+        }
+
+        public void bind(String name) {
+            headerBinding.tvName.setText(name);
+        }
     }
 }
