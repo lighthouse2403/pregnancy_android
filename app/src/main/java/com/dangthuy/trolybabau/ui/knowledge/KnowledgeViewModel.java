@@ -37,8 +37,8 @@ public class KnowledgeViewModel extends BaseViewModel {
     private int mNutri;
     private final KnowledgeRepository.LoadNutriListener nutriListener = response -> {
         if (response != null) {
-            if (response.getFood() != null) {
-                nutries.postValue(response.getFood());
+            if (response.getNutrition() != null) {
+                nutries.postValue(response.getNutrition());
             }
             if (response.getFruits() != null) {
                 nutries.postValue(response.getFruits());
@@ -99,7 +99,7 @@ public class KnowledgeViewModel extends BaseViewModel {
         KnowledgeRepository repository = new KnowledgeRepository(mContext);
         switch (mNutri) {
             case 0: //Food
-                repository.loadNutrition(R.raw.food, nutriListener);
+                repository.loadNutrition(R.raw.nutrition, nutriListener);
                 break;
             case 1: //Fruit
                 repository.loadNutrition(R.raw.fruit, nutriListener);
