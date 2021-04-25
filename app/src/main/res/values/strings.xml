@@ -89,4 +89,6 @@
     <string name="tv_be_trai">Bé trai</string>
     <string name="tv_be_gai">Bé gái</string>
     <string name="tv_yeu_thich">Yêu thích</string>
+    <string name="tv_tim_kiem_mon_an">Tìm kiếm món ăn</string>
+    <string name="tv_mon_an_ngon">Món ăn ngon</string>
 </resources>

@@ -15,6 +15,7 @@ import com.dangthuy.trolybabau.ui.information.InfomartionViewModel;
 import com.dangthuy.trolybabau.ui.information.InfomationFragment;
 import com.dangthuy.trolybabau.ui.music.MusicFragment;
 import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
+import com.dangthuy.trolybabau.ui.recipe.RecipeFragment;
 import com.dangthuy.trolybabau.ui.share_corner.ShareCornerFragment;
 
 import java.util.ArrayList;
@@ -57,6 +58,9 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
                 break;
             case HomeViewModel.TEN_HAY_CHO_BE:
                 addFragment(R.id.container, BabyNameFragment.newInstance(), BabyNameFragment.TAG, false);
+                break;
+            case HomeViewModel.MON_NGON_MOI_NGAY:
+                addFragment(R.id.container, RecipeFragment.newInstance(), RecipeFragment.TAG, false);
                 break;
         }
     };
