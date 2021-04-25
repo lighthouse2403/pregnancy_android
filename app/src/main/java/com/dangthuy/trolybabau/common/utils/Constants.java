@@ -18,4 +18,8 @@ public class Constants {
 
     //wallpaper
     public static final String WALLPAPER = "wallpaper";
+
+    //baby name
+    public static final String FIRST_NAME = "first_name";
+    public static final String LAST_NAME = "last_name";
 }

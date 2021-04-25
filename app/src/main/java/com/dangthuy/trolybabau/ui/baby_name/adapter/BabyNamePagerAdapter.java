@@ -17,17 +17,19 @@ import java.util.List;
 public class BabyNamePagerAdapter extends FragmentStatePagerAdapter {
     private ArrayList<BabyName> babyNameList;
     private String firstCharacter;
+    private boolean isSpinner;
 
-    public BabyNamePagerAdapter(@NonNull FragmentManager fm, ArrayList<BabyName> data, String firstCharacter) {
+    public BabyNamePagerAdapter(@NonNull FragmentManager fm, ArrayList<BabyName> data, String firstCharacter, boolean isSpinner) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.babyNameList = data;
         this.firstCharacter = firstCharacter;
+        this.isSpinner = isSpinner;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return DetailBabyNameFragment.newInstance(position, this.babyNameList, firstCharacter);
+        return DetailBabyNameFragment.newInstance(position, this.babyNameList, firstCharacter, isSpinner);
     }
 
     @Override

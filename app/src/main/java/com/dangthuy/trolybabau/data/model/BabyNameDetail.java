@@ -6,12 +6,12 @@ package com.dangthuy.trolybabau.data.model;
 public class BabyNameDetail {
     private String lastName;
     private String firstName;
-    private int tab;
+    private int status;
 
-    public BabyNameDetail(String lastName, String firstName, int tab) {
+    public BabyNameDetail(String lastName, String firstName, int status) {
         this.lastName = lastName;
         this.firstName = firstName;
-        this.tab = tab;
+        this.status = status;
     }
 
     public String getLastName() {
@@ -22,7 +22,11 @@ public class BabyNameDetail {
         return firstName;
     }
 
-    public int getTab() {
-        return tab;
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

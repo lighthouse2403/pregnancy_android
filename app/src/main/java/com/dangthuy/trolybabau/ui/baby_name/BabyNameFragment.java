@@ -6,12 +6,14 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.SearchView;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.data.model.BabyName;
 import com.dangthuy.trolybabau.databinding.FragmentBabyNameBinding;
 import com.dangthuy.trolybabau.ui.baby_name.adapter.BabyNamePagerAdapter;
+import com.dangthuy.trolybabau.ui.baby_name.favorite.FavoriteBabyNameFragment;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.born_story.BornStoryFragment;
 import com.dangthuy.trolybabau.ui.home.HomeViewModel;
@@ -54,18 +56,31 @@ public class BabyNameFragment extends BaseFragment<BabyNameViewModel> {
         viewModel.getBabyNames().observe(this, babyNames -> {
             loadingDialog.dismiss();
             viewModel.setBabyNames(babyNames);
-            setupViewPager();
+            setupViewPager("A", true);
         });
     }
 
     private void setLayoutView() {
         binding.toolBar.setTitle(HomeViewModel.TEN_HAY_CHO_BE);
         binding.toolBar.setLayoutView(ToolBarType.DEFAULT);
+        binding.search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (!newText.isEmpty()) {
+                    setupViewPager(newText, false);
+                }
+                return true;
+            }
+        });
     }
 
-    private void setupViewPager() {
-        mBabyNamePagerAdapter = new BabyNamePagerAdapter(getChildFragmentManager(), (ArrayList<BabyName>) viewModel.getBabyNameList(), binding.spinner.getSelectedItem().toString());
+    private void setupViewPager(String word, boolean isSpinner) {
+        mBabyNamePagerAdapter = new BabyNamePagerAdapter(getChildFragmentManager(), (ArrayList<BabyName>) viewModel.getBabyNameList(), word, isSpinner);
         binding.viewPager.setAdapter(mBabyNamePagerAdapter);
         binding.tabs.setupWithViewPager(binding.viewPager);
         customTabs();
@@ -96,12 +111,13 @@ public class BabyNameFragment extends BaseFragment<BabyNameViewModel> {
     @Override
     protected void setOnClickListener() {
         binding.toolBar.setListener(item -> getParentFragmentManager().popBackStack());
+        binding.btnLove.setOnClickListener(view -> addFragment(R.id.container, FavoriteBabyNameFragment.newInstance(), FavoriteBabyNameFragment.TAG, false));
         binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 //                mBabyNamePagerAdapter.notifyDataSetChanged();
 //                customTabs();
-                setupViewPager();
+                setupViewPager(binding.spinner.getSelectedItem().toString(), true);
             }
 
             @Override

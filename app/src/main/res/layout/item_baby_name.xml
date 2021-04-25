@@ -15,14 +15,15 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnLove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/tvName"
         app:layout_constraintEnd_toEndOf="@id/tvName"
         android:layout_marginEnd="@dimen/_10sdp"
-        android:src="@drawable/ic_star"
-        android:tint="@color/yellow"/>
+        android:src="@drawable/ic_star_love"
+        android:tint="@color/yellow"
+        android:background="@drawable/ripple_react_background"/>
 
     <View
         android:layout_width="match_parent"

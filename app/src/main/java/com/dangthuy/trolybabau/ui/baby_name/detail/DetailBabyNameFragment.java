@@ -1,19 +1,18 @@
 package com.dangthuy.trolybabau.ui.baby_name.detail;
 
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.data.model.BabyName;
 import com.dangthuy.trolybabau.databinding.FragmentPagerCommonBinding;
-import com.dangthuy.trolybabau.ui.baby_name.BabyNameFragment;
 import com.dangthuy.trolybabau.ui.baby_name.BabyNameViewModel;
 import com.dangthuy.trolybabau.ui.baby_name.adapter.BabyNameAdapter;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by nhongthai on 4/24/2021.
@@ -21,15 +20,21 @@ import java.util.List;
 public class DetailBabyNameFragment extends BaseFragment<BabyNameViewModel> {
     public static final String TAG = "DetailBabyNameFragment";
     private static final String DATA = "data";
-    private static final String FIRST_CHARACTER = "first_character";
+    private static final String CHARACTER = "character";
+    private static final String SPINNER = "spinner";
     private FragmentPagerCommonBinding binding;
     private BabyNameAdapter mBabyNameAdapter;
-    public static DetailBabyNameFragment newInstance(int position, ArrayList<BabyName> data, String firstName) {
+    private BabyNameAdapter.ILoveListener loveListener = (item, position) -> {
+        viewModel.saveItem(item, position);
+    };
+
+    public static DetailBabyNameFragment newInstance(int position, ArrayList<BabyName> data, String firstName, boolean isSpinner) {
         DetailBabyNameFragment fragment = new DetailBabyNameFragment();
         Bundle args = new Bundle();
         args.putInt(TAG, position);
         args.putParcelableArrayList(DATA, data);
-        args.putString(FIRST_CHARACTER, firstName);
+        args.putString(CHARACTER, firstName);
+        args.putBoolean(SPINNER, isSpinner);
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,12 +56,16 @@ public class DetailBabyNameFragment extends BaseFragment<BabyNameViewModel> {
             if (getArguments().getParcelableArrayList(DATA) != null) {
                 viewModel.setBabyNames(getArguments().getParcelableArrayList(DATA));
                 viewModel.setTab(getArguments().getInt(TAG));
-                viewModel.setFirstCharacter(getArguments().getString(FIRST_CHARACTER));
+                viewModel.setCharacter(getArguments().getString(CHARACTER));
+                viewModel.setIsSpinner(getArguments().getBoolean(SPINNER));
             }
         }
         initAdapter();
         viewModel.getBabyNameDetails().observe(this, babyNameDetails -> {
             mBabyNameAdapter.setNewData(babyNameDetails);
+        });
+        viewModel.getBabyNameDetail().observe(this, babyNameDetail -> {
+            mBabyNameAdapter.notifyItemChanged(viewModel.getmPosition());
         });
     }
 
@@ -64,6 +73,7 @@ public class DetailBabyNameFragment extends BaseFragment<BabyNameViewModel> {
         mBabyNameAdapter = new BabyNameAdapter(new ArrayList<>());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         binding.recyclerView.setAdapter(mBabyNameAdapter);
+        mBabyNameAdapter.setLoveListener(loveListener);
     }
 
     @Override
