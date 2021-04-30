@@ -78,7 +78,7 @@ public class InfomationFragment extends BaseFragment<InfomartionViewModel> {
     }
 
     private void setLayoutView() {
-        binding.toolBar.setLayoutView(ToolBarType.INFOMATION);
+        binding.toolBar.setLayoutView(ToolBarType.BACK_ADD);
         if (viewModel.getmType() == InfomartionViewModel.TYPE_MOM) {
             binding.toolBar.setTitle(HomeViewModel.CAN_NANG_CUA_ME);
         } else {

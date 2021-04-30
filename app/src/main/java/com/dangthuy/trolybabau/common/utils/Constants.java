@@ -22,4 +22,8 @@ public class Constants {
     //baby name
     public static final String FIRST_NAME = "first_name";
     public static final String LAST_NAME = "last_name";
+
+    //alarm
+    public static final String ALARM_DATA = "data";
+    public static final String ALARM_ACTION = "pregnancy_alarm";
 }

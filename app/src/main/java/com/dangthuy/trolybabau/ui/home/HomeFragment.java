@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.databinding.FragmentHomeBinding;
+import com.dangthuy.trolybabau.ui.alarm.AlarmFragment;
 import com.dangthuy.trolybabau.ui.baby_name.BabyNameFragment;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.born_story.BornStoryFragment;
@@ -65,6 +66,9 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
                 break;
             case HomeViewModel.DIA_CHI_TIEM_PHONG:
                 addFragment(R.id.container, VaccineAddressFragment.newInstance(), VaccineAddressFragment.TAG, false);
+                break;
+            case HomeViewModel.NHAC_NHO:
+                addFragment(R.id.container, AlarmFragment.newInstance(), AlarmFragment.TAG, false);
                 break;
         }
     };

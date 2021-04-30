@@ -92,4 +92,9 @@
     <string name="tv_tim_kiem_mon_an">Tìm kiếm món ăn</string>
     <string name="tv_mon_an_ngon">Món ăn ngon</string>
     <string name="tv_co_so_tiem_chung_uy_tin">Cơ sở tiêm chủng uy tín</string>
+    <string name="tv_nhac_nho">Nhắc nhở</string>
+    <string name="tv_sua_ke_hoach">Sửa kế hoạch</string>
+    <string name="tv_them_ke_hoach">Thêm kế hoạch</string>
+    <string name="tv_thoi_gian">Thời gian</string>
+    <string name="tv_ghi_chu">Ghi chú:</string>
 </resources>

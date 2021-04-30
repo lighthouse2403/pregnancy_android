@@ -127,7 +127,7 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
     }
 
     private void setLayoutView() {
-        binding.toolBar.setLayoutView(ToolBarType.INFOMATION);
+        binding.toolBar.setLayoutView(ToolBarType.BACK_ADD);
         binding.toolBar.setTitle(getString(R.string.tv_goc_chia_se));
     }
 

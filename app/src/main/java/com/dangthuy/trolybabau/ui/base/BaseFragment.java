@@ -1,11 +1,13 @@
 package com.dangthuy.trolybabau.ui.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
@@ -41,7 +43,7 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(provideViewModelClass());
         viewModel.getLiveData().observe(this, isUpdate -> {
-            if (isUpdate){
+            if (isUpdate) {
                 Log.d(TAG, "isUpdate " + isUpdate);
             }
         });
@@ -64,6 +66,7 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
         if (listener != null) {
             listener.onClick();
         }
+        hideKeyboard();
         super.onDestroyView();
     }
 
@@ -82,7 +85,7 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
         return binding;
     }
 
-    public void addFragment(int layoutId, Fragment fragment, String tag, boolean isReplace){
+    public void addFragment(int layoutId, Fragment fragment, String tag, boolean isReplace) {
         if (getActivity() != null) {
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager()
                     .beginTransaction()
@@ -92,7 +95,7 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
                             R.anim.enter_from_left,
                             R.anim.exit_to_right
                     );
-            if(!isReplace) {
+            if (!isReplace) {
                 fragmentTransaction.add(layoutId, fragment)
                         .addToBackStack(tag)
                         .commit();
@@ -106,5 +109,11 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
 
     public void showToast(String toast) {
         Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
+    }
+
+    public void hideKeyboard() {
+        InputMethodManager inputManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (requireActivity().getCurrentFocus() != null)
+            inputManager.hideSoftInputFromWindow(requireActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 }
