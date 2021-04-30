@@ -5,20 +5,64 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.customview.ToolBar;
+import com.dangthuy.trolybabau.common.utils.Constants;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
-import com.dangthuy.trolybabau.databinding.FragmentAlarmBinding;
+import com.dangthuy.trolybabau.data.model.Alarm;
+import com.dangthuy.trolybabau.databinding.FragmentCommonBinding;
+import com.dangthuy.trolybabau.ui.alarm.adapter.AlarmAdapter;
+import com.dangthuy.trolybabau.ui.alarm.detail.DetailAlarmFragment;
 import com.dangthuy.trolybabau.ui.alarm.receiver.AlarmReceiver;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
-import com.dangthuy.trolybabau.ui.vaccine.VaccineAddressFragment;
+
+import java.util.ArrayList;
 
 /**
  * Created by nhongthai on 4/26/2021.
  */
 public class AlarmFragment extends BaseFragment<AlarmViewModel> {
     public static final String TAG = "AlarmFragment";
-    private FragmentAlarmBinding binding;
+    private FragmentCommonBinding binding;
+    private AlarmAdapter mAlarmAdapter;
+    private final AlarmAdapter.IAlarmListener alarmListener = new AlarmAdapter.IAlarmListener() {
+        @Override
+        public void onClickItem(Alarm item) {
+            gotoDetail(item);
+        }
+
+        @Override
+        public void onSwitch(Alarm item, int position) {
+            viewModel.switchOnOff(item);
+            new Handler().postDelayed(() -> mAlarmAdapter.notifyItemChanged(position), 100);
+            startAlarm();
+        }
+    };
+    private final ToolBar.OnItemToolBarClickListener toolbarListener = item -> {
+        switch (item) {
+            case BACK:
+                getParentFragmentManager().popBackStack();
+                break;
+            case ADD:
+                gotoDetail(null);
+                break;
+        }
+    };
+
+    private void gotoDetail(Alarm item) {
+        DetailAlarmFragment fragment = DetailAlarmFragment.newInstance(item);
+        fragment.setSaveListener(() -> {
+            this.onRefreshData();
+            viewModel.setAlarm(item);
+            startAlarm();
+        });
+        addFragment(R.id.container, fragment, DetailAlarmFragment.TAG, false);
+    }
 
     public static AlarmFragment newInstance() {
         AlarmFragment fragment = new AlarmFragment();
@@ -34,43 +78,56 @@ public class AlarmFragment extends BaseFragment<AlarmViewModel> {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_alarm;
+        return R.layout.fragment_common;
     }
 
     @Override
     protected void initView() {
-        binding = (FragmentAlarmBinding) getBinding();
+        binding = (FragmentCommonBinding) getBinding();
         if (getArguments() != null) {
             setLayoutView();
         }
-        test();
+        initAdapter();
+        viewModel.getAlarms().observe(this, alarms -> {
+            loadingDialog.dismiss();
+            mAlarmAdapter.setNewData(alarms);
+        });
     }
 
-    private void test() {
-        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+    private void initAdapter() {
+        mAlarmAdapter = new AlarmAdapter(new ArrayList<>());
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        binding.recyclerView.setAdapter(mAlarmAdapter);
+        mAlarmAdapter.setAlarmListener(alarmListener);
+    }
+
+    private void startAlarm() {
+        AlarmManager alarmManager = (AlarmManager) requireActivity().getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(getActivity(), AlarmReceiver.class);
-        intent.setAction("dangthuy_alarm");
-        intent.putExtra("data","hello");
+        intent.setAction(Constants.ALARM_ACTION);
+        intent.putExtra(Constants.ALARM_DATA, viewModel.getNote());
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
-
-        int ALARM_DELAY_IN_SECOND = 5;
-        long alarmTimeAtUTC = System.currentTimeMillis() + ALARM_DELAY_IN_SECOND * 1_000L;
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, alarmTimeAtUTC, pendingIntent);
+        if (viewModel.isCheck()) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5 * 1000L, pendingIntent);
+        } else {
+            alarmManager.cancel(pendingIntent);
+        }
     }
 
     private void setLayoutView() {
-        binding.toolBar.setLayoutView(ToolBarType.DEFAULT);
+        binding.toolBar.setLayoutView(ToolBarType.BACK_ADD);
         binding.toolBar.setTitle(getString(R.string.tv_nhac_nho));
     }
 
     @Override
     protected void setOnClickListener() {
-        binding.toolBar.setListener(item -> getParentFragmentManager().popBackStack());
+        binding.toolBar.setListener(toolbarListener);
     }
 
     @Override
     protected void onRefreshData() {
-
+        loadingDialog.show();
+        new Handler().postDelayed(() -> viewModel.fetchData(), 300);
     }
 }

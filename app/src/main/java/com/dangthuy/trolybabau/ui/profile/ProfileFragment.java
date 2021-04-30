@@ -74,7 +74,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
     }
 
     private void setLayoutView(boolean isSetup) {
-        binding.toolBar.setLayoutView(isSetup ? ToolBarType.SETUP : ToolBarType.EXPECT);
+        binding.toolBar.setLayoutView(isSetup ? ToolBarType.SETUP : ToolBarType.BACK_SAVE);
     }
 
     @SuppressLint("SetTextI18n")

@@ -69,7 +69,7 @@ public class BabyInfoFragment extends BaseFragment<BabyInforViewModel> {
     }
 
     private void setLayoutView(boolean isTab) {
-        binding.toolBar.setLayoutView(isTab ? ToolBarType.BABY_INFO_TAB : ToolBarType.INFOMATION);
+        binding.toolBar.setLayoutView(isTab ? ToolBarType.BABY_INFO_TAB : ToolBarType.BACK_ADD);
     }
 
     @Override
