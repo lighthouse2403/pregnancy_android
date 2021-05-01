@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tvTitle"
+    style="@style/TextViewStyle.Black"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="@dimen/_8sdp"
+    android:textAlignment="center"
+    android:textColor="@color/blue"
+    app:layout_constraintTop_toTopOf="parent" />
+

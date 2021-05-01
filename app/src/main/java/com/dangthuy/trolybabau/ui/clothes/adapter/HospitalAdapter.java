@@ -1,13 +1,13 @@
-package com.dangthuy.trolybabau.ui.vaccine.adapter;
+package com.dangthuy.trolybabau.ui.clothes.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dangthuy.trolybabau.data.model.VaccineAddress;
-import com.dangthuy.trolybabau.data.model.VaccineAddressSection;
-import com.dangthuy.trolybabau.databinding.ItemHeaderVaccineAddressBinding;
-import com.dangthuy.trolybabau.databinding.ItemVaccineAddressBinding;
+import com.dangthuy.trolybabau.data.model.Clothes;
+import com.dangthuy.trolybabau.data.model.ClothesSection;
+import com.dangthuy.trolybabau.databinding.ItemClothesBinding;
+import com.dangthuy.trolybabau.databinding.ItemHeaderClothesBinding;
 
 import org.zakariya.stickyheaders.SectioningAdapter;
 
@@ -15,30 +15,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by nhongthai on 4/25/2021.
+ * Created by nhongthai on 5/1/2021.
  */
-public class VaccineAddressAdapter extends SectioningAdapter {
-    private List<VaccineAddressSection> mData = new ArrayList<>();
+public class HospitalAdapter extends SectioningAdapter {
+    private List<ClothesSection> mData = new ArrayList<>();
 
-    public void setData(List<VaccineAddressSection> mData) {
-        this.mData = mData;
+    public void setData(List<ClothesSection> data) {
+        this.mData = data;
         notifyAllSectionsDataSetChanged();
     }
 
     @Override
     public ItemViewHolder onCreateItemViewHolder(ViewGroup parent, int itemUserType) {
-        return new ItemViewHolder((ItemVaccineAddressBinding.inflate(LayoutInflater.from(parent.getContext()))).getRoot());
+        return new ItemViewHolder((ItemClothesBinding.inflate(LayoutInflater.from(parent.getContext()))).getRoot());
     }
+
 
     @Override
     public void onBindItemViewHolder(SectioningAdapter.ItemViewHolder viewHolder, int sectionIndex, int itemIndex, int itemUserType) {
-        VaccineAddress address = mData.get(sectionIndex).getAddresses().get(itemIndex);
-        ((ItemViewHolder) viewHolder).bind(address);
+        Clothes clothes = mData.get(sectionIndex).getData().get(itemIndex);
+        ((ItemViewHolder) viewHolder).bind(clothes);
     }
 
     @Override
     public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int headerUserType) {
-        return new HeaderViewHolder((ItemHeaderVaccineAddressBinding.inflate(LayoutInflater.from(parent.getContext()))).getRoot());
+        return new HeaderViewHolder(ItemHeaderClothesBinding.inflate(LayoutInflater.from(parent.getContext())).getRoot());
     }
 
     @Override
@@ -54,7 +55,7 @@ public class VaccineAddressAdapter extends SectioningAdapter {
 
     @Override
     public int getNumberOfItemsInSection(int sectionIndex) {
-        return mData.get(sectionIndex).getAddresses().size();
+        return mData.get(sectionIndex).getData().size();
     }
 
     @Override
@@ -68,30 +69,29 @@ public class VaccineAddressAdapter extends SectioningAdapter {
     }
 
     public class ItemViewHolder extends SectioningAdapter.ItemViewHolder {
-        private ItemVaccineAddressBinding itemBinding;
+        private ItemClothesBinding binding;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            itemBinding = ItemVaccineAddressBinding.bind(itemView);
+            binding = ItemClothesBinding.bind(itemView);
         }
 
-        public void bind(VaccineAddress item) {
-            itemBinding.tvName.setText(item.getName());
-            itemBinding.tvPlace.setText(item.getAddress());
-            itemBinding.tvPhone.setText(item.getPhone());
+        public void bind(Clothes clothes) {
+            binding.tvName.setText(clothes.getName());
+            binding.tvNumber.setText(clothes.getAmount());
         }
     }
 
     public class HeaderViewHolder extends SectioningAdapter.HeaderViewHolder {
-        private ItemHeaderVaccineAddressBinding headerBinding;
+        private ItemHeaderClothesBinding binding;
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
-            headerBinding = ItemHeaderVaccineAddressBinding.bind(itemView);
+            binding = ItemHeaderClothesBinding.bind(itemView);
         }
 
         public void bind(String name) {
-            headerBinding.tvName.setText(name);
+            binding.tvTitle.setText(name);
         }
     }
 }

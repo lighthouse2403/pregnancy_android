@@ -15,6 +15,13 @@ public class VaccineAddress {
     @SerializedName("phone")
     private String phone;
 
+    public VaccineAddress(String address, String image, String name, String phone) {
+        this.address = address;
+        this.image = image;
+        this.name = name;
+        this.phone = phone;
+    }
+
     public String getAddress() {
         return address;
     }

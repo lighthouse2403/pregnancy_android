@@ -97,4 +97,24 @@
     <string name="tv_them_ke_hoach">Thêm kế hoạch</string>
     <string name="tv_thoi_gian">Thời gian</string>
     <string name="tv_ghi_chu">Ghi chú:</string>
+    <string name="tv_do_mang_vao_vien">Đồ mang vào viện</string>
+    <string name="tv_quan_ly_do_so_sinh">Quản lý đồ sơ sinh</string>
+    <string name="tv_mang_vao_vien">Mang vào viện</string>
+    <string name="tv_luu_y">Lưu ý</string>
+    <string name="tv_luu_y_mang_vao_vien">
+        - Các ông chồng nên đi mượn phích nước nóng trong khi chờ vợ sinh để sau khi sinh là có nước nóng pha sữa cho bé.\n
+        - Khi sữa mẹ chưa về, các mẹ có thể pha cho con sữa ngoài. Một số loại sữa các mẹ có thể dùng như:\n
+        \t+ Meiji thanh số 0 nội địa Nhật\n
+        \t+ Morinaga Số 1\n
+        \t+ Sữa Công Thức Glico Số 0\n
+        \t+ Frisolac Gold Số 1\n
+        \t+ Abbott Similac Newborn IQ S1MA\n
+        \t+ Enfamil A+ Số 1\n
+    </string>
+    <string name="tv_quan_ao_mua_dong_cho_con">Quần áo mùa đông cho con</string>
+    <string name="tv_quan_ao_mua_he_cho_con">Quần áo mùa hè cho con</string>
+    <string name="tv_dung_cu_y_te">Dụng cụ y tế</string>
+    <string name="tv_binhsua_va_cac_dung_cu_khac">Bình sữa và các dụng cụ khác</string>
+    <string name="tv_ta_va_bim">Tã và Bỉm</string>
+    <string name="tv_quan_ao_sau_sinh_cho_me">Quần áo sau sinh cho mẹ</string>
 </resources>

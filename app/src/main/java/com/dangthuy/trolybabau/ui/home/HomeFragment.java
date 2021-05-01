@@ -11,6 +11,8 @@ import com.dangthuy.trolybabau.ui.alarm.AlarmFragment;
 import com.dangthuy.trolybabau.ui.baby_name.BabyNameFragment;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.born_story.BornStoryFragment;
+import com.dangthuy.trolybabau.ui.bottom_sheet.BottomSheetClothesDialog;
+import com.dangthuy.trolybabau.ui.clothes.hospital.HospitalClothesFragment;
 import com.dangthuy.trolybabau.ui.home.adapter.HomeAdapter;
 import com.dangthuy.trolybabau.ui.information.InfomartionViewModel;
 import com.dangthuy.trolybabau.ui.information.InfomationFragment;
@@ -69,6 +71,18 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
                 break;
             case HomeViewModel.NHAC_NHO:
                 addFragment(R.id.container, AlarmFragment.newInstance(), AlarmFragment.TAG, false);
+                break;
+            case HomeViewModel.DO_SO_SINH:
+                BottomSheetClothesDialog dialog = BottomSheetClothesDialog.newInstance();
+                dialog.setListener(position -> {
+                    if (position == BottomSheetClothesDialog.MANAGE) {
+
+                    } else {
+                        addFragment(R.id.container, HospitalClothesFragment.newInstance(), HospitalClothesFragment.TAG, false);
+                    }
+                    dialog.dismiss();
+                });
+                dialog.show(getChildFragmentManager(), BottomSheetClothesDialog.TAG);
                 break;
         }
     };
