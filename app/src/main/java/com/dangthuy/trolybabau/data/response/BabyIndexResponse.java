@@ -1,4 +1,4 @@
-package com.dangthuy.trolybabau.data.repository;
+package com.dangthuy.trolybabau.data.response;
 
 import com.dangthuy.trolybabau.data.model.BabyIndex;
 import com.dangthuy.trolybabau.data.response.BaseResponse;

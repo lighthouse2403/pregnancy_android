@@ -1,14 +1,86 @@
 {
   "index_detail": [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
+    {
+      "week": "7+0",
+      "bpd_tb": "",
+      "bpd_gh": "",
+      "fl_tb": "",
+      "fl_gh": "",
+      "efw_tb": "",
+      "efw_gh": "0,5-2"
+    },
+    {
+      "week": "8+0",
+      "bpd_tb": "",
+      "bpd_gh": "",
+      "fl_tb": "",
+      "fl_gh": "",
+      "efw_tb": "",
+      "efw_gh": "1-3"
+    },
+    {
+      "week": "9+0",
+      "bpd_tb": "",
+      "bpd_gh": "",
+      "fl_tb": "",
+      "fl_gh": "",
+      "efw_tb": "",
+      "efw_gh": "3-5"
+    },
+    {
+      "week": "10+0",
+      "bpd_tb": "",
+      "bpd_gh": "",
+      "fl_tb": "",
+      "fl_gh": "",
+      "efw_tb": "",
+      "efw_gh": "5-7"
+    },
+    {
+      "week": "11+0",
+      "bpd_tb": "",
+      "bpd_gh": "",
+      "fl_tb": "",
+      "fl_gh": "",
+      "efw_tb": "",
+      "efw_gh": "12-15"
+    },
+    {
+      "week": "12+0",
+      "bpd_tb": "",
+      "bpd_gh": "",
+      "fl_tb": "",
+      "fl_gh": "",
+      "efw_tb": "",
+      "efw_gh": "18-25"
+    },
+    {
+      "week": "13+0",
+      "bpd_tb": "21",
+      "bpd_gh": "",
+      "fl_tb": "",
+      "fl_gh": "",
+      "efw_tb": "",
+      "efw_gh": "35-50"
+    },
+    {
+      "week": "14+0",
+      "bpd_tb": "25",
+      "bpd_gh": "",
+      "fl_tb": "14",
+      "fl_gh": "",
+      "efw_tb": "",
+      "efw_gh": "60-80"
+    },
+    {
+      "week": "15+0",
+      "bpd_tb": "29",
+      "bpd_gh": "",
+      "fl_tb": "17",
+      "fl_gh": "",
+      "efw_tb": "",
+      "efw_gh": "90-110"
+    },
     {
       "week": "16+0",
       "bpd_tb": "32",

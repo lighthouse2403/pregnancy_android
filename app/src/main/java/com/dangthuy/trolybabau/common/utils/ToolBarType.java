@@ -10,6 +10,7 @@ public enum ToolBarType {
     BABY_INFO_TAB(3, "Thông tin thai nhi"),
     PREGNANT_TIME(4, "Thai kỳ"),
     DIARY_ADD(5, "Nhật ký"),
+    ADD(6, "Chỉ số ?"),
     DEFAULT(100, "");
 
     private int type;

@@ -117,4 +117,7 @@
     <string name="tv_binhsua_va_cac_dung_cu_khac">Bình sữa và các dụng cụ khác</string>
     <string name="tv_ta_va_bim">Tã và Bỉm</string>
     <string name="tv_quan_ao_sau_sinh_cho_me">Quần áo sau sinh cho mẹ</string>
+    <string name="tv_bpd">BPD (mm)</string>
+    <string name="tv_fl">FL (mm)</string>
+    <string name="tv_EFW">EFW (g)</string>
 </resources>
