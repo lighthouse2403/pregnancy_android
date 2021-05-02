@@ -2,9 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_edittext_profile"
-    android:layout_marginStart="@dimen/_15sdp"
-    android:layout_marginEnd="@dimen/_15sdp"
+    android:background="@drawable/background_small_corner_common"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -13,8 +11,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/_10sdp"
-        android:text="17 tháng 3, 2021"
-        style="@style/TextViewStyle.Black"
+        style="@style/TextViewStyle.White"
         android:textAlignment="center"
         />
 
@@ -33,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guildLine"
-        style="@style/TextViewStyle.Black"
+        style="@style/TextViewStyle.White"
         android:layout_marginTop="@dimen/_10sdp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -43,9 +40,9 @@
         app:layout_constraintTop_toBottomOf="@id/tvWeight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guildLine"
-        android:text="1500 gram"
         android:layout_marginTop="@dimen/_10sdp"
-        style="@style/TextViewStyle.Black"
+        style="@style/TextViewStyle.White"
+        android:textStyle="bold"
         android:textColor="@color/red"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -56,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guildLine"
-        style="@style/TextViewStyle.Black"
+        style="@style/TextViewStyle.White"
         android:layout_marginTop="@dimen/_10sdp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -66,13 +63,23 @@
         app:layout_constraintTop_toBottomOf="@id/tvWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guildLine"
-        android:text="17 tuần 0 ngày"
         android:layout_marginTop="@dimen/_10sdp"
-        style="@style/TextViewStyle.Black" />
+        android:textStyle="bold"
+        style="@style/TextViewStyle.White" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivImage"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        app:layout_constraintTop_toBottomOf="@id/tvWeightValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:visibility="gone"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/tvWeightValue"/>
+        app:layout_constraintTop_toBottomOf="@id/ivImage"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -121,4 +121,11 @@
     <string name="tv_fl">FL (mm)</string>
     <string name="tv_EFW">EFW (g)</string>
     <string name="tv_chi_so_thai_nhi">Chỉ số thai nhi</string>
+    <string name="tv_ngay_kham_thai">Ngày khám thai</string>
+    <string name="tv_can_nang_gram">Cân nặng (gram)</string>
+    <string name="tv_them_thong_tin_thai">Thêm thông tin thai</string>
+    <string name="tv_may_anh">Máy ảnh</string>
+    <string name="tv_thu_vien_anh">Thư viện ảnh</string>
+    <string name="tv_ban_can_nhap_can_nang">Bạn cần nhập cân nặng</string>
+    <string name="tv_gram">gram</string>
 </resources>

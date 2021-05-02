@@ -22,4 +22,8 @@ public class DateUtils {
     public static String formatDateDb(Date date) {
         return formatDb.format(date);
     }
+
+    public static String getDate(int year, int month, int day) {
+        return day + " tháng " + (month + 1) + ", " + year;
+    }
 }

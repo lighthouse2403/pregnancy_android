@@ -29,4 +29,9 @@ public class BabyInfoPagerAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return 2;
     }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return POSITION_NONE;
+    }
 }

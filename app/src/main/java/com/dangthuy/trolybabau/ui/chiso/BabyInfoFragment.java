@@ -11,6 +11,7 @@ import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.databinding.FragmentInfomationCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.chiso.adapter.BabyInfoPagerAdapter;
+import com.dangthuy.trolybabau.ui.chiso.add.AddBabyInfoFragment;
 import com.google.android.material.tabs.TabLayout;
 
 /**
@@ -20,10 +21,15 @@ public class BabyInfoFragment extends BaseFragment<BabyInforViewModel> {
     public static final String TAG = "BabyInfoFragment";
     private FragmentInfomationCommonBinding binding;
     private BabyInfoPagerAdapter mBabyInfoPagerAdapter;
-    private ToolBar.OnItemToolBarClickListener onToolBarClickListener = item -> {
+    private final ToolBar.OnItemToolBarClickListener onToolBarClickListener = item -> {
         switch (item) {
             case ADD:
-
+                AddBabyInfoFragment fragment = AddBabyInfoFragment.newInstance();
+                fragment.setAddListener(() -> {
+                    mBabyInfoPagerAdapter.notifyDataSetChanged();
+                    customTabs();
+                });
+                addFragment(R.id.container, fragment, AddBabyInfoFragment.TAG, false);
                 break;
             case BACK:
                 getParentFragmentManager().popBackStack();
