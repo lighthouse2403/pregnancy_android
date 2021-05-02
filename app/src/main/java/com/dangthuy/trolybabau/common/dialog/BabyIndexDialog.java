@@ -12,6 +12,7 @@ import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.data.model.BabyIndex;
 import com.dangthuy.trolybabau.databinding.DialogBabyIndexBinding;
 import com.dangthuy.trolybabau.ui.baby_index.adapter.BabyIndexAdapter;
+import com.dangthuy.trolybabau.ui.baby_index.adapter.BabyIndexDialogAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
  */
 public class BabyIndexDialog extends BaseDialog{
     private DialogBabyIndexBinding binding;
-    private BabyIndexAdapter mBabyIndexAdapter;
+    private BabyIndexDialogAdapter mBabyIndexAdapter;
     private List<BabyIndex> mData;
 
     public void setmData(List<BabyIndex> mData) {
@@ -47,7 +48,7 @@ public class BabyIndexDialog extends BaseDialog{
     }
 
     private void initAdapter() {
-        mBabyIndexAdapter = new BabyIndexAdapter(new ArrayList<>());
+        mBabyIndexAdapter = new BabyIndexDialogAdapter(new ArrayList<>());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         binding.recyclerView.setAdapter(mBabyIndexAdapter);
     }
@@ -69,9 +70,9 @@ public class BabyIndexDialog extends BaseDialog{
     public void customDialog() {
         Window window = getWindow();
         if (window != null) {
-            window.setBackgroundDrawableResource(R.drawable.corner_dialog);
+            window.setBackgroundDrawableResource(R.drawable.background_dialog_baby_index);
             try {
-                int width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                int width = ViewGroup.LayoutParams.MATCH_PARENT;
                 int height = ViewGroup.LayoutParams.WRAP_CONTENT;
                 window.setLayout(width, height);
             } catch (Exception e) {

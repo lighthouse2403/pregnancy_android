@@ -20,7 +20,7 @@ public class ToolBar extends ConstraintLayout {
     private ToolbarLayoutBinding binding;
 
     public enum Item {
-        BACK, SAVE, ADD, SETUP, NOTIFY, CAMERA
+        BACK, SAVE, ADD, SETUP, NOTIFY, CAMERA, TITLE
     }
 
     private OnItemToolBarClickListener listener;
@@ -66,6 +66,9 @@ public class ToolBar extends ConstraintLayout {
                 break;
             case R.id.btnCapture:
                 item = Item.CAMERA;
+                break;
+            case R.id.tvTitle:
+                item = Item.TITLE;
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + view.getId());
@@ -122,6 +125,7 @@ public class ToolBar extends ConstraintLayout {
             binding.btnAdd.setVisibility(View.VISIBLE);
             binding.btnBack.setVisibility(View.GONE);
             binding.tvTitle.setText(type.getName());
+            binding.tvTitle.setOnClickListener(onClickListerer);
         }
     }
 

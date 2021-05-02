@@ -63,6 +63,7 @@ public class KnowledgePageFragment extends BaseFragment<KnowledgeViewModel> {
     }
 
     private void setLayoutView() {
+        binding.clContent.setBackgroundColor(getContext().getResources().getColor(R.color.transparent_background));
         binding.toolBar.setTitle(getString(R.string.tv_kien_thuc));
     }
 

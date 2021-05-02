@@ -2,8 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/toolBar"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_wallpaper">
+    android:id="@+id/clContent">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAge"
@@ -31,15 +32,27 @@
         android:id="@+id/tvBPD"
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.25"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvBPDGH"
+        app:layout_constraintStart_toEndOf="@id/tvAge"
+        style="@style/TextViewStyle.White"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:text="@string/tv_bpd"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvBPDGH"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.25"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvBPD"
         app:layout_constraintBottom_toBottomOf="@id/tvAge"
         app:layout_constraintStart_toEndOf="@id/tvAge"
-        android:padding="@dimen/_10sdp"
         style="@style/TextViewStyle.White"
-        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/_10sdp"
+        android:textColor="@color/gray"
         android:textAlignment="center"
-        android:gravity="center"
         android:text="@string/tv_bpd"/>
 
     <View
@@ -55,15 +68,27 @@
         android:id="@+id/tvFL"
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.25"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvFLGH"
+        app:layout_constraintStart_toEndOf="@id/tvBPD"
+        style="@style/TextViewStyle.White"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:text="@string/tv_fl" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFLGH"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.25"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvFL"
         app:layout_constraintBottom_toBottomOf="@id/tvAge"
         app:layout_constraintStart_toEndOf="@id/tvBPD"
-        android:padding="@dimen/_10sdp"
         style="@style/TextViewStyle.White"
-        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/_10sdp"
+        android:textColor="@color/gray"
         android:textAlignment="center"
-        android:gravity="center"
         android:text="@string/tv_fl" />
 
     <View
@@ -79,28 +104,33 @@
         android:id="@+id/tvEFW"
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.25"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvEFWGH"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/TextViewStyle.White"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:text="@string/tv_EFW"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEFWGH"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.25"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvEFW"
         app:layout_constraintBottom_toBottomOf="@id/tvAge"
         app:layout_constraintEnd_toEndOf="parent"
-        android:padding="@dimen/_10sdp"
         style="@style/TextViewStyle.White"
-        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/_10sdp"
+        android:textColor="@color/gray"
         android:textAlignment="center"
-        android:gravity="center"
         android:text="@string/tv_EFW"/>
 
     <View
-        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         app:layout_constraintTop_toBottomOf="@id/tvAge"
         android:background="@color/gray"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/divider"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

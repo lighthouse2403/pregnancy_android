@@ -16,7 +16,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:padding="@dimen/_10sdp"
             style="@style/TextViewStyle.White"
-            android:textColor="@color/blue"
+            android:textColor="@color/green_blur"
             android:textAlignment="center"
             android:text="@string/tv_tuoi_thai"
             android:background="@color/yellow_blur"/>
@@ -30,8 +30,7 @@
             app:layout_constraintBottom_toBottomOf="@id/tvAge"
             app:layout_constraintStart_toEndOf="@id/tvAge"
             android:padding="@dimen/_10sdp"
-            style="@style/TextViewStyle.White"
-            android:textColor="@color/blue"
+            style="@style/TextViewStyle.Black"
             android:textAlignment="center"
             android:gravity="center"
             android:text="@string/tv_bpd"/>
@@ -45,8 +44,7 @@
             app:layout_constraintBottom_toBottomOf="@id/tvAge"
             app:layout_constraintStart_toEndOf="@id/tvBPD"
             android:padding="@dimen/_10sdp"
-            style="@style/TextViewStyle.White"
-            android:textColor="@color/blue"
+            style="@style/TextViewStyle.Black"
             android:textAlignment="center"
             android:gravity="center"
             android:text="@string/tv_fl"
@@ -61,8 +59,7 @@
             app:layout_constraintBottom_toBottomOf="@id/tvAge"
             app:layout_constraintEnd_toEndOf="parent"
             android:padding="@dimen/_10sdp"
-            style="@style/TextViewStyle.White"
-            android:textColor="@color/blue"
+            style="@style/TextViewStyle.Black"
             android:textAlignment="center"
             android:gravity="center"
             android:text="@string/tv_EFW"/>

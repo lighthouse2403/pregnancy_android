@@ -5,7 +5,9 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.customview.ToolBar;
 import com.dangthuy.trolybabau.common.dialog.BabyIndexDialog;
+import com.dangthuy.trolybabau.common.dialog.HelpIndexDialog;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.databinding.FragmentBabyIndexBinding;
 import com.dangthuy.trolybabau.ui.baby_index.adapter.BabyIndexAdapter;
@@ -21,6 +23,16 @@ public class BabyIndexFragment extends BaseFragment<BabyIndexViewModel> {
     public static final String TAG = "BabyIndexFragment";
     private FragmentBabyIndexBinding binding;
     private BabyIndexAdapter mBabyIndexAdapter;
+    private ToolBar.OnItemToolBarClickListener toolbarListener = item -> {
+        switch (item) {
+            case ADD:
+                addFragment(R.id.container, BabyInfoFragment.newInstance(false), BabyInfoFragment.TAG, false);
+                break;
+            case TITLE:
+                showHelp();
+                break;
+        }
+    };
 
     public static BabyIndexFragment newInstance() {
         BabyIndexFragment fragment = new BabyIndexFragment();
@@ -72,7 +84,18 @@ public class BabyIndexFragment extends BaseFragment<BabyIndexViewModel> {
 
     @Override
     protected void setOnClickListener() {
-        binding.toolBar.setListener(item -> addFragment(R.id.container, BabyInfoFragment.newInstance(false), BabyInfoFragment.TAG, false));
+        binding.toolBar.setListener(toolbarListener);
+        binding.ltTitle.clContent.setOnClickListener(view -> showHelp());
+        binding.ltTitle.tvBPD.setTextColor(getResources().getColor(R.color.green_blur));
+        binding.ltTitle.tvFL.setTextColor(getResources().getColor(R.color.green_blur));
+        binding.ltTitle.tvEFW.setTextColor(getResources().getColor(R.color.green_blur));
+    }
+
+    private void showHelp() {
+        if (getContext() != null) {
+            HelpIndexDialog dialog = new HelpIndexDialog(getContext());
+            dialog.show();
+        }
     }
 
     @Override

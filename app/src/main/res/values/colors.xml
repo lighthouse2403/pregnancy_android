@@ -13,5 +13,6 @@
     <color name="gray">#828282</color>
     <color name="blue">#1C5EFF</color>
     <color name="yellow">#ECD123</color>
-    <color name="yellow_blur">#99FEBF54</color>
+    <color name="yellow_blur">#22FEBF54</color>
+    <color name="green_blur">#9929BD40</color>
 </resources>

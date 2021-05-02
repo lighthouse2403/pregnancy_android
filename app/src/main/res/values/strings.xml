@@ -120,4 +120,5 @@
     <string name="tv_bpd">BPD (mm)</string>
     <string name="tv_fl">FL (mm)</string>
     <string name="tv_EFW">EFW (g)</string>
+    <string name="tv_chi_so_thai_nhi">Chỉ số thai nhi</string>
 </resources>
