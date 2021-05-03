@@ -13,6 +13,7 @@ import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.born_story.BornStoryFragment;
 import com.dangthuy.trolybabau.ui.bottom_sheet.BottomSheetMenuDialog;
 import com.dangthuy.trolybabau.ui.clothes.hospital.HospitalClothesFragment;
+import com.dangthuy.trolybabau.ui.doctor.DoctorFragment;
 import com.dangthuy.trolybabau.ui.home.adapter.HomeAdapter;
 import com.dangthuy.trolybabau.ui.information.InfomartionViewModel;
 import com.dangthuy.trolybabau.ui.information.InfomationFragment;
@@ -83,6 +84,9 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
                     dialog.dismiss();
                 });
                 dialog.show(getChildFragmentManager(), BottomSheetMenuDialog.TAG);
+                break;
+            case HomeViewModel.BAC_SI:
+                addFragment(R.id.container, DoctorFragment.newInstance(), DoctorFragment.TAG, false);
                 break;
         }
     };

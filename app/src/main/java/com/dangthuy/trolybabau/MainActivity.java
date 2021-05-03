@@ -22,7 +22,17 @@ import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static AppDatabase appDatabase;
-    private final String[] permission = {Manifest.permission.READ_EXTERNAL_STORAGE};
+    private final String[] permission = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE};
+
+    public interface IPermissionListener {
+        void onPermissionDone(boolean isAccepted);
+    }
+
+    private IPermissionListener permissionListener;
+
+    public void setPermissionListener(IPermissionListener permissionListener) {
+        this.permissionListener = permissionListener;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +62,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void requestPermission(int position) {
+        if (ContextCompat.checkSelfPermission(this, permission[position]) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(permission, 300);
+        } else {
+            permissionListener.onPermissionDone(true);
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Log.d(TAG, " " + requestCode);
+        if (requestCode == 300) {
+            permissionListener.onPermissionDone(grantResults[0] == PackageManager.PERMISSION_GRANTED);
+        }
     }
 
     private void initDatabase() {

@@ -1,5 +1,6 @@
 package com.dangthuy.trolybabau.ui.bottom_sheet;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class BottomSheetMenuDialog extends BottomSheetDialogFragment {
     public static final int MENU_TWO = 1;
     public static final String CLOTHES = "clothes";
     public static final String BABY_INDEX = "baby_index";
+    public static final String DOCTOR = "doctor";
 
     public interface IBottomSheetListener {
         void onClickItem(int position);
@@ -32,6 +34,12 @@ public class BottomSheetMenuDialog extends BottomSheetDialogFragment {
 
     public void setListener(IBottomSheetListener listener) {
         this.listener = listener;
+    }
+
+    private String text;
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public static BottomSheetMenuDialog newInstance(String typeMenu) {
@@ -61,6 +69,7 @@ public class BottomSheetMenuDialog extends BottomSheetDialogFragment {
         return binding.getRoot();
     }
 
+    @SuppressLint("SetTextI18n")
     private void setLayoutView(String typeMenu) {
         switch (typeMenu) {
             case CLOTHES:
@@ -70,6 +79,12 @@ public class BottomSheetMenuDialog extends BottomSheetDialogFragment {
             case BABY_INDEX:
                 binding.btnMenuOne.setText(getString(R.string.tv_may_anh));
                 binding.btnMenuTwo.setText(getString(R.string.tv_thu_vien_anh));
+                break;
+            case DOCTOR:
+                binding.btnMenuOne.setVisibility(View.GONE);
+                binding.divider.setVisibility(View.GONE);
+                binding.ivPhone.setVisibility(View.VISIBLE);
+                binding.btnMenuTwo.setText(getString(R.string.tv_call) + " " + this.text);
                 break;
         }
     }

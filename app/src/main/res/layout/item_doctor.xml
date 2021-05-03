@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivImage"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/rate"
+        android:layout_marginTop="@dimen/_5sdp"/>
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall"
+        app:layout_constraintTop_toBottomOf="@id/ivImage"
+        android:numStars="5"
+        android:stepSize="1.0"
+        android:progressTint="@color/yellow"
+        android:layout_marginTop="@dimen/_2sdp"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/rate"
+        app:layout_constraintEnd_toEndOf="@id/rate"
+        app:layout_constraintTop_toBottomOf="@id/rate"
+        style="@style/TextViewStyle.White"
+        android:textSize="@dimen/_9sdp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="14 đánh giá"
+        android:layout_marginTop="@dimen/_2sdp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Phòng khám Tiền sản Minh Khai"
+        style="@style/TextViewStyle.White"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toEndOf="@id/rate"
+        android:layout_marginStart="@dimen/_4sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPhone"
+        android:layout_width="@dimen/_16sdp"
+        android:layout_height="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:src="@drawable/phone"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/ivPhone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivPhone"
+        app:layout_constraintBottom_toBottomOf="@id/ivPhone"
+        style="@style/TextViewStyle.White"
+        android:text="028.3929.2508"
+        android:layout_marginStart="@dimen/_5sdp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ivPhone"
+        android:lines="2"
+        android:maxLines="2"
+        style="@style/TextViewStyle.White"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="414A đường Nguyễn Thị Minh Khai, Phường 5, Quận 3"
+        android:layout_marginTop="@dimen/_5sdp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/tvAddress"
+        android:layout_marginTop="@dimen/_8sdp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

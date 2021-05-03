@@ -128,4 +128,7 @@
     <string name="tv_thu_vien_anh">Thư viện ảnh</string>
     <string name="tv_ban_can_nhap_can_nang">Bạn cần nhập cân nặng</string>
     <string name="tv_gram">gram</string>
+    <string name="tv_bac_si">Bác sĩ</string>
+    <string name="tv_tim_kiem_bac_si">Tìm kiếm bác sĩ</string>
+    <string name="tv_call">Gọi</string>
 </resources>
