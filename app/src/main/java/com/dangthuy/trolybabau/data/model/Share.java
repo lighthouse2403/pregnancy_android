@@ -3,26 +3,41 @@ package com.dangthuy.trolybabau.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
- * Created by nhongthai on 3/22/2021.
+ * Created by nhongthai on 5/3/2021.
  */
 public class Share implements Parcelable {
+    @SerializedName("content")
+    private String content;
+    @SerializedName("lastComment")
+    private long lastComment;
+    @SerializedName("numberOfComment")
+    private int numberOfComment;
+    @SerializedName("owner")
+    private String owner;
+    @SerializedName("time")
+    private long time;
+    @SerializedName("title")
     private String title;
-    private String name;
-    private int viewCount;
-    private int commentCount;
-    private String createdDate;
+    @SerializedName("userName")
+    private String userName;
+    @SerializedName("views")
+    private int views;
 
-    protected Share(Parcel in) {
-        title = in.readString();
-        name = in.readString();
-        viewCount = in.readInt();
-        commentCount = in.readInt();
-        createdDate = in.readString();
+    public Share() {
     }
 
-    public Share(String title) {
-        this.title = title;
+    protected Share(Parcel in) {
+        content = in.readString();
+        lastComment = in.readLong();
+        numberOfComment = in.readInt();
+        owner = in.readString();
+        time = in.readLong();
+        title = in.readString();
+        userName = in.readString();
+        views = in.readInt();
     }
 
     public static final Creator<Share> CREATOR = new Creator<Share>() {
@@ -37,6 +52,52 @@ public class Share implements Parcelable {
         }
     };
 
+    public String getContent() {
+        return content;
+    }
+
+    public long getLastComment() {
+        return lastComment;
+    }
+
+    public Integer getNumberOfComment() {
+        return numberOfComment;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public Integer getViews() {
+        return views;
+    }
+
+    @Override
+    public String toString() {
+        return "Share{" +
+                "content='" + content + '\'' +
+                ", lastComment=" + lastComment +
+                ", numberOfComment=" + numberOfComment +
+                ", owner='" + owner + '\'' +
+                ", time=" + time +
+                ", title='" + title + '\'' +
+                ", userName='" + userName + '\'' +
+                ", views=" + views +
+                '}';
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -44,30 +105,13 @@ public class Share implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(content);
+        parcel.writeLong(lastComment);
+        parcel.writeInt(numberOfComment);
+        parcel.writeString(owner);
+        parcel.writeLong(time);
         parcel.writeString(title);
-        parcel.writeString(name);
-        parcel.writeInt(viewCount);
-        parcel.writeInt(commentCount);
-        parcel.writeString(createdDate);
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getViewCount() {
-        return viewCount;
-    }
-
-    public int getCommentCount() {
-        return commentCount;
-    }
-
-    public String getCreatedDate() {
-        return createdDate;
+        parcel.writeString(userName);
+        parcel.writeInt(views);
     }
 }

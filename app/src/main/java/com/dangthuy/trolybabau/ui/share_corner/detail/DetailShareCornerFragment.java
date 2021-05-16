@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dangthuy.trolybabau.R;
-import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.data.model.Share;
 import com.dangthuy.trolybabau.databinding.FragmentShareCornerDetailBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;

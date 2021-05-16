@@ -18,6 +18,7 @@ import com.dangthuy.trolybabau.data.database.AppDatabase;
 import com.dangthuy.trolybabau.databinding.ActivityMainBinding;
 import com.dangthuy.trolybabau.ui.main.MainFragment;
 import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
+import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";

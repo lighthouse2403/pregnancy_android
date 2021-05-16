@@ -1,16 +1,17 @@
 package com.dangthuy.trolybabau.ui.share_corner.adapter;
 
-import androidx.annotation.NonNull;
+import android.annotation.SuppressLint;
+
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.utils.DateUtils;
 import com.dangthuy.trolybabau.data.model.Share;
 import com.dangthuy.trolybabau.databinding.ItemShareBinding;
-import com.dangthuy.trolybabau.ui.home.adapter.HomeAdapter;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,9 +33,15 @@ public class ShareAdapter extends BaseQuickAdapter<Share, BaseViewHolder> {
         super(R.layout.item_share, data);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void convert(BaseViewHolder helper, Share item) {
         ItemShareBinding binding = ItemShareBinding.bind(helper.itemView);
         binding.clContent.setOnClickListener(view -> listener.onClick(item));
+        binding.tvTitle.setText(item.getTitle());
+        binding.tvCommentCount.setText(String.valueOf(item.getNumberOfComment()));
+        binding.tvName.setText(item.getOwner());
+        binding.tvViewCount.setText(String.valueOf(item.getViews()));
+        binding.tvTime.setText(DateUtils.formatDate(new Date(item.getTime())));
     }
 }

@@ -1,6 +1,7 @@
 package com.dangthuy.trolybabau.ui.share_corner.all;
 
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -47,7 +48,10 @@ public class AllShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
             setLayoutView();
         }
         initAdapter();
-        viewModel.getShares().observe(this, shares -> mShareAdapter.setNewData(shares));
+        viewModel.getSharesLiveData().observe(this, shares -> {
+            loadingDialog.dismiss();
+            mShareAdapter.setNewData(shares);
+        });
     }
 
     private void initAdapter() {
@@ -69,6 +73,7 @@ public class AllShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
 
     @Override
     protected void onRefreshData() {
-        viewModel.fetchData();
+        loadingDialog.show();
+        new Handler().postDelayed(() -> viewModel.fetchData(), 200);
     }
 }
