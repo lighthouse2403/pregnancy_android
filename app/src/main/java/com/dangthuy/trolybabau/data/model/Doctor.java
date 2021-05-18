@@ -8,6 +8,8 @@ import com.google.gson.annotations.SerializedName;
 public class Doctor {
     @SerializedName("address")
     private String address;
+    @SerializedName("city")
+    private String city;
     @SerializedName("full_description")
     private String fullDescription;
     @SerializedName("id")
@@ -22,6 +24,7 @@ public class Doctor {
     private String rank;
     @SerializedName("star")
     private String star;
+    private int starRank;
 
     public String getAddress() {
         return address;
@@ -53,5 +56,17 @@ public class Doctor {
 
     public String getStar() {
         return star;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public int getStarRank() {
+        return starRank;
+    }
+
+    public void setStarRank(int starRank) {
+        this.starRank = starRank;
     }
 }

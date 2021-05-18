@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.dangthuy.trolybabau.MainActivity;
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
+import com.dangthuy.trolybabau.data.sort.DoctorSort;
 import com.dangthuy.trolybabau.databinding.FragmentCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.bottom_sheet.BottomSheetMenuDialog;
@@ -19,6 +20,7 @@ import com.dangthuy.trolybabau.ui.diary.DiaryFragment;
 import com.dangthuy.trolybabau.ui.doctor.adapter.DoctorAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by nhongthai on 5/3/2021.
@@ -54,6 +56,7 @@ public class DoctorFragment extends BaseFragment<DoctorViewModel> {
         initAdapter();
         viewModel.getDoctorLiveData().observe(this, doctors -> {
             loadingDialog.dismiss();
+            doctors.sort(new DoctorSort());
             mDoctorAdapter.setNewData(doctors);
         });
     }

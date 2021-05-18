@@ -2,6 +2,7 @@ package com.dangthuy.trolybabau.ui.doctor.adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
@@ -24,8 +25,9 @@ public class DoctorAdapter extends BaseQuickAdapter<Doctor, BaseViewHolder> {
 
     public final static int ACTION_VIEW = 0;
     public final static int ACTION_CALL = 1;
+
     public DoctorAdapter(@Nullable List<Doctor> data) {
-        super(R.layout.item_doctor,data);
+        super(R.layout.item_doctor, data);
     }
 
     public interface IClickItemListener {
@@ -56,5 +58,11 @@ public class DoctorAdapter extends BaseQuickAdapter<Doctor, BaseViewHolder> {
         binding.tvName.setOnClickListener(view -> listener.onClick(item, ACTION_VIEW));
         binding.tvPhone.setOnClickListener(view -> listener.onClick(item, ACTION_CALL));
         binding.ivPhone.setOnClickListener(view -> listener.onClick(item, ACTION_CALL));
+        if (item.getStarRank() > 0) {
+            binding.rate.setVisibility(View.VISIBLE);
+            binding.rate.setRating(item.getStarRank());
+        } else {
+            binding.rate.setVisibility(View.GONE);
+        }
     }
 }
