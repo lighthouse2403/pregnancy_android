@@ -19,8 +19,8 @@ import com.google.android.material.tabs.TabLayout;
 /**
  * Created by nhongthai on 3/29/2021.
  */
-public class InfomationFragment extends BaseFragment<InfomartionViewModel> {
-    public static final String TAG = "MomWeightFragment";
+public class InformationFragment extends BaseFragment<InfomartionViewModel> {
+    public static final String TAG = "InformationFragment";
     private FragmentInfomationCommonBinding binding;
     private InformationPagerAdapter mInformationPagerAdapter;
     private final ToolBar.OnItemToolBarClickListener toolbarListener = item -> {
@@ -49,8 +49,8 @@ public class InfomationFragment extends BaseFragment<InfomartionViewModel> {
         }
     };
 
-    public static InfomationFragment newInstance(int type) {
-        InfomationFragment fragment = new InfomationFragment();
+    public static InformationFragment newInstance(int type) {
+        InformationFragment fragment = new InformationFragment();
         Bundle args = new Bundle();
         args.putInt(TAG, type);
         fragment.setArguments(args);

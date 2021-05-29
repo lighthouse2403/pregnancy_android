@@ -9,10 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
-import com.dangthuy.trolybabau.data.model.Nutri;
 import com.dangthuy.trolybabau.databinding.FragmentCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
-import com.dangthuy.trolybabau.ui.information.InfomationFragment;
 import com.dangthuy.trolybabau.ui.recipe.adapter.RecipeAdapter;
 import com.dangthuy.trolybabau.ui.recipe.detail.DetailRecipeFragment;
 

@@ -22,12 +22,12 @@ import java.util.ArrayList;
 /**
  * Created by nhongthai on 3/29/2021.
  */
-public class ChartMomWeightFragment extends BaseFragment<InfomartionViewModel> {
+public class ChartInformationFragment extends BaseFragment<InfomartionViewModel> {
     public static final String TAG = "ChartMomWeightFragment";
     private FragmentChartBinding binding;
 
-    public static ChartMomWeightFragment newInstance() {
-        ChartMomWeightFragment fragment = new ChartMomWeightFragment();
+    public static ChartInformationFragment newInstance() {
+        ChartInformationFragment fragment = new ChartInformationFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;

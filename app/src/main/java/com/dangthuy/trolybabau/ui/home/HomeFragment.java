@@ -16,7 +16,7 @@ import com.dangthuy.trolybabau.ui.clothes.hospital.HospitalClothesFragment;
 import com.dangthuy.trolybabau.ui.doctor.DoctorFragment;
 import com.dangthuy.trolybabau.ui.home.adapter.HomeAdapter;
 import com.dangthuy.trolybabau.ui.information.InfomartionViewModel;
-import com.dangthuy.trolybabau.ui.information.InfomationFragment;
+import com.dangthuy.trolybabau.ui.information.InformationFragment;
 import com.dangthuy.trolybabau.ui.music.MusicFragment;
 import com.dangthuy.trolybabau.ui.profile.ProfileFragment;
 import com.dangthuy.trolybabau.ui.recipe.RecipeFragment;
@@ -56,10 +56,10 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
                 addFragment(R.id.container, BornStoryFragment.newInstance(), BornStoryFragment.TAG, false);
                 break;
             case HomeViewModel.CAN_NANG_CUA_ME:
-                addFragment(R.id.container, InfomationFragment.newInstance(InfomartionViewModel.TYPE_MOM), InfomationFragment.TAG, false);
+                addFragment(R.id.container, InformationFragment.newInstance(InfomartionViewModel.TYPE_MOM), InformationFragment.TAG, false);
                 break;
             case HomeViewModel.THEO_DOI_SO_LAN_DAP:
-                addFragment(R.id.container, InfomationFragment.newInstance(InfomartionViewModel.TYPE_BABY), InfomationFragment.TAG, false);
+                addFragment(R.id.container, InformationFragment.newInstance(InfomartionViewModel.TYPE_BABY), InformationFragment.TAG, false);
                 break;
             case HomeViewModel.TEN_HAY_CHO_BE:
                 addFragment(R.id.container, BabyNameFragment.newInstance(), BabyNameFragment.TAG, false);

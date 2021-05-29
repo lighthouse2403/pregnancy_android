@@ -18,14 +18,14 @@ import java.util.ArrayList;
 /**
  * Created by nhongthai on 3/29/2021.
  */
-public class ListMomWeightFragment extends BaseFragment<InfomartionViewModel> {
+public class ListInformationFragment extends BaseFragment<InfomartionViewModel> {
     public static final String TAG = "ListMomWeightFragment";
     private FragmentPagerCommonBinding binding;
     private BabyFootAdapter mBabyFootAdapter;
     private MomWeightAdapter mMomWeightAdapter;
 
-    public static ListMomWeightFragment newInstance(int type) {
-        ListMomWeightFragment fragment = new ListMomWeightFragment();
+    public static ListInformationFragment newInstance(int type) {
+        ListInformationFragment fragment = new ListInformationFragment();
         Bundle args = new Bundle();
         args.putInt(TAG, type);
         fragment.setArguments(args);

@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.dangthuy.trolybabau.ui.information.chart.ChartMomWeightFragment;
-import com.dangthuy.trolybabau.ui.information.list.ListMomWeightFragment;
+import com.dangthuy.trolybabau.ui.information.chart.ChartInformationFragment;
+import com.dangthuy.trolybabau.ui.information.list.ListInformationFragment;
 
 /**
  * Created by nhongthai on 3/29/2021.
@@ -22,9 +22,9 @@ public class InformationPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0)
-            return ListMomWeightFragment.newInstance(mType);
+            return ListInformationFragment.newInstance(mType);
         else
-            return ChartMomWeightFragment.newInstance();
+            return ChartInformationFragment.newInstance();
     }
 
     @Override
