@@ -52,13 +52,14 @@ public class HomeViewModel extends BaseViewModel {
         list.add(new HomeMenu(DIA_CHI_TIEM_PHONG, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
         list.add(new HomeMenu(MON_NGON_MOI_NGAY, AppCompatResources.getDrawable(mContext, R.drawable.mon_an)));
         list.add(new HomeMenu(NHAC_NHO, AppCompatResources.getDrawable(mContext, R.drawable.calendar)));
-        this.week = sharedPrefs.get(Constants.WEEK_AGE, Integer.class);
-        this.day = sharedPrefs.get(Constants.DAY_AGE, Integer.class);
+//        this.week = sharedPrefs.get(Constants.WEEK_AGE, Integer.class);
+//        this.day = sharedPrefs.get(Constants.DAY_AGE, Integer.class);
+        calculateWeek();
         this.year = sharedPrefs.get(Constants.YEAR_BORN, Integer.class);
         this.month = sharedPrefs.get(Constants.MONTH_BORN, Integer.class);
         this.dayExpect = sharedPrefs.get(Constants.DAY_BORN, Integer.class);
-        this.remainDay = 280 - this.week * 7 - this.day;
-        this.percent = this.remainDay * 100 / 280;
+        this.remainDay = 280 - getWeek() * 7 - getDay();
+        this.percent = (280 - this.remainDay) * 100 / 280;
         homeMenus.postValue(list);
     }
 
@@ -66,13 +67,13 @@ public class HomeViewModel extends BaseViewModel {
         return homeMenus;
     }
 
-    public int getWeek() {
-        return week;
-    }
-
-    public int getDay() {
-        return day;
-    }
+//    public int getWeek() {
+//        return week;
+//    }
+//
+//    public int getDay() {
+//        return day;
+//    }
 
     public int getYear() {
         return year;

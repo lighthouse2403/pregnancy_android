@@ -79,7 +79,7 @@ public class ThaikyFragment extends BaseFragment<ThaikyViewModel> {
             customTabs();
             binding.tabs.addOnTabSelectedListener(onTabLayout);
             binding.viewPager.setOffscreenPageLimit(3);
-            binding.viewPager.setCurrentItem(viewModel.getWeek() + 1);
+            binding.viewPager.setCurrentItem(viewModel.getWeek());
         }
     }
 

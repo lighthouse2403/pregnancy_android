@@ -54,7 +54,8 @@ public class ThaikyViewModel extends BaseViewModel {
         this.beginYear = sharedPrefs.get(Constants.YEAR_BEGIN, Integer.class);
         this.beginMonth = sharedPrefs.get(Constants.MONTH_BEGIN, Integer.class);
         this.beginDay = sharedPrefs.get(Constants.DAY_BEGIN, Integer.class);
-        this.week = sharedPrefs.get(Constants.WEEK_AGE, Integer.class);
+        calculateWeek();
+//        this.week = sharedPrefs.get(Constants.WEEK_AGE, Integer.class);
     }
 
     public MutableLiveData<List<Pregnancy>> getPregnancies() {
@@ -115,10 +116,10 @@ public class ThaikyViewModel extends BaseViewModel {
         calendar.set(Calendar.MONTH, beginMonth);
         calendar.set(Calendar.DAY_OF_MONTH, beginDay);
         calendar.add(Calendar.WEEK_OF_MONTH, week);
-        return calendar.get(Calendar.DAY_OF_MONTH) + "/" + (calendar.get(Calendar.MONTH) == 0 ? "12" : calendar.get(Calendar.MONTH));
+        return calendar.get(Calendar.DAY_OF_MONTH) + "/" + (calendar.get(Calendar.MONTH) + 1);
     }
 
-    public int getWeek() {
-        return week;
-    }
+//    public int getWeek() {
+//        return week;
+//    }
 }

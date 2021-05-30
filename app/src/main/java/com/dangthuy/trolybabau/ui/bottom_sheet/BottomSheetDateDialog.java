@@ -63,7 +63,7 @@ public class BottomSheetDateDialog extends BottomSheetDialogFragment {
     private void setOnClickListener() {
         binding.btnClose.setOnClickListener(view -> this.dismiss());
         binding.btnToday.setOnClickListener(view -> initDate(Calendar.getInstance()));
-        binding.btnSave.setOnClickListener(view -> listener.onClick(binding.calendar.getYear(), binding.calendar.getMonth() + 1, binding.calendar.getDayOfMonth(), binding.clock.getHour(), binding.clock.getMinute()));
+        binding.btnSave.setOnClickListener(view -> listener.onClick(binding.calendar.getYear(), binding.calendar.getMonth(), binding.calendar.getDayOfMonth(), binding.clock.getHour(), binding.clock.getMinute()));
     }
 
     private void initDate(Calendar calendar) {

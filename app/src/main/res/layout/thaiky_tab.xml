@@ -18,7 +18,7 @@
         android:paddingStart="@dimen/_15sdp"
         android:paddingEnd="@dimen/_15sdp"
         android:paddingTop="@dimen/_5sdp"
-        android:text="Tuần 1"/>
+        />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDate"
@@ -32,6 +32,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/_5sdp"
         android:paddingBottom="@dimen/_5sdp"
-        android:text="03/05"/>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
