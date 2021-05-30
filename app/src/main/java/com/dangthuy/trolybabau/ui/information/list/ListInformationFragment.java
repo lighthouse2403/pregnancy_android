@@ -57,14 +57,14 @@ public class ListInformationFragment extends BaseFragment<InfomartionViewModel> 
         if (viewModel.getmType() == InfomartionViewModel.TYPE_BABY) {
             mBabyFootAdapter = new BabyFootAdapter(new ArrayList<>());
             binding.recyclerView.setAdapter(mBabyFootAdapter);
-            viewModel.getBabyFoots().observe(this, babyFoots -> {
+            viewModel.getLiveBabyFoot().observe(this, babyFoots -> {
                 loadingDialog.dismiss();
                 mBabyFootAdapter.setNewData(babyFoots);
             });
         } else {
             mMomWeightAdapter = new MomWeightAdapter(new ArrayList<>());
             binding.recyclerView.setAdapter(mMomWeightAdapter);
-            viewModel.getMomWeights().observe(this, momWeights -> {
+            viewModel.getLiveMomWeight().observe(this, momWeights -> {
                 loadingDialog.dismiss();
                 mMomWeightAdapter.setNewData(momWeights);
             });

@@ -11,6 +11,7 @@ public enum ToolBarType {
     PREGNANT_TIME(4, "Thai kỳ"),
     DIARY_ADD(5, "Nhật ký"),
     ADD(6, "Chỉ số ?"),
+    BACK_TITLE(7, ""),
     DEFAULT(100, "");
 
     private int type;

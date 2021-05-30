@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.customview.ToolBar;
 import com.dangthuy.trolybabau.common.utils.DateUtils;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.databinding.FragmentBabyFootAddBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
+import com.dangthuy.trolybabau.ui.bottom_sheet.BottomSheetDateDialog;
 import com.dangthuy.trolybabau.ui.information.InfomartionViewModel;
 
 import java.util.Date;
@@ -23,6 +25,22 @@ public class AddBabyFootFragment extends BaseFragment<InfomartionViewModel> {
     private boolean mIsPlay = false;
     private Timer mTimer;
     private TimerTask mTimerTask;
+    private ToolBar.OnItemToolBarClickListener toolbarListener = item -> {
+        switch (item) {
+            case BACK:
+                getParentFragmentManager().popBackStack();;
+                break;
+            case TITLE:
+                BottomSheetDateDialog dialog = BottomSheetDateDialog.newInstance(true);
+                dialog.setListener((year, month, day, hour, minute) -> {
+                    viewModel.setDate(year, month, day, hour, minute);
+                    binding.toolBar.setTitle(DateUtils.formatDate(viewModel.getmDate()));
+                    dialog.dismiss();
+                });
+                dialog.show(getChildFragmentManager(), BottomSheetDateDialog.TAG);
+                break;
+        }
+    };
 
     public interface IAddListener {
         void onSaved();
@@ -60,13 +78,13 @@ public class AddBabyFootFragment extends BaseFragment<InfomartionViewModel> {
     }
 
     private void setLayoutView() {
-        binding.toolBar.setLayoutView(ToolBarType.DEFAULT);
+        binding.toolBar.setLayoutView(ToolBarType.BACK_TITLE);
         binding.toolBar.setTitle(DateUtils.formatDate(new Date()));
     }
 
     @Override
     protected void setOnClickListener() {
-        binding.toolBar.setListener(item -> getParentFragmentManager().popBackStack());
+        binding.toolBar.setListener(toolbarListener);
         binding.ivPause.setOnClickListener(view -> doTimer(!mIsPlay));
         binding.btnCount.setOnClickListener(view -> {
             if (mIsPlay) {

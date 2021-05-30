@@ -15,6 +15,7 @@ import com.dangthuy.trolybabau.ui.base.BaseViewModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -54,7 +55,7 @@ public class ThaikyViewModel extends BaseViewModel {
         this.beginYear = sharedPrefs.get(Constants.YEAR_BEGIN, Integer.class);
         this.beginMonth = sharedPrefs.get(Constants.MONTH_BEGIN, Integer.class);
         this.beginDay = sharedPrefs.get(Constants.DAY_BEGIN, Integer.class);
-        calculateWeek();
+        calculateWeek(new Date());
 //        this.week = sharedPrefs.get(Constants.WEEK_AGE, Integer.class);
     }
 

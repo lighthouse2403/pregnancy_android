@@ -1,7 +1,11 @@
 package com.dangthuy.trolybabau.common.utils;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 
+import com.dangthuy.trolybabau.R;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,7 +27,25 @@ public class DateUtils {
         return formatDb.format(date);
     }
 
+    public static Date parseDate(String dstr) {
+        try {
+            Date date = formatDb.parse(dstr);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static String getDate(int year, int month, int day) {
         return day + " tháng " + (month + 1) + ", " + year;
+    }
+
+    public static String getText(Context context, int year, int month, int day, int hour, int min) {
+        return day + " " + context.getString(R.string.tv_thang) + " " + (month + 1) + ", " + year + " " + (hour < 10 ? "0" + hour : hour) + ":" + (min < 10 ? "0" + min : min);
+    }
+
+    public static String getText(int year, int month, int day, int hour, int min) {
+        return (day < 10 ? "0" + day : day) + "/" + ((month + 1) < 10 ? "0" + (month + 1) : (month + 1)) + "/" + year + " " + (hour < 10 ? "0" + hour : hour) + ":" + (min < 10 ? "0" + min : min) + ":00";
     }
 }

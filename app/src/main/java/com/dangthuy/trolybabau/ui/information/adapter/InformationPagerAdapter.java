@@ -24,7 +24,7 @@ public class InformationPagerAdapter extends FragmentStatePagerAdapter {
         if (position == 0)
             return ListInformationFragment.newInstance(mType);
         else
-            return ChartInformationFragment.newInstance();
+            return ChartInformationFragment.newInstance(mType);
     }
 
     @Override

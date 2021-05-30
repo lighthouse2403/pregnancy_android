@@ -43,13 +43,13 @@ public abstract class BaseViewModel extends AndroidViewModel {
         return liveToast;
     }
 
-    public void calculateWeek() {
+    public void calculateWeek(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, sharedPrefs.get(Constants.YEAR_BEGIN, Integer.class));
         calendar.set(Calendar.MONTH, sharedPrefs.get(Constants.MONTH_BEGIN, Integer.class));
         calendar.set(Calendar.DAY_OF_MONTH, sharedPrefs.get(Constants.DAY_BEGIN, Integer.class));
         Date beginDate = calendar.getTime();
-        long duration = ((new Date()).getTime() - beginDate.getTime()) / 1000 / 60 / 60 / 24;
+        long duration = (date.getTime() - beginDate.getTime()) / 1000 / 60 / 60 / 24;
         this.week = (int) (duration / 7);
         this.day = (int) (duration % 7);
     }

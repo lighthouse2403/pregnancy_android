@@ -1,7 +1,12 @@
 package com.dangthuy.trolybabau.ui.information.chart;
 
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+
+import androidx.core.content.ContextCompat;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.customview.MyValueFormater;
@@ -16,6 +21,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -26,9 +32,10 @@ public class ChartInformationFragment extends BaseFragment<InfomartionViewModel>
     public static final String TAG = "ChartMomWeightFragment";
     private FragmentChartBinding binding;
 
-    public static ChartInformationFragment newInstance() {
+    public static ChartInformationFragment newInstance(int type) {
         ChartInformationFragment fragment = new ChartInformationFragment();
         Bundle args = new Bundle();
+        args.putInt(TAG, type);
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,14 +54,16 @@ public class ChartInformationFragment extends BaseFragment<InfomartionViewModel>
     protected void initView() {
         binding = (FragmentChartBinding) getBinding();
         if (getArguments() != null) {
-            setLayoutView();
+            viewModel.setType(getArguments().getInt(TAG));
         }
-        float[] val = {0, 0, 0, 0, 0, 0, 0, 80, 0, 0, 0, 12};
-        setData(11, val);
+        viewModel.getLiveChart().observe(this, chart -> {
+            setLayoutView(chart.getDates());
+            setData(365, chart.getLowValues());
+        });
     }
 
-    private void setLayoutView() {
-        binding.chart.setViewPortOffsets(0, 0, 0, 0);
+    private void setLayoutView(String[] dates) {
+        binding.chart.setViewPortOffsets(80f, 0, 0, 80f);
         binding.chart.setBackgroundColor(getContext().getColor(R.color.transparent_background));
 
         // no description text
@@ -81,18 +90,18 @@ public class ChartInformationFragment extends BaseFragment<InfomartionViewModel>
 //        x.setEnabled(false);
 //        x.setLabelCount(6, false);
         x.setTextColor(Color.WHITE);
-        x.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
+        x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setDrawGridLines(false);
         x.setGridColor(getContext().getResources().getColor(R.color.blue));
         x.setAxisLineColor(Color.WHITE);
-        String[] val = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
-        x.setValueFormatter(new MyValueFormater(val));
+
+        x.setValueFormatter(new MyValueFormater(dates));
 
         YAxis y = binding.chart.getAxisLeft();
 //        y.setTypeface(tfLight);
         y.setLabelCount(5, false);
         y.setTextColor(Color.WHITE);
-        y.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
+        y.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
 //        y.setXOffset(0);
         y.setDrawGridLines(false);
         y.setAxisLineColor(Color.WHITE);
@@ -115,7 +124,11 @@ public class ChartInformationFragment extends BaseFragment<InfomartionViewModel>
 
     @Override
     protected void onRefreshData() {
-
+        if (viewModel.getmType() == InfomartionViewModel.TYPE_BABY) {
+            new Handler().postDelayed(() -> viewModel.fetchBabyFootDb(), 1000);
+        } else if (viewModel.getmType() == InfomartionViewModel.TYPE_MOM) {
+            new Handler().postDelayed(() -> viewModel.fetchMomWeightDb(), 1000);
+        }
     }
 
     private void setData(int count, float[] range) {
@@ -140,18 +153,35 @@ public class ChartInformationFragment extends BaseFragment<InfomartionViewModel>
             // create a dataset and give it a type
             set1 = new LineDataSet(values, "DataSet 1");
 
-            set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-            set1.setCubicIntensity(0.2f);
+            set1.setDrawIcons(false);
+
+            // draw dashed line
+//            set1.enableDashedLine(10f, 5f, 0f);
+
+            // black lines and points
+            set1.setColor(Color.BLACK);
+            set1.setCircleColor(Color.BLACK);
+
+            // line thickness and point size
+            set1.setLineWidth(1f);
+            set1.setCircleRadius(1f);
+
+            // draw points as solid circles
+            set1.setDrawCircleHole(false);
+
+            // customize legend entry
+            set1.setFormLineWidth(1f);
+            set1.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
+            set1.setFormSize(15.f);
+
+            // text size of values
+            set1.setValueTextSize(9f);
+
+            // draw selection line as dashed
+            set1.enableDashedHighlightLine(10f, 5f, 0f);
+
+            // set the filled area
             set1.setDrawFilled(true);
-            set1.setDrawCircles(false);
-            set1.setLineWidth(1.8f);
-            set1.setCircleRadius(4f);
-            set1.setCircleColor(Color.WHITE);
-            set1.setHighLightColor(Color.rgb(244, 117, 117));
-            set1.setColor(Color.WHITE);
-            set1.setFillColor(Color.WHITE);
-            set1.setFillAlpha(100);
-            set1.setDrawHorizontalHighlightIndicator(false);
             set1.setFillFormatter(new IFillFormatter() {
                 @Override
                 public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
@@ -159,11 +189,21 @@ public class ChartInformationFragment extends BaseFragment<InfomartionViewModel>
                 }
             });
 
+            // set color of filled area
+//            if (Utils.getSDKInt() >= 18) {
+//                // drawables only supported on api level 18 and above
+//                Drawable drawable = ContextCompat.getDrawable(this, R.drawable.fade_red);
+//                set1.setFillDrawable(drawable);
+//            } else {
+//                set1.setFillColor(Color.BLACK);
+//            }
+            set1.setFillColor(getContext().getColor(R.color.white));
+
+            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+            dataSets.add(set1); // add the data sets
+
             // create a data object with the data sets
-            LineData data = new LineData(set1);
-//            data.setValueTypeface(tfLight);
-            data.setValueTextSize(9f);
-            data.setDrawValues(false);
+            LineData data = new LineData(dataSets);
 
             // set data
             binding.chart.setData(data);

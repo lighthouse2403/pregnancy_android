@@ -14,6 +14,11 @@ public class Chart {
         this.dates = dates;
     }
 
+    public Chart(float[] lowValues, String[] dates) {
+        this.lowValues = lowValues;
+        this.dates = dates;
+    }
+
     public float[] getLowValues() {
         return lowValues;
     }

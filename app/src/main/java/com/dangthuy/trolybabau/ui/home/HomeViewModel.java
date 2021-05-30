@@ -14,6 +14,7 @@ import com.dangthuy.trolybabau.data.repository.HomeRepository;
 import com.dangthuy.trolybabau.ui.base.BaseViewModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -54,7 +55,7 @@ public class HomeViewModel extends BaseViewModel {
         list.add(new HomeMenu(NHAC_NHO, AppCompatResources.getDrawable(mContext, R.drawable.calendar)));
 //        this.week = sharedPrefs.get(Constants.WEEK_AGE, Integer.class);
 //        this.day = sharedPrefs.get(Constants.DAY_AGE, Integer.class);
-        calculateWeek();
+        calculateWeek(new Date());
         this.year = sharedPrefs.get(Constants.YEAR_BORN, Integer.class);
         this.month = sharedPrefs.get(Constants.MONTH_BORN, Integer.class);
         this.dayExpect = sharedPrefs.get(Constants.DAY_BORN, Integer.class);

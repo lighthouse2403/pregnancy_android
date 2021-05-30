@@ -1,8 +1,10 @@
 package com.dangthuy.trolybabau.ui.information.add;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.utils.DateUtils;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
 import com.dangthuy.trolybabau.databinding.FragmentMomWeightAddBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
@@ -57,6 +59,7 @@ public class AddMomWeightFragment extends BaseFragment<InfomartionViewModel> {
         binding.toolBar.setTitle(HomeViewModel.CAN_NANG_CUA_ME);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void setOnClickListener() {
         binding.toolBar.setListener(item -> getParentFragmentManager().popBackStack());
@@ -64,7 +67,7 @@ public class AddMomWeightFragment extends BaseFragment<InfomartionViewModel> {
             BottomSheetDateDialog dialog = BottomSheetDateDialog.newInstance(true);
             dialog.setListener((year, month, day, hour, min) -> {
                 viewModel.setDate(year, month, day, hour, min);
-                binding.tvDateValue.setText(day + " " + getString(R.string.tv_thang) + " " + month + ", " + year + " " + hour + ":" + min);
+                binding.tvDateValue.setText(DateUtils.getText(getContext(), year, month, day, hour, min));
                 dialog.dismiss();
             });
             dialog.show(getChildFragmentManager(), BottomSheetDateDialog.TAG);
