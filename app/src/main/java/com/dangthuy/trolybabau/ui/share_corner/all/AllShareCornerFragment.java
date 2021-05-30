@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.customview.BetweenSpacesItemDecoration;
+import com.dangthuy.trolybabau.data.model.Share;
 import com.dangthuy.trolybabau.databinding.FragmentPagerCommonBinding;
+import com.dangthuy.trolybabau.listener.ILoadListener;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.share_corner.ShareCornerFragment;
 import com.dangthuy.trolybabau.ui.share_corner.ShareCornerViewModel;
@@ -23,6 +25,12 @@ public class AllShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
     public static final String TAG = "AllShareCornerFragment";
     private FragmentPagerCommonBinding binding;
     private ShareAdapter mShareAdapter;
+
+    private ILoadListener<Share> loadListener;
+
+    public void setLoadListener(ILoadListener<Share> loadListener) {
+        this.loadListener = loadListener;
+    }
 
     public static AllShareCornerFragment newInstance() {
         AllShareCornerFragment fragment = new AllShareCornerFragment();
@@ -51,6 +59,7 @@ public class AllShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
         viewModel.getSharesLiveData().observe(this, shares -> {
             loadingDialog.dismiss();
             mShareAdapter.setNewData(shares);
+            loadListener.onLoaded(shares);
         });
     }
 

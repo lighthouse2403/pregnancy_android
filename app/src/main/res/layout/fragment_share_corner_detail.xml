@@ -67,7 +67,6 @@
             android:fontFamily="@font/roboto"
             android:textSize="13sp"
             android:textColor="@color/white"
-            android:text="Heo con"
             app:layout_constraintStart_toEndOf="@id/ivPregnancy"
             app:layout_constraintBottom_toBottomOf="@id/ivPregnancy"
             android:layout_marginStart="@dimen/_4sdp"/>
@@ -88,7 +87,6 @@
             android:fontFamily="@font/roboto"
             android:textSize="13sp"
             android:textColor="@color/black"
-            android:text="Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7 Các mom có ai dự sanh tháng 7"
             app:layout_constraintTop_toBottomOf="@id/ivPregnancy"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
@@ -131,8 +129,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/tvComment"
+            app:layout_constraintBottom_toTopOf="@id/etComment"
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_10sdp"/>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.SearchView;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.customview.ToolBar;
@@ -88,6 +89,7 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
 
     private void setupViewPager() {
         mShareCornerPagerAdapter = new ShareCornerPagerAdapter(getChildFragmentManager());
+        mShareCornerPagerAdapter.setLoadListener(list -> viewModel.setShares(list));
         binding.viewPager.setAdapter(mShareCornerPagerAdapter);
         binding.tabs.setupWithViewPager(binding.viewPager);
         customTabs();
@@ -134,6 +136,20 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
     @Override
     protected void setOnClickListener() {
         binding.toolBar.setListener(onToolBarItemClickListener);
+        binding.search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (!newText.isEmpty()) {
+                    viewModel.search(newText);
+                }
+                return true;
+            }
+        });
     }
 
     @Override

@@ -12,6 +12,9 @@ import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.data.model.Comment;
 import com.dangthuy.trolybabau.data.model.Share;
 import com.dangthuy.trolybabau.ui.base.BaseViewModel;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +31,8 @@ import java.util.List;
 public class ShareCornerViewModel extends BaseViewModel {
     private final MutableLiveData<Share> shareLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Share>> sharesLiveData = new MutableLiveData<>();
-    private final MutableLiveData<List<Comment>> comments = new MutableLiveData<>();
+    private final MutableLiveData<List<Comment>> liveComment = new MutableLiveData<>();
+    private List<Share> shares;
 
     public ShareCornerViewModel(@NonNull Application application) {
         super(application);
@@ -41,14 +45,15 @@ public class ShareCornerViewModel extends BaseViewModel {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Query query = mDatabase.child("discuss/threads")
                 .orderByChild("time")
-                .limitToFirst(1);
-        List<Share> shares = new ArrayList<>();
+                .limitToFirst(2);
+        shares = new ArrayList<>();
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Log.d("thainh", "onChildAdded");
                 Share share = snapshot.getValue(Share.class);
                 if (share != null) {
+                    share.setKey(snapshot.getKey());
                     Log.d("thainh", share.toString());
                     shares.add(share);
                     new Handler().postDelayed(() -> sharesLiveData.postValue(shares), 500);
@@ -89,11 +94,43 @@ public class ShareCornerViewModel extends BaseViewModel {
         });
     }
 
-    public void fetchComment() {
+    public void fetchComment(String key) {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        Query query = mDatabase.child("discuss/comment")
+                .orderByKey()
+                .startAt(key)
+                .limitToFirst(1);
         ArrayList<Comment> list = new ArrayList<>();
-        list.add(new Comment());
-        list.add(new Comment());
-        comments.postValue(list);
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                snapshot.getChildren().forEach(dataSnapshot -> {
+                    Comment comment = dataSnapshot.getValue(Comment.class);
+                    list.add(comment);
+                });
+                liveComment.postValue(list);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public MutableLiveData<Share> getShare() {
@@ -118,11 +155,29 @@ public class ShareCornerViewModel extends BaseViewModel {
         this.mShare = mShare;
     }
 
-    public MutableLiveData<List<Comment>> getComments() {
-        return comments;
+    public MutableLiveData<List<Comment>> getLiveComment() {
+        return liveComment;
     }
 
     public MutableLiveData<List<Share>> getSharesLiveData() {
         return sharesLiveData;
+    }
+
+    public void sendComment(String key, String comment) {
+
+    }
+
+    public void search(String newText) {
+        List<Share> list = new ArrayList<>();
+        for (Share share : shares) {
+            if (share.getTitle().toLowerCase().contains(newText)) {
+                list.add(share);
+            }
+        }
+        sharesLiveData.postValue(list);
+    }
+
+    public void setShares(List<Share> list) {
+        this.shares = list;
     }
 }

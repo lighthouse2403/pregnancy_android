@@ -25,6 +25,7 @@ public class Share implements Parcelable {
     private String userName;
     @SerializedName("views")
     private int views;
+    private String key;
 
     public Share() {
     }
@@ -38,6 +39,7 @@ public class Share implements Parcelable {
         title = in.readString();
         userName = in.readString();
         views = in.readInt();
+        key = in.readString();
     }
 
     public static final Creator<Share> CREATOR = new Creator<Share>() {
@@ -51,6 +53,14 @@ public class Share implements Parcelable {
             return new Share[size];
         }
     };
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
 
     public String getContent() {
         return content;
@@ -85,20 +95,6 @@ public class Share implements Parcelable {
     }
 
     @Override
-    public String toString() {
-        return "Share{" +
-                "content='" + content + '\'' +
-                ", lastComment=" + lastComment +
-                ", numberOfComment=" + numberOfComment +
-                ", owner='" + owner + '\'' +
-                ", time=" + time +
-                ", title='" + title + '\'' +
-                ", userName='" + userName + '\'' +
-                ", views=" + views +
-                '}';
-    }
-
-    @Override
     public int describeContents() {
         return 0;
     }
@@ -113,5 +109,6 @@ public class Share implements Parcelable {
         parcel.writeString(title);
         parcel.writeString(userName);
         parcel.writeInt(views);
+        parcel.writeString(key);
     }
 }

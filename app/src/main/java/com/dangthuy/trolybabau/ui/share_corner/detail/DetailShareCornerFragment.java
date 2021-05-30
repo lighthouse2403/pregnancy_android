@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.utils.DateUtils;
 import com.dangthuy.trolybabau.data.model.Share;
 import com.dangthuy.trolybabau.databinding.FragmentShareCornerDetailBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
@@ -12,6 +13,7 @@ import com.dangthuy.trolybabau.ui.share_corner.ShareCornerViewModel;
 import com.dangthuy.trolybabau.ui.share_corner.adapter.ShareCommentAdapter;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by nhongthai on 3/23/2021.
@@ -48,7 +50,7 @@ public class DetailShareCornerFragment extends BaseFragment<ShareCornerViewModel
             setLayoutView();
         }
         initAdapter();
-        viewModel.getComments().observe(this, comments -> mShareCommentAdapter.setNewData(comments));
+        viewModel.getLiveComment().observe(this, comments -> mShareCommentAdapter.setNewData(comments));
     }
 
     private void initAdapter() {
@@ -59,16 +61,26 @@ public class DetailShareCornerFragment extends BaseFragment<ShareCornerViewModel
 
     private void setLayoutView() {
         binding.tvTitle.setText(viewModel.getmShare().getTitle());
+        binding.tvName.setText(viewModel.getmShare().getOwner());
+        binding.tvContent.setText(viewModel.getmShare().getContent());
+        binding.tvTime.setText(DateUtils.formatDate(new Date(viewModel.getmShare().getTime())));
     }
 
     @Override
     protected void setOnClickListener() {
         binding.btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
-        binding.tvSend.setOnClickListener(view -> {});
+        binding.tvSend.setOnClickListener(view -> {
+            if (binding.etComment.getText().toString() != null && !binding.etComment.getText().toString().isEmpty()) {
+                viewModel.sendComment(viewModel.getmShare().getKey(), binding.etComment.getText().toString());
+            }
+        });
+        mShareCommentAdapter.setItemListener((item, position, status) -> {
+
+        });
     }
 
     @Override
     protected void onRefreshData() {
-        viewModel.fetchComment();
+        viewModel.fetchComment(viewModel.getmShare().getKey());
     }
 }
