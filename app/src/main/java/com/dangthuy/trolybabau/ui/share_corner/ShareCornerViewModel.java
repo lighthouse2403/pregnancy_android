@@ -12,9 +12,6 @@ import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.data.model.Comment;
 import com.dangthuy.trolybabau.data.model.Share;
 import com.dangthuy.trolybabau.ui.base.BaseViewModel;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,7 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by nhongthai on 3/22/2021.
@@ -33,6 +33,13 @@ public class ShareCornerViewModel extends BaseViewModel {
     private final MutableLiveData<List<Share>> sharesLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Comment>> liveComment = new MutableLiveData<>();
     private List<Share> shares;
+
+    private static final String CONTENT = "content";
+    private static final String LIKE = "like";
+    private static final String NAME = "name";
+    private static final String TIME = "time";
+    private static final String USERNAME = "userName";
+    private static final String COMMENT = "discuss/comment";
 
     public ShareCornerViewModel(@NonNull Application application) {
         super(application);
@@ -96,7 +103,7 @@ public class ShareCornerViewModel extends BaseViewModel {
 
     public void fetchComment(String key) {
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Query query = mDatabase.child("discuss/comment")
+        Query query = mDatabase.child(COMMENT)
                 .orderByKey()
                 .startAt(key)
                 .limitToFirst(1);
@@ -105,8 +112,12 @@ public class ShareCornerViewModel extends BaseViewModel {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 snapshot.getChildren().forEach(dataSnapshot -> {
-                    Comment comment = dataSnapshot.getValue(Comment.class);
-                    list.add(comment);
+                    try {
+                        Comment comment = dataSnapshot.getValue(Comment.class);
+                        list.add(comment);
+                    } catch (Exception ex) {
+                        dataSnapshot.getRef().removeValue();
+                    }
                 });
                 liveComment.postValue(list);
             }
@@ -163,8 +174,11 @@ public class ShareCornerViewModel extends BaseViewModel {
         return sharesLiveData;
     }
 
-    public void sendComment(String key, String comment) {
-
+    public void sendComment(String key, String content) {
+        Comment comment = new Comment(content, "", "Ẩn danh", System.currentTimeMillis(), UUID.randomUUID().toString());
+        mDatabase.child(COMMENT + "/" + key)
+                .push()
+                .setValue(comment, (error, ref) -> Log.d("thainh","error " + error));
     }
 
     public void search(String newText) {

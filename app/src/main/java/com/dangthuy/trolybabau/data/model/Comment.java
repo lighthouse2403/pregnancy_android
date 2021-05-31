@@ -17,6 +17,18 @@ public class Comment {
     @SerializedName("userName")
     private String userName;
 
+    public Comment() {
+
+    }
+
+    public Comment(String content, String like, String name, long time, String userName) {
+        this.content = content;
+        this.like = like;
+        this.name = name;
+        this.time = time;
+        this.userName = userName;
+    }
+
     public String getContent() {
         return content;
     }
