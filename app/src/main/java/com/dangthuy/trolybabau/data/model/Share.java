@@ -25,10 +25,13 @@ public class Share implements Parcelable {
     private String userName;
     @SerializedName("views")
     private int views;
+    @SerializedName("favorite")
+    private String favorite;
     private String key;
 
     public Share() {
     }
+
 
     protected Share(Parcel in) {
         content = in.readString();
@@ -39,6 +42,7 @@ public class Share implements Parcelable {
         title = in.readString();
         userName = in.readString();
         views = in.readInt();
+        favorite = in.readString();
         key = in.readString();
     }
 
@@ -94,6 +98,10 @@ public class Share implements Parcelable {
         return views;
     }
 
+    public String getFavorite() {
+        return favorite;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -109,6 +117,7 @@ public class Share implements Parcelable {
         parcel.writeString(title);
         parcel.writeString(userName);
         parcel.writeInt(views);
+        parcel.writeString(favorite);
         parcel.writeString(key);
     }
 }

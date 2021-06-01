@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.dangthuy.trolybabau.data.model.Share;
 import com.dangthuy.trolybabau.listener.ILoadListener;
 import com.dangthuy.trolybabau.ui.home.HomeFragment;
+import com.dangthuy.trolybabau.ui.share_corner.ShareCornerViewModel;
 import com.dangthuy.trolybabau.ui.share_corner.all.AllShareCornerFragment;
 import com.dangthuy.trolybabau.ui.share_corner.mine.MyShareCornerFragment;
 import com.dangthuy.trolybabau.ui.thaiky.ThaikyFragment;
@@ -31,13 +32,15 @@ public class ShareCornerPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                AllShareCornerFragment fragment = AllShareCornerFragment.newInstance();
+                AllShareCornerFragment fragment = AllShareCornerFragment.newInstance(ShareCornerViewModel.TYPE_ALL);
                 fragment.setLoadListener(shares -> loadListener.onLoaded(shares));
                 return fragment;
             case 1:
                 return MyShareCornerFragment.newInstance();
             case 2:
-                return MyShareCornerFragment.newInstance();
+                AllShareCornerFragment hotFragment = AllShareCornerFragment.newInstance(ShareCornerViewModel.TYPE_HOT);
+                hotFragment.setLoadListener(shares -> loadListener.onLoaded(shares));
+                return hotFragment;
             case 3:
                 return MyShareCornerFragment.newInstance();
             case 4:

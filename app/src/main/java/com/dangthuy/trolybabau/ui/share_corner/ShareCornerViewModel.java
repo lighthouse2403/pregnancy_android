@@ -41,6 +41,10 @@ public class ShareCornerViewModel extends BaseViewModel {
     private static final String USERNAME = "userName";
     private static final String COMMENT = "discuss/comment";
 
+    public static final int TYPE_ALL = 0;
+    public static final int TYPE_HOT = 2;
+    private int mType;
+
     public ShareCornerViewModel(@NonNull Application application) {
         super(application);
     }
@@ -48,11 +52,11 @@ public class ShareCornerViewModel extends BaseViewModel {
     private Share mShare;
     private DatabaseReference mDatabase;
 
-    public void fetchData() {
+    public void fetchData(int type) {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Query query = mDatabase.child("discuss/threads")
                 .orderByChild("time")
-                .limitToFirst(2);
+                .limitToFirst(500);
         shares = new ArrayList<>();
         query.addChildEventListener(new ChildEventListener() {
             @Override
@@ -62,7 +66,13 @@ public class ShareCornerViewModel extends BaseViewModel {
                 if (share != null) {
                     share.setKey(snapshot.getKey());
                     Log.d("thainh", share.toString());
-                    shares.add(share);
+                    if (type == TYPE_HOT) {
+                        if (share.getFavorite() != null && share.getFavorite().length() > 0) {
+                            shares.add(share);
+                        }
+                    } else {
+                        shares.add(share);
+                    }
                     new Handler().postDelayed(() -> sharesLiveData.postValue(shares), 500);
                 }
             }
@@ -193,5 +203,13 @@ public class ShareCornerViewModel extends BaseViewModel {
 
     public void setShares(List<Share> list) {
         this.shares = list;
+    }
+
+    public void setType(int type) {
+        this.mType = type;
+    }
+
+    public int getType() {
+        return mType;
     }
 }

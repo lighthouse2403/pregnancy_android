@@ -32,9 +32,10 @@ public class AllShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
         this.loadListener = loadListener;
     }
 
-    public static AllShareCornerFragment newInstance() {
+    public static AllShareCornerFragment newInstance(int type) {
         AllShareCornerFragment fragment = new AllShareCornerFragment();
         Bundle args = new Bundle();
+        args.putInt(TAG, type);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,6 +54,7 @@ public class AllShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
     protected void initView() {
         binding = (FragmentPagerCommonBinding) getBinding();
         if (getArguments() != null) {
+            viewModel.setType(getArguments().getInt(TAG));
             setLayoutView();
         }
         initAdapter();
@@ -83,6 +85,6 @@ public class AllShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
     @Override
     protected void onRefreshData() {
         loadingDialog.show();
-        new Handler().postDelayed(() -> viewModel.fetchData(), 200);
+        new Handler().postDelayed(() -> viewModel.fetchData(viewModel.getType()), 200);
     }
 }
