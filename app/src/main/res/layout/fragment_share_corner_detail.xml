@@ -72,6 +72,7 @@
             android:layout_marginStart="@dimen/_4sdp"/>
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivStar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_star"

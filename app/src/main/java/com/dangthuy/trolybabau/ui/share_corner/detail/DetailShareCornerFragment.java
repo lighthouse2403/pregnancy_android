@@ -47,6 +47,7 @@ public class DetailShareCornerFragment extends BaseFragment<ShareCornerViewModel
         binding = (FragmentShareCornerDetailBinding) getBinding();
         if (getArguments() != null) {
             viewModel.setmShare(getArguments().getParcelable(TAG));
+            viewModel.viewShare();
             setLayoutView();
         }
         initAdapter();
@@ -76,12 +77,13 @@ public class DetailShareCornerFragment extends BaseFragment<ShareCornerViewModel
         binding.btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
         binding.tvSend.setOnClickListener(view -> {
             if (binding.etComment.getText().toString() != null && !binding.etComment.getText().toString().isEmpty()) {
-                viewModel.sendComment(viewModel.getmShare().getKey(), binding.etComment.getText().toString());
+                viewModel.sendComment(viewModel.getmShare(), binding.etComment.getText().toString());
             }
         });
         mShareCommentAdapter.setItemListener((item, position, status) -> {
             viewModel.sendLove(viewModel.getmShare().getKey(), item, position);
         });
+        binding.ivStar.setOnClickListener(view -> viewModel.doStar());
     }
 
     @Override

@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.utils.Constants;
 import com.dangthuy.trolybabau.data.model.Comment;
 import com.dangthuy.trolybabau.data.model.Share;
 import com.dangthuy.trolybabau.data.response.LoveResponse;
@@ -120,8 +121,7 @@ public class ShareCornerViewModel extends BaseViewModel {
 
         Query query = mDatabase
                 .child(COMMENT)
-                .child(key)
-                ;
+                .child(key);
         ArrayList<Comment> list = new ArrayList<>();
 
         query.addValueEventListener(new ValueEventListener() {
@@ -152,6 +152,11 @@ public class ShareCornerViewModel extends BaseViewModel {
         if (!validate(title, content)) {
             liveToast.postValue(mContext.getResources().getString(R.string.tv_invalid_title_content));
         }
+        Share share = new Share(content, sharedPrefs.get(Constants.MOM_NAME, String.class), System.currentTimeMillis(), title, UUID.randomUUID().toString());
+        mDatabase.child(THREADS)
+                .push()
+                .setValue(share, (error, ref) ->
+                        Log.d("thainh", "error " + error));
     }
 
     private boolean validate(String title, String content) {
@@ -174,11 +179,20 @@ public class ShareCornerViewModel extends BaseViewModel {
         return sharesLiveData;
     }
 
-    public void sendComment(String key, String content) {
+    public void sendComment(Share share, String content) {
         Comment comment = new Comment(content, "", "Ẩn danh", System.currentTimeMillis(), UUID.randomUUID().toString());
-        mDatabase.child(COMMENT + "/" + key)
+        mDatabase.child(COMMENT + "/" + share.getKey())
                 .push()
-                .setValue(comment, (error, ref) -> Log.d("thainh", "error " + error));
+                .setValue(comment, (error, ref) -> {
+                    if (error != null) {
+                        share.setLastComment(System.currentTimeMillis());
+                        mDatabase.child(THREADS)
+                                .child(share.getKey())
+                                .updateChildren(share.toMap(), (error1, ref1) -> {
+                                    Log.d("thainh", "error1 " + error1);
+                                });
+                    }
+                });
     }
 
     public void sendLove(String key, Comment item, int position) {
@@ -216,5 +230,21 @@ public class ShareCornerViewModel extends BaseViewModel {
 
     public MutableLiveData<LoveResponse> getLiveError() {
         return liveError;
+    }
+
+    public void viewShare() {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mShare.setViews(mShare.getViews() + 1);
+        mDatabase.child(THREADS)
+                .child(mShare.getKey())
+                .updateChildren(mShare.toMap(), (error, ref) -> Log.d("thainh", "error " + error));
+    }
+
+    public void doStar() {
+        String favorite = mShare.getFavorite() == null ? "" : mShare.getFavorite();
+        mShare.setFavorite(favorite + "," + UUID.randomUUID().toString());
+        mDatabase.child(THREADS)
+                .child(mShare.getKey())
+                .updateChildren(mShare.toMap(), (error, ref) -> Log.d("thainh", "error " + error));
     }
 }

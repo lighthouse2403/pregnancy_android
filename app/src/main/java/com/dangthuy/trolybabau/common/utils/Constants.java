@@ -16,6 +16,9 @@ public class Constants {
     public static final String MONTH_BEGIN = "month_begin";
     public static final String DAY_BEGIN = "day_begin";
 
+    public static final String MOM_NAME = "mom_name";
+    public static final String BABY_NAME = "baby_name";
+
     //wallpaper
     public static final String WALLPAPER = "wallpaper";
 

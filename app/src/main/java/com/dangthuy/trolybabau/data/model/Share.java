@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by nhongthai on 5/3/2021.
  */
@@ -32,6 +35,17 @@ public class Share implements Parcelable {
     public Share() {
     }
 
+    public Share(String content, String owner, long time, String title, String userName) {
+        this.content = content;
+        this.owner = owner;
+        this.time = time;
+        this.title = title;
+        this.userName = userName;
+        this.lastComment = System.currentTimeMillis();
+        this.numberOfComment = 0;
+        this.views = 0;
+        this.favorite = "";
+    }
 
     protected Share(Parcel in) {
         content = in.readString();
@@ -134,5 +148,33 @@ public class Share implements Parcelable {
                 ", views=" + views +
                 ", favorite='" + favorite + '\'' +
                 '}';
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("content", content);
+        map.put("lastComment", lastComment);
+        map.put("numberOfComment", numberOfComment);
+        map.put("owner", owner);
+        map.put("title", title);
+        map.put("userName", userName);
+        map.put("views", views);
+        return map;
+    }
+
+    public void setLastComment(long lastComment) {
+        this.lastComment = lastComment;
+    }
+
+    public void setNumberOfComment(int numberOfComment) {
+        this.numberOfComment = numberOfComment;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public void setFavorite(String favorite) {
+        this.favorite = favorite;
     }
 }
