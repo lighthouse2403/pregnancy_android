@@ -120,4 +120,19 @@ public class Share implements Parcelable {
         parcel.writeString(favorite);
         parcel.writeString(key);
     }
+
+    @Override
+    public String toString() {
+        return "Share{" +
+                "content='" + content + '\'' +
+                ", lastComment=" + lastComment +
+                ", numberOfComment=" + numberOfComment +
+                ", owner='" + owner + '\'' +
+                ", time=" + time +
+                ", title='" + title + '\'' +
+                ", userName='" + userName + '\'' +
+                ", views=" + views +
+                ", favorite='" + favorite + '\'' +
+                '}';
+    }
 }

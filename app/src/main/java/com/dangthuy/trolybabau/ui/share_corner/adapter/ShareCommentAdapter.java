@@ -36,12 +36,14 @@ public class ShareCommentAdapter extends BaseQuickAdapter<Comment, BaseViewHolde
         binding.tvName.setText(item.getName());
         binding.tvContent.setText(item.getContent());
         binding.tvTime.setText(DateUtils.formatDate(new Date(item.getTime())));
-        String split[] = item.getLike().split(",");
-        if (split.length > 1) {
-            binding.tvLove.setVisibility(View.VISIBLE);
-            binding.tvLove.setText(String.valueOf(split.length - 1));
-        } else {
-            binding.tvLove.setVisibility(View.INVISIBLE);
+        if (item.getLike() !=null) {
+            String split[] = item.getLike().split(",");
+            if (split.length > 1) {
+                binding.tvLove.setVisibility(View.VISIBLE);
+                binding.tvLove.setText(String.valueOf(split.length - 1));
+            } else {
+                binding.tvLove.setVisibility(View.INVISIBLE);
+            }
         }
         binding.ivLove.setOnClickListener(view -> {
             binding.ivLove.setColorFilter(ContextCompat.getColor(mContext, R.color.red));

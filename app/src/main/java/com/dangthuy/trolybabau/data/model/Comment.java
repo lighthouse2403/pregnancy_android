@@ -2,6 +2,9 @@ package com.dangthuy.trolybabau.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by nhongthai on 3/23/2021.
  */
@@ -16,6 +19,7 @@ public class Comment {
     private long time;
     @SerializedName("userName")
     private String userName;
+    private String key;
 
     public Comment() {
 
@@ -29,12 +33,24 @@ public class Comment {
         this.userName = userName;
     }
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     public String getContent() {
         return content;
     }
 
     public String getLike() {
         return like;
+    }
+
+    public void setLike(String like) {
+        this.like = like;
     }
 
     public String getName() {
@@ -47,5 +63,15 @@ public class Comment {
 
     public String getUserName() {
         return userName;
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("content", content);
+        result.put("like", like);
+        result.put("name", name);
+        result.put("time", time);
+        result.put("userName", userName);
+        return result;
     }
 }

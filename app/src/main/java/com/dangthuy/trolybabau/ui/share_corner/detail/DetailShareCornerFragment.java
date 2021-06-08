@@ -51,6 +51,11 @@ public class DetailShareCornerFragment extends BaseFragment<ShareCornerViewModel
         }
         initAdapter();
         viewModel.getLiveComment().observe(this, comments -> mShareCommentAdapter.setNewData(comments));
+        viewModel.getLiveError().observe(this, response -> {
+            if (response.getError() == null) {
+                mShareCommentAdapter.notifyItemChanged(response.getPosition());
+            }
+        });
     }
 
     private void initAdapter() {
@@ -75,7 +80,7 @@ public class DetailShareCornerFragment extends BaseFragment<ShareCornerViewModel
             }
         });
         mShareCommentAdapter.setItemListener((item, position, status) -> {
-
+            viewModel.sendLove(viewModel.getmShare().getKey(), item, position);
         });
     }
 

@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.data.model.Comment;
 import com.dangthuy.trolybabau.data.model.Share;
+import com.dangthuy.trolybabau.data.response.LoveResponse;
 import com.dangthuy.trolybabau.ui.base.BaseViewModel;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +34,7 @@ public class ShareCornerViewModel extends BaseViewModel {
     private final MutableLiveData<Share> shareLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Share>> sharesLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Comment>> liveComment = new MutableLiveData<>();
+    private final MutableLiveData<LoveResponse> liveError = new MutableLiveData<>();
     private List<Share> shares;
 
     private static final String CONTENT = "content";
@@ -40,6 +43,7 @@ public class ShareCornerViewModel extends BaseViewModel {
     private static final String TIME = "time";
     private static final String USERNAME = "userName";
     private static final String COMMENT = "discuss/comment";
+    private static final String THREADS = "discuss/threads";
 
     public static final int TYPE_ALL = 0;
     public static final int TYPE_HOT = 2;
@@ -54,9 +58,9 @@ public class ShareCornerViewModel extends BaseViewModel {
 
     public void fetchData(int type) {
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Query query = mDatabase.child("discuss/threads")
-                .orderByChild("time")
-                .limitToFirst(500);
+        Query query = mDatabase.child(THREADS)
+                .orderByKey()
+                .limitToFirst(10);
         shares = new ArrayList<>();
         query.addChildEventListener(new ChildEventListener() {
             @Override
@@ -113,37 +117,23 @@ public class ShareCornerViewModel extends BaseViewModel {
 
     public void fetchComment(String key) {
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Query query = mDatabase.child(COMMENT)
-                .orderByKey()
-                .startAt(key)
-                .limitToFirst(1);
+
+        Query query = mDatabase
+                .child(COMMENT)
+                .child(key)
+                ;
         ArrayList<Comment> list = new ArrayList<>();
-        query.addChildEventListener(new ChildEventListener() {
+
+        query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.d("thainh", "snapshot.toString " + snapshot.toString());
                 snapshot.getChildren().forEach(dataSnapshot -> {
-                    try {
-                        Comment comment = dataSnapshot.getValue(Comment.class);
-                        list.add(comment);
-                    } catch (Exception ex) {
-                        dataSnapshot.getRef().removeValue();
-                    }
+                    Comment comment = dataSnapshot.getValue(Comment.class);
+                    comment.setKey(dataSnapshot.getKey());
+                    list.add(comment);
                 });
                 liveComment.postValue(list);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
             }
 
@@ -188,7 +178,18 @@ public class ShareCornerViewModel extends BaseViewModel {
         Comment comment = new Comment(content, "", "Ẩn danh", System.currentTimeMillis(), UUID.randomUUID().toString());
         mDatabase.child(COMMENT + "/" + key)
                 .push()
-                .setValue(comment, (error, ref) -> Log.d("thainh","error " + error));
+                .setValue(comment, (error, ref) -> Log.d("thainh", "error " + error));
+    }
+
+    public void sendLove(String key, Comment item, int position) {
+        item.setLike(item.getLike() + "," + UUID.randomUUID().toString());
+        mDatabase.child(COMMENT)
+                .child(key)
+                .child(item.getKey())
+                .updateChildren(item.toMap(), (error, ref) -> {
+                    LoveResponse response = new LoveResponse(error, item, position);
+                    liveError.postValue(response);
+                });
     }
 
     public void search(String newText) {
@@ -211,5 +212,9 @@ public class ShareCornerViewModel extends BaseViewModel {
 
     public int getType() {
         return mType;
+    }
+
+    public MutableLiveData<LoveResponse> getLiveError() {
+        return liveError;
     }
 }
