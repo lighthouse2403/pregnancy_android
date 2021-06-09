@@ -2,10 +2,12 @@ package com.dangthuy.trolybabau.ui.home;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.customview.BetweenSpacesItemDecoration;
 import com.dangthuy.trolybabau.databinding.FragmentHomeBinding;
 import com.dangthuy.trolybabau.ui.alarm.AlarmFragment;
 import com.dangthuy.trolybabau.ui.baby_name.BabyNameFragment;
@@ -131,11 +133,17 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
         binding.progressbar.setProgress(viewModel.getPercent());
         binding.progressbar.setWaveStrong(viewModel.getPercent());
         binding.progressbar.startAnimation();
+        if (viewModel.getPercent() == 100) {
+            binding.tvBornNotice.setVisibility(View.VISIBLE);
+        } else {
+            binding.tvBornNotice.setVisibility(View.GONE);
+        }
     }
 
     private void initAdapter() {
         mHomeAdapter = new HomeAdapter(new ArrayList<>());
         binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        binding.recyclerView.addItemDecoration(new BetweenSpacesItemDecoration(20, 20));
         binding.recyclerView.setAdapter(mHomeAdapter);
         mHomeAdapter.setListener(onItemClickListener);
     }

@@ -109,9 +109,22 @@
             app:progress="0"
             app:strong="70"
             app:layout_constraintTop_toBottomOf="@id/tvName"
-            app:layout_constraintBottom_toTopOf="@id/recyclerView"
+            app:layout_constraintBottom_toTopOf="@id/tvBornNotice"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guildLine"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBornNotice"
+            app:layout_constraintTop_toBottomOf="@id/progressbar"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView"
+            app:layout_constraintStart_toStartOf="@id/progressbar"
+            app:layout_constraintEnd_toEndOf="@id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextViewStyle.Black"
+            android:textColor="@color/red"
+            android:text="@string/tv_be_yeu_da_du_thang"
+            android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
