@@ -3,8 +3,11 @@ package com.dangthuy.trolybabau.ui.profile;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 
 import com.dangthuy.trolybabau.common.utils.Constants;
+import com.dangthuy.trolybabau.common.utils.DateUtils;
+import com.dangthuy.trolybabau.data.model.Profile;
 import com.dangthuy.trolybabau.ui.base.BaseViewModel;
 
 import java.util.Calendar;
@@ -14,6 +17,13 @@ import java.util.Date;
  * Created by nhongthai on 20/03/2021.
  */
 public class ProfileViewModel extends BaseViewModel {
+    private MutableLiveData<Profile> liveProfile = new MutableLiveData<>();
+    private Profile mProfile;
+
+    public MutableLiveData<Profile> getLiveProfile() {
+        return liveProfile;
+    }
+
     private int week, day, year, month, dayExpect, beginYear, beginMonth, beginDay;
     private boolean isSetup;
 
@@ -21,7 +31,7 @@ public class ProfileViewModel extends BaseViewModel {
         super(application);
     }
 
-    public void saveData() {
+    public void saveData(String momName, String babyName) {
         sharedPrefs.put(Constants.SET_UP, true);
         sharedPrefs.put(Constants.YEAR_BORN, year);
         sharedPrefs.put(Constants.MONTH_BORN, month);
@@ -31,6 +41,11 @@ public class ProfileViewModel extends BaseViewModel {
         sharedPrefs.put(Constants.YEAR_BEGIN, beginYear);
         sharedPrefs.put(Constants.MONTH_BEGIN, beginMonth);
         sharedPrefs.put(Constants.DAY_BEGIN, beginDay);
+        if (momName == null || momName.isEmpty()) {
+            momName = Constants.ANDANH;
+        }
+        sharedPrefs.put(Constants.MOM_NAME, momName);
+        sharedPrefs.put(Constants.BABY_NAME, babyName);
     }
 
     public void setAge(int week, int day) {
@@ -97,20 +112,36 @@ public class ProfileViewModel extends BaseViewModel {
         this.day = (int) (duration % 7);
     }
 
+    public void fetchData() {
+        if (!isSetup) {
+            String momName = sharedPrefs.get(Constants.MOM_NAME, String.class);
+            String babyName = sharedPrefs.get(Constants.BABY_NAME, String.class);
+            this.year = sharedPrefs.get(Constants.YEAR_BORN, Integer.class);
+            this.month = sharedPrefs.get(Constants.MONTH_BORN, Integer.class);
+            this.dayExpect = sharedPrefs.get(Constants.DAY_BORN, Integer.class);
+            this.beginYear = sharedPrefs.get(Constants.YEAR_BEGIN, Integer.class);
+            this.beginMonth = sharedPrefs.get(Constants.MONTH_BEGIN, Integer.class);
+            this.beginDay = sharedPrefs.get(Constants.DAY_BEGIN, Integer.class);
+            int[] result = calculateWeek(new Date());
+            this.week = result[0];
+            this.day = result[1];
+            String babyExpect = DateUtils.getDate(year, month, dayExpect);
+            String babyAge = DateUtils.getAge(week, day);
+            String kykinhcuoi = DateUtils.getDate(beginYear, beginMonth, beginDay);
+            if (momName.equals(Constants.ANDANH)) {
+                momName = "";
+            }
+            Profile profile = new Profile(momName, babyName, "", babyExpect, babyAge, kykinhcuoi);
+            liveProfile.postValue(profile);
+        }
+    }
+
     public void setIsSetup(boolean isSetup) {
         this.isSetup = isSetup;
     }
 
     public boolean isSetup() {
         return isSetup;
-    }
-
-    public int getWeek() {
-        return week;
-    }
-
-    public int getDay() {
-        return day;
     }
 
     public int getYear() {
@@ -135,5 +166,23 @@ public class ProfileViewModel extends BaseViewModel {
 
     public int getBeginDay() {
         return beginDay;
+    }
+
+    public void setProfile(Profile profile) {
+        this.mProfile = profile;
+    }
+
+    public Profile getProfile() {
+        return mProfile;
+    }
+
+    @Override
+    public int getWeek() {
+        return week;
+    }
+
+    @Override
+    public int getDay() {
+        return day;
     }
 }

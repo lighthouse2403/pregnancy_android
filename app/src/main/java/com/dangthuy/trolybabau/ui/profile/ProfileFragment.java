@@ -2,6 +2,7 @@ package com.dangthuy.trolybabau.ui.profile;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.customview.ToolBar;
@@ -32,7 +33,15 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
     private final ToolBar.OnItemToolBarClickListener onToolBarClickListener = item -> {
         switch (item) {
             case SAVE:
-                viewModel.saveData();
+                if (binding.etBabyName.getText().toString() == null || binding.etBabyName.getText().toString().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn cần viết tên bé", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (viewModel.getYear() == 0) {
+                    Toast.makeText(getActivity(), "Bạn cần nhập một trong ba thông số sau: ngày dự sinh, tuổi thai, kỳ kinh cuối", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                viewModel.saveData(binding.etMomName.getText().toString(), binding.etBabyName.getText().toString());
                 if (viewModel.isSetup()) {
                     listener.onClick();
                 } else {
@@ -71,6 +80,18 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
             viewModel.setIsSetup(getArguments().getBoolean(TAG));
             setLayoutView(viewModel.isSetup());
         }
+        viewModel.getLiveProfile().observe(this, profile -> {
+            viewModel.setProfile(profile);
+            updateView();
+        });
+    }
+
+    private void updateView() {
+        binding.etMomName.setText(viewModel.getProfile().getMomName());
+        binding.etBabyName.setText(viewModel.getProfile().getBabyName());
+        binding.btnExpect.setText(viewModel.getProfile().getBabyExpect());
+        binding.btnAge.setText(viewModel.getProfile().getBabyAge());
+        binding.btnKyKinhCuoi.setText(viewModel.getProfile().getKykinhcuoi());
     }
 
     private void setLayoutView(boolean isSetup) {
@@ -120,6 +141,6 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
 
     @Override
     protected void onRefreshData() {
-
+        viewModel.fetchData();
     }
 }

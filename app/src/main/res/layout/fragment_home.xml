@@ -14,7 +14,6 @@
             android:layout_marginTop="@dimen/_40sdp"
             android:background="@drawable/background_edittext"
             android:fontFamily="@font/roboto"
-            android:text="Nguyen Ngoc Diep (Soc)"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:fontFamily="@font/roboto"

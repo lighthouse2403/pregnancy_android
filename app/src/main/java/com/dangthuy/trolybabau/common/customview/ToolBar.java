@@ -46,7 +46,7 @@ public class ToolBar extends ConstraintLayout {
         init(context);
     }
 
-    private OnClickListener onClickListerer = view -> {
+    private final OnClickListener onClickListerer = view -> {
         Item item;
         switch (view.getId()) {
             case R.id.btnAdd:

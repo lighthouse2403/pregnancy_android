@@ -48,4 +48,8 @@ public class DateUtils {
     public static String getText(int year, int month, int day, int hour, int min) {
         return (day < 10 ? "0" + day : day) + "/" + ((month + 1) < 10 ? "0" + (month + 1) : (month + 1)) + "/" + year + " " + (hour < 10 ? "0" + hour : hour) + ":" + (min < 10 ? "0" + min : min) + ":00";
     }
+
+    public static String getAge(int week, int day) {
+        return week + " tuần " + day + " ngày";
+    }
 }

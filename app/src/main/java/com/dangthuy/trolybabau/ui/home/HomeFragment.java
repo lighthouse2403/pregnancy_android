@@ -123,6 +123,7 @@ public class HomeFragment extends BaseFragment<HomeViewModel> {
 
     @SuppressLint("SetTextI18n")
     private void setLayoutView() {
+        binding.tvName.setText(viewModel.getName());
         binding.tvAge.setText(getString(R.string.tv_tuoi_thai) + ": " + viewModel.getWeek() + " " + getString(R.string.tv_tuan) + ((viewModel.getDay() > 0) ? (" " + viewModel.getDay() + " " + getString(R.string.tv_ngay)) : ""));
         binding.tvWeight.setText(getString(R.string.tv_can_nang) + ": " + "- gram");
         binding.tvExpect.setText(getString(R.string.tv_du_sinh) + ": " + viewModel.getDayExpect() + " " + getString(R.string.tv_thang) + " " + (viewModel.getMonth() + 1)+ ", " + viewModel.getYear());

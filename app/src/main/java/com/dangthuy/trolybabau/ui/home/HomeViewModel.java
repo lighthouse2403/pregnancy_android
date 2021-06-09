@@ -95,4 +95,17 @@ public class HomeViewModel extends BaseViewModel {
     public int getPercent() {
         return percent;
     }
+
+    public String getName() {
+        String momName = sharedPrefs.get(Constants.MOM_NAME, String.class);
+        String babyName = sharedPrefs.get(Constants.BABY_NAME, String.class);
+        String name;
+        if (momName.equals(Constants.ANDANH)) {
+            momName = "";
+            name = babyName;
+        } else {
+            name = momName + " (" + babyName + ")";
+        }
+        return name;
+    }
 }

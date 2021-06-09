@@ -29,4 +29,5 @@ public class Constants {
     //alarm
     public static final String ALARM_DATA = "data";
     public static final String ALARM_ACTION = "pregnancy_alarm";
+    public static final String ANDANH = "Ẩn danh";
 }
