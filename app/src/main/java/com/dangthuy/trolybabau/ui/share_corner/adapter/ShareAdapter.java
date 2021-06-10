@@ -39,9 +39,9 @@ public class ShareAdapter extends BaseQuickAdapter<Share, BaseViewHolder> {
         ItemShareBinding binding = ItemShareBinding.bind(helper.itemView);
         binding.clContent.setOnClickListener(view -> listener.onClick(item));
         binding.tvTitle.setText(item.getTitle());
-        binding.tvCommentCount.setText(String.valueOf(item.getNumberOfComment()));
+        binding.tvCommentCount.setText(String.format(mContext.getResources().getString(R.string.tv_s_binh_luan), String.valueOf(item.getNumberOfComment())));
         binding.tvName.setText(item.getOwner());
-        binding.tvViewCount.setText(String.valueOf(item.getViews()));
-        binding.tvTime.setText(DateUtils.formatDate(new Date(item.getTime())));
+        binding.tvViewCount.setText(String.format(mContext.getResources().getString(R.string.tv_s_da_doc), String.valueOf(item.getViews())));
+        binding.tvTime.setText(DateUtils.formatDateTime(new Date(item.getTime())));
     }
 }

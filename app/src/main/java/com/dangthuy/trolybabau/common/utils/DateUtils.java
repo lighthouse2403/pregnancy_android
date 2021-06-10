@@ -18,9 +18,16 @@ public class DateUtils {
 
     private static final SimpleDateFormat formatDb = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
+    private static final SimpleDateFormat formatText = new SimpleDateFormat("dd/MM/yyyy/HH/mm/ss");
+
     public static String formatDate(Date date) {
         String[] split = format.format(date).split("/");
         return split[0] + " tháng " + split[1] + "," + split[2];
+    }
+
+    public static String formatDateTime(Date date) {
+        String[] split = formatText.format(date).split("/");
+        return split[0] + " tháng " + split[1] + "," + split[2] + " " + split[3] + ":" + split[4];
     }
 
     public static String formatDateDb(Date date) {

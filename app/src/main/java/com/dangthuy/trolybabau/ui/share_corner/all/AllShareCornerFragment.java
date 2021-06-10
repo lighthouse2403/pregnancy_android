@@ -68,7 +68,7 @@ public class AllShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
     private void initAdapter() {
         mShareAdapter = new ShareAdapter(new ArrayList());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        binding.recyclerView.addItemDecoration(new BetweenSpacesItemDecoration(4, 0));
+        binding.recyclerView.addItemDecoration(new BetweenSpacesItemDecoration(10, 0));
         binding.recyclerView.setAdapter(mShareAdapter);
         mShareAdapter.setListener(item -> addFragment(R.id.container, DetailShareCornerFragment.newInstance(item),DetailShareCornerFragment.TAG, false));
     }

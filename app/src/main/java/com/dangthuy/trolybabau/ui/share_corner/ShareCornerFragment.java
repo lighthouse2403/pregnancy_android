@@ -56,11 +56,12 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
         if (view != null) {
             AppCompatTextView title = view.findViewById(R.id.tvTitle);
             if (isPick) {
-//                title.setTextColor(requireContext().getColor(R.color.green));
+                title.setTextColor(requireContext().getColor(R.color.green));
             } else {
-//                title.setTextColor(requireContext().getColor(R.color.black));
+                title.setTextColor(requireContext().getColor(R.color.black));
             }
         }
+        pickTab(binding.tabs.getTabAt(0), true);
     }
 
     public static ShareCornerFragment newInstance() {

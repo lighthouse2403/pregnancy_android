@@ -36,17 +36,16 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_4sdp"
             android:scrollbars="horizontal"
             app:layout_constraintTop_toBottomOf="@id/search"
             android:background="@color/white"
-            app:tabIndicatorColor="@color/pink"
+            app:tabIndicatorColor="@color/blue_blur"
             app:tabSelectedTextColor="@color/green"
             app:tabTextColor="@color/black"
             app:tabMode="scrollable"
             app:tabIndicatorHeight="0dp"
-            app:tabIndicator="@drawable/background_tab"
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorGravity="stretch"
             android:padding="@dimen/_2sdp"
@@ -58,7 +57,6 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tabs"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"/>
+           />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
