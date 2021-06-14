@@ -1,6 +1,7 @@
 package com.dangthuy.trolybabau.ui.share_corner;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.appcompat.widget.AppCompatTextView;
@@ -61,7 +62,6 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
                 title.setTextColor(requireContext().getColor(R.color.black));
             }
         }
-        pickTab(binding.tabs.getTabAt(0), true);
     }
 
     public static ShareCornerFragment newInstance() {
@@ -85,17 +85,21 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
     protected void initView() {
         binding = (FragmentShareCornerBinding) getBinding();
         setLayoutView();
-        setupViewPager();
+        viewModel.getSharesLiveData().observe(getViewLifecycleOwner(), shares -> {
+            loadingDialog.dismiss();
+            viewModel.setShares(shares);
+            setupViewPager();
+        });
     }
 
     private void setupViewPager() {
         mShareCornerPagerAdapter = new ShareCornerPagerAdapter(getChildFragmentManager());
-        mShareCornerPagerAdapter.setLoadListener(list -> viewModel.setShares(list));
+//        mShareCornerPagerAdapter.setLoadListener(list -> viewModel.setShares(list));
         binding.viewPager.setAdapter(mShareCornerPagerAdapter);
         binding.tabs.setupWithViewPager(binding.viewPager);
         customTabs();
         binding.tabs.addOnTabSelectedListener(onTabLayout);
-        binding.viewPager.setOffscreenPageLimit(2);
+        binding.viewPager.setOffscreenPageLimit(1);
     }
 
     private void customTabs() {
@@ -110,6 +114,7 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
                         case 0:
                             title.setText(R.string.tv_all);
 //                            title.setTextColor(requireContext().getColor(R.color.green));
+                            pickTab(tab, true);
                             break;
                         case 1:
                             title.setText(R.string.tv_my_share);
@@ -147,6 +152,8 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
             public boolean onQueryTextChange(String newText) {
                 if (!newText.isEmpty()) {
                     viewModel.search(newText);
+                } else {
+                    viewModel.fetchShare(viewModel.getType());
                 }
                 return true;
             }
@@ -155,6 +162,7 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
 
     @Override
     protected void onRefreshData() {
-
+        loadingDialog.show();
+        new Handler().postDelayed(() -> viewModel.fetchData(viewModel.getType()), 200);
     }
 }

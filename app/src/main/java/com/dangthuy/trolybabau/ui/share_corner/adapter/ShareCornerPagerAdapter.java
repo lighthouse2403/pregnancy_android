@@ -33,13 +33,13 @@ public class ShareCornerPagerAdapter extends FragmentStatePagerAdapter {
         switch (position) {
             case 0:
                 AllShareCornerFragment fragment = AllShareCornerFragment.newInstance(ShareCornerViewModel.TYPE_ALL);
-                fragment.setLoadListener(shares -> loadListener.onLoaded(shares));
+//                fragment.setLoadListener(shares -> loadListener.onLoaded(shares));
                 return fragment;
             case 1:
                 return MyShareCornerFragment.newInstance();
             case 2:
                 AllShareCornerFragment hotFragment = AllShareCornerFragment.newInstance(ShareCornerViewModel.TYPE_HOT);
-                hotFragment.setLoadListener(shares -> loadListener.onLoaded(shares));
+//                hotFragment.setLoadListener(shares -> loadListener.onLoaded(shares));
                 return hotFragment;
             case 3:
                 return MyShareCornerFragment.newInstance();

@@ -58,10 +58,13 @@ public class AllShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
             setLayoutView();
         }
         initAdapter();
-        viewModel.getSharesLiveData().observe(this, shares -> {
-            loadingDialog.dismiss();
+//        viewModel.getSharesLiveData().observe(this, shares -> {
+//            loadingDialog.dismiss();
+//            mShareAdapter.setNewData(shares);
+//            loadListener.onLoaded(shares);
+//        });
+        viewModel.getLiveShares().observe(getViewLifecycleOwner(), shares -> {
             mShareAdapter.setNewData(shares);
-            loadListener.onLoaded(shares);
         });
     }
 
@@ -70,7 +73,7 @@ public class AllShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         binding.recyclerView.addItemDecoration(new BetweenSpacesItemDecoration(10, 0));
         binding.recyclerView.setAdapter(mShareAdapter);
-        mShareAdapter.setListener(item -> addFragment(R.id.container, DetailShareCornerFragment.newInstance(item),DetailShareCornerFragment.TAG, false));
+        mShareAdapter.setListener(item -> addFragment(R.id.container, DetailShareCornerFragment.newInstance(item), DetailShareCornerFragment.TAG, false));
     }
 
     private void setLayoutView() {
@@ -84,7 +87,8 @@ public class AllShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
 
     @Override
     protected void onRefreshData() {
-        loadingDialog.show();
-        new Handler().postDelayed(() -> viewModel.fetchData(viewModel.getType()), 200);
+//        loadingDialog.show();
+//        new Handler().postDelayed(() -> viewModel.fetchData(viewModel.getType()), 200);
+        viewModel.fetchShare(viewModel.getType());
     }
 }

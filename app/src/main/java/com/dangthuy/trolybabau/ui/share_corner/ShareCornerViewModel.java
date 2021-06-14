@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Created by nhongthai on 3/22/2021.
@@ -35,9 +36,10 @@ import java.util.UUID;
 public class ShareCornerViewModel extends BaseViewModel {
     private final MutableLiveData<Share> shareLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Share>> sharesLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<Share>> liveShares = new MutableLiveData<>();
     private final MutableLiveData<List<Comment>> liveComment = new MutableLiveData<>();
     private final MutableLiveData<LoveResponse> liveError = new MutableLiveData<>();
-    private List<Share> shares;
+    private List<Share> shares, pageShares;
 
     private static final String CONTENT = "content";
     private static final String LIKE = "like";
@@ -72,13 +74,14 @@ public class ShareCornerViewModel extends BaseViewModel {
                 if (share != null) {
                     share.setKey(snapshot.getKey());
                     Log.d("thainh", share.toString());
-                    if (type == TYPE_HOT) {
-                        if (share.getFavorite() != null && share.getFavorite().length() > 0) {
-                            shares.add(share);
-                        }
-                    } else {
-                        shares.add(share);
-                    }
+//                    if (type == TYPE_HOT) {
+//                        if (share.getFavorite() != null && share.getFavorite().length() > 0) {
+//                            shares.add(share);
+//                        }
+//                    } else {
+//                        shares.add(share);
+//                    }
+                    shares.add(share);
                     Collections.reverse(shares);
                     new Handler().postDelayed(() -> sharesLiveData.postValue(shares), 500);
                 }
@@ -210,12 +213,14 @@ public class ShareCornerViewModel extends BaseViewModel {
 
     public void search(String newText) {
         List<Share> list = new ArrayList<>();
-        for (Share share : shares) {
-            if (share.getTitle().toLowerCase().contains(newText)) {
-                list.add(share);
+        if (pageShares != null) {
+            for (Share share : pageShares) {
+                if (share.getTitle().toLowerCase().contains(newText)) {
+                    list.add(share);
+                }
             }
+            liveShares.postValue(list);
         }
-        sharesLiveData.postValue(list);
     }
 
     public void setShares(List<Share> list) {
@@ -248,5 +253,22 @@ public class ShareCornerViewModel extends BaseViewModel {
         mDatabase.child(THREADS)
                 .child(mShare.getKey())
                 .updateChildren(mShare.toMap(), (error, ref) -> Log.d("thainh", "error " + error));
+    }
+
+    public MutableLiveData<List<Share>> getLiveShares() {
+        return liveShares;
+    }
+
+    public void fetchShare(int type) {
+        pageShares = new ArrayList<>();
+        switch (type) {
+            case TYPE_ALL:
+                pageShares.addAll(shares);
+                break;
+            case TYPE_HOT:
+                pageShares = shares.stream().filter(share -> share.getFavorite() != null && share.getFavorite().length() > 0).collect(Collectors.toList());
+                break;
+        }
+        liveShares.postValue(pageShares);
     }
 }

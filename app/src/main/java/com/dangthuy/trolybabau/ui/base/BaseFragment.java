@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.dialog.LoadingDialog;
+import com.dangthuy.trolybabau.ui.share_corner.ShareCornerViewModel;
 
 /**
  * Created by nhongthai on 8/3/2020.
@@ -41,12 +42,16 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(provideViewModelClass());
-        viewModel.getLiveData().observe(this, isUpdate -> {
-            if (isUpdate) {
-                Log.d(TAG, "isUpdate " + isUpdate);
-            }
-        });
+        if (provideViewModelClass().equals(ShareCornerViewModel.class)) {
+            viewModel = new ViewModelProvider(requireActivity()).get(provideViewModelClass());
+        } else {
+            viewModel = new ViewModelProvider(this).get(provideViewModelClass());
+            viewModel.getLiveData().observe(this, isUpdate -> {
+                if (isUpdate) {
+                    Log.d(TAG, "isUpdate " + isUpdate);
+                }
+            });
+        }
     }
 
     @Nullable
