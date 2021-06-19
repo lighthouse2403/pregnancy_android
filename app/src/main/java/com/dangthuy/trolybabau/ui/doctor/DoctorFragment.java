@@ -115,6 +115,11 @@ public class DoctorFragment extends BaseFragment<DoctorViewModel> {
     protected void onRefreshData() {
         loadingDialog.show();
         new Handler().postDelayed(() -> viewModel.fetchData(), 300);
+        new Handler().postDelayed(() -> {
+            if (loadingDialog.isShowing()) {
+                loadingDialog.dismiss();
+            }
+        }, 20000);
     }
 
 }

@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginStart="@dimen/_5sdp"
-    android:layout_marginEnd="@dimen/_5sdp"
-    android:background="@drawable/background_edittext_profile"
+    android:background="@drawable/background_corner_common"
     android:id="@+id/clContent">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -15,7 +13,8 @@
         android:src="@drawable/ic_story"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvTitle"
-        app:layout_constraintBottom_toBottomOf="@id/tvTitle"/>
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+        android:layout_marginStart="@dimen/_5sdp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
@@ -28,8 +27,8 @@
         android:paddingEnd="@dimen/_5sdp"
         android:paddingStart="@dimen/_5sdp"
         app:layout_constraintTop_toTopOf="parent"
-        android:paddingTop="@dimen/_5sdp"
-        android:paddingBottom="@dimen/_5sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

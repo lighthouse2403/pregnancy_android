@@ -168,6 +168,6 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
             if (loadingDialog.isShowing()) {
                 loadingDialog.dismiss();
             }
-        }, 60000);
+        }, 20000);
     }
 }
