@@ -1,7 +1,9 @@
 package com.dangthuy.trolybabau.ui.share_corner.detail;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dangthuy.trolybabau.R;
@@ -52,9 +54,18 @@ public class DetailShareCornerFragment extends BaseFragment<ShareCornerViewModel
         }
         initAdapter();
         viewModel.getLiveComment().observe(this, comments -> mShareCommentAdapter.setNewData(comments));
-        viewModel.getLiveError().observe(this, response -> {
+        viewModel.getLiveLoveError().observe(this, response -> {
             if (response.getError() == null) {
                 mShareCommentAdapter.notifyItemChanged(response.getPosition());
+            }
+        });
+        viewModel.getLiveStarError().observe(this, response -> {
+            if (response.getError() == null) {
+                binding.ivStar.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_star_love));
+                binding.ivStar.setColorFilter(ContextCompat.getColor(requireContext(), R.color.yellow), PorterDuff.Mode.SRC_ATOP);
+            } else {
+                binding.ivStar.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_star));
+                binding.ivStar.setColorFilter(ContextCompat.getColor(requireContext(), R.color.white), PorterDuff.Mode.SRC_ATOP);
             }
         });
     }
@@ -70,6 +81,14 @@ public class DetailShareCornerFragment extends BaseFragment<ShareCornerViewModel
         binding.tvName.setText(viewModel.getmShare().getOwner());
         binding.tvContent.setText(viewModel.getmShare().getContent());
         binding.tvTime.setText(DateUtils.formatDate(new Date(viewModel.getmShare().getTime())));
+        if (viewModel.getmShare().getFavorite() != null && viewModel.getmShare().getFavorite().length() > 0) {
+            binding.ivStar.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_star_love));
+            binding.ivStar.setColorFilter(ContextCompat.getColor(requireContext(), R.color.yellow), PorterDuff.Mode.SRC_ATOP);
+        } else {
+            binding.ivStar.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_star));
+            binding.ivStar.setColorFilter(ContextCompat.getColor(requireContext(), R.color.white), PorterDuff.Mode.SRC_ATOP);
+//            binding.ivStar.setColorFilter(getContext().getResources().getColor(R.color.white));
+        }
     }
 
     @Override

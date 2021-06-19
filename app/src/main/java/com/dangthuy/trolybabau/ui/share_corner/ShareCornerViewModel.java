@@ -12,6 +12,7 @@ import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.utils.Constants;
 import com.dangthuy.trolybabau.data.model.Comment;
 import com.dangthuy.trolybabau.data.model.Share;
+import com.dangthuy.trolybabau.data.response.FavoriteShareResponse;
 import com.dangthuy.trolybabau.data.response.LoveResponse;
 import com.dangthuy.trolybabau.ui.base.BaseViewModel;
 import com.google.firebase.database.ChildEventListener;
@@ -24,9 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -38,7 +37,8 @@ public class ShareCornerViewModel extends BaseViewModel {
     private final MutableLiveData<List<Share>> sharesLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Share>> liveShares = new MutableLiveData<>();
     private final MutableLiveData<List<Comment>> liveComment = new MutableLiveData<>();
-    private final MutableLiveData<LoveResponse> liveError = new MutableLiveData<>();
+    private final MutableLiveData<LoveResponse> liveLoveError = new MutableLiveData<>();
+    private final MutableLiveData<FavoriteShareResponse> liveStarError = new MutableLiveData<>();
     private List<Share> shares, pageShares;
 
     private static final String CONTENT = "content";
@@ -74,13 +74,6 @@ public class ShareCornerViewModel extends BaseViewModel {
                 if (share != null) {
                     share.setKey(snapshot.getKey());
                     Log.d("thainh", share.toString());
-//                    if (type == TYPE_HOT) {
-//                        if (share.getFavorite() != null && share.getFavorite().length() > 0) {
-//                            shares.add(share);
-//                        }
-//                    } else {
-//                        shares.add(share);
-//                    }
                     shares.add(share);
                     Collections.reverse(shares);
                     new Handler().postDelayed(() -> sharesLiveData.postValue(shares), 500);
@@ -156,6 +149,7 @@ public class ShareCornerViewModel extends BaseViewModel {
     public void createShare(String title, String content) {
         if (!validate(title, content)) {
             liveToast.postValue(mContext.getResources().getString(R.string.tv_invalid_title_content));
+            return;
         }
         Share share = new Share(content, sharedPrefs.get(Constants.MOM_NAME, String.class), System.currentTimeMillis(), title, UUID.randomUUID().toString());
         mDatabase.child(THREADS)
@@ -207,7 +201,7 @@ public class ShareCornerViewModel extends BaseViewModel {
                 .child(item.getKey())
                 .updateChildren(item.toMap(), (error, ref) -> {
                     LoveResponse response = new LoveResponse(error, item, position);
-                    liveError.postValue(response);
+                    liveLoveError.postValue(response);
                 });
     }
 
@@ -235,8 +229,12 @@ public class ShareCornerViewModel extends BaseViewModel {
         return mType;
     }
 
-    public MutableLiveData<LoveResponse> getLiveError() {
-        return liveError;
+    public MutableLiveData<LoveResponse> getLiveLoveError() {
+        return liveLoveError;
+    }
+
+    public MutableLiveData<FavoriteShareResponse> getLiveStarError() {
+        return liveStarError;
     }
 
     public void viewShare() {
@@ -252,7 +250,10 @@ public class ShareCornerViewModel extends BaseViewModel {
         mShare.setFavorite(favorite + "," + UUID.randomUUID().toString());
         mDatabase.child(THREADS)
                 .child(mShare.getKey())
-                .updateChildren(mShare.toMap(), (error, ref) -> Log.d("thainh", "error " + error));
+                .updateChildren(mShare.toMap(), (error, ref) -> {
+                    FavoriteShareResponse response = new FavoriteShareResponse(error, mShare);
+                    liveStarError.postValue(response);
+                });
     }
 
     public MutableLiveData<List<Share>> getLiveShares() {

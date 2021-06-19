@@ -164,5 +164,10 @@ public class ShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
     protected void onRefreshData() {
         loadingDialog.show();
         new Handler().postDelayed(() -> viewModel.fetchData(viewModel.getType()), 200);
+        new Handler().postDelayed(() -> {
+            if (loadingDialog.isShowing()) {
+                loadingDialog.dismiss();
+            }
+        }, 60000);
     }
 }

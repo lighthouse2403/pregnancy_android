@@ -27,6 +27,8 @@
             android:background="@drawable/background_item_share"
             app:layout_constraintTop_toBottomOf="@id/divider"
             android:hint="@string/tv_tieu_de"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_10sdp"/>
@@ -36,9 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/etTitle"
-            android:text="Nội dung"
-            android:textSize="12sp"
-            android:textColor="@color/black"
+            style="@style/TextViewStyle.Black"
+            android:text="@string/tv_noi_dung"
             app:layout_constraintTop_toBottomOf="@id/etTitle"
             android:layout_marginTop="@dimen/_10sdp"/>
 
@@ -49,6 +50,8 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp"
             app:layout_constraintTop_toBottomOf="@id/tvContent"
             android:background="@drawable/background_item_share"/>
 
