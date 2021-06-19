@@ -29,7 +29,7 @@ public class InfomartionViewModel extends BaseViewModel {
     private final MutableLiveData<List<MomWeight>> liveMomWeight = new MutableLiveData<>();
     private final MutableLiveData<Chart> liveChart = new MutableLiveData<>();
     private int mCount;
-    private int mHour = 0, mMin = 0, mSecond = 0, mDay = 0, mMonth = 0, mYear = 0;
+    private int mHour = 0, mMin = 0, mSecond = 0, mDay = 0, mMonth = 0, mYear = 0, mHourFoot = 0, mMinFoot = 0, mSecondFoot = 0;
     private List<MomWeight> momWeights;
     private List<BabyFoot> babyFoots;
     private float[] values;
@@ -53,7 +53,21 @@ public class InfomartionViewModel extends BaseViewModel {
         this.mMin = min;
         this.mSecond = 0;
         Calendar calendar = Calendar.getInstance();
-        calendar.set(mYear, mMonth, mDay);
+        calendar.set(mYear, mMonth, mDay, mHour, mMin, mSecond);
+        this.mDate = calendar.getTime();
+        calculateWeek(mDate);
+    }
+
+    public void setDate(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        this.mYear = calendar.get(Calendar.YEAR);
+        this.mMonth = calendar.get(Calendar.MONTH);
+        this.mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        this.mHour = calendar.get(Calendar.HOUR_OF_DAY);
+        this.mMin = calendar.get(Calendar.MINUTE);
+        this.mSecond = 0;
+        calendar.set(mYear, mMonth, mDay, mHour, mMin, mSecond);
         this.mDate = calendar.getTime();
         calculateWeek(mDate);
     }
@@ -102,9 +116,33 @@ public class InfomartionViewModel extends BaseViewModel {
         return mSecond;
     }
 
+    public void setmHourFoot(int mHourFoot) {
+        this.mHourFoot = mHourFoot;
+    }
+
+    public void setmMinFoot(int mMinFoot) {
+        this.mMinFoot = mMinFoot;
+    }
+
+    public void setmSecondFoot(int mSecondFoot) {
+        this.mSecondFoot = mSecondFoot;
+    }
+
+    public int getmHourFoot() {
+        return mHourFoot;
+    }
+
+    public int getmMinFoot() {
+        return mMinFoot;
+    }
+
+    public int getmSecondFoot() {
+        return mSecondFoot;
+    }
+
     public void saveToDb() {
         BabyFootDao babyFootDao = appDatabase.babyFootDao();
-        BabyFoot babyFoot = new BabyFoot(mCount, DateUtils.getText(mYear, mMonth, mDay, mHour, mMin), mHour, mMin, mSecond);
+        BabyFoot babyFoot = new BabyFoot(mCount, DateUtils.getText(mYear, mMonth, mDay, mHour, mMin), mHourFoot, mMinFoot, mSecondFoot);
         new Thread(() -> babyFootDao.insert(babyFoot)).start();
     }
 

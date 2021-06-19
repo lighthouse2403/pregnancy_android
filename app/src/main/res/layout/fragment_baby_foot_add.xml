@@ -26,7 +26,8 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/background_edittext_profile"
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/background_corner_common"
             app:layout_constraintTop_toBottomOf="@id/divider"
             style="@style/TextViewStyle.Black"
             android:textAlignment="center"
@@ -37,15 +38,16 @@
             android:id="@+id/ivPause"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pause"
+            android:src="@android:drawable/ic_media_play"
             app:layout_constraintTop_toTopOf="@id/tvTime"
             app:layout_constraintBottom_toBottomOf="@id/tvTime"
             app:layout_constraintStart_toStartOf="@id/tvTime"
             android:background="@drawable/rounded_corner_button"
             android:paddingTop="@dimen/_5sdp"
             android:paddingBottom="@dimen/_5sdp"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_10sdp"/>
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"/>
 
         <View
             android:id="@+id/btnCount"

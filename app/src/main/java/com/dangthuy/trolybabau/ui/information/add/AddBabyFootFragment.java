@@ -3,6 +3,8 @@ package com.dangthuy.trolybabau.ui.information.add;
 import android.os.Bundle;
 import android.os.Handler;
 
+import androidx.core.content.ContextCompat;
+
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.customview.ToolBar;
 import com.dangthuy.trolybabau.common.utils.DateUtils;
@@ -79,6 +81,7 @@ public class AddBabyFootFragment extends BaseFragment<InfomartionViewModel> {
 
     private void setLayoutView() {
         binding.toolBar.setLayoutView(ToolBarType.BACK_TITLE);
+        viewModel.setDate(new Date());
         binding.toolBar.setTitle(DateUtils.formatDate(new Date()));
     }
 
@@ -111,9 +114,9 @@ public class AddBabyFootFragment extends BaseFragment<InfomartionViewModel> {
 
     private void doTimer(boolean isPlay) {
         if (isPlay) {
-            viewModel.setmHour(0);
-            viewModel.setmMin(0);
-            viewModel.setmSecond(0);
+            viewModel.setmHourFoot(0);
+            viewModel.setmMinFoot(0);
+            viewModel.setmSecondFoot(0);
             binding.tvTime.setText("00:00:00");
             viewModel.setCount(0);
             Handler handler = new Handler();
@@ -122,25 +125,26 @@ public class AddBabyFootFragment extends BaseFragment<InfomartionViewModel> {
                 @Override
                 public void run() {
                     handler.post(() -> {
-                        viewModel.setmSecond(viewModel.getmSecond() + 1);
-                        if (viewModel.getmSecond() % 60 == 0) {
-                            viewModel.setmSecond(0);
-                            viewModel.setmMin(viewModel.getmMin() + 1);
-                            if (viewModel.getmMin() % 60 == 0) {
-                                viewModel.setmMin(0);
-                                viewModel.setmHour(viewModel.getmHour() + 1);
-                                if (viewModel.getmHour() % 24 == 0) {
-                                    viewModel.setmHour(0);
+                        viewModel.setmSecondFoot(viewModel.getmSecondFoot() + 1);
+                        if (viewModel.getmSecondFoot() % 60 == 0) {
+                            viewModel.setmSecondFoot(0);
+                            viewModel.setmMinFoot(viewModel.getmMinFoot() + 1);
+                            if (viewModel.getmMinFoot() % 60 == 0) {
+                                viewModel.setmMinFoot(0);
+                                viewModel.setmHourFoot(viewModel.getmHourFoot() + 1);
+                                if (viewModel.getmHourFoot() % 24 == 0) {
+                                    viewModel.setmHourFoot(0);
                                 }
                             }
                         }
-                        String timeText = ((viewModel.getmHour() < 10) ? "0" + viewModel.getmHour() : "" + viewModel.getmHour()) + ":" + ((viewModel.getmMin() < 10) ? "0" + viewModel.getmMin() : "" + viewModel.getmMin()) + ":" + ((viewModel.getmSecond() < 10) ? "0" + viewModel.getmSecond() : "" + viewModel.getmSecond());
+                        String timeText = ((viewModel.getmHourFoot() < 10) ? "0" + viewModel.getmHourFoot() : "" + viewModel.getmHourFoot()) + ":" + ((viewModel.getmMinFoot() < 10) ? "0" + viewModel.getmMinFoot() : "" + viewModel.getmMinFoot()) + ":" + ((viewModel.getmSecondFoot() < 10) ? "0" + viewModel.getmSecondFoot() : "" + viewModel.getmSecondFoot());
                         binding.tvTime.setText("");
                         binding.tvTime.setText(timeText);
                     });
                 }
             };
             mTimer.schedule(mTimerTask, 0, 1000);
+            binding.ivPause.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.pause));
         } else {
             if (mTimer != null) {
                 mTimer.cancel();
@@ -148,6 +152,7 @@ public class AddBabyFootFragment extends BaseFragment<InfomartionViewModel> {
             if (mTimerTask != null) {
                 mTimerTask.cancel();
             }
+            binding.ivPause.setImageDrawable(ContextCompat.getDrawable(getContext(), android.R.drawable.ic_media_play));
         }
         mIsPlay = isPlay;
     }

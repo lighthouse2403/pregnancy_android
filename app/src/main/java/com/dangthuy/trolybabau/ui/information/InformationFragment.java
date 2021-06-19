@@ -27,7 +27,6 @@ public class InformationFragment extends BaseFragment<InfomartionViewModel> {
         switch (item) {
             case BACK:
                 getParentFragmentManager().popBackStack();
-                ;
                 break;
             case ADD:
                 if (viewModel.getmType() == InfomartionViewModel.TYPE_MOM) {
