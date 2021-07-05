@@ -1,41 +1,40 @@
 {
   "project_info": {
-    "project_number": "1083265767104",
-    "firebase_url": "https://pregnancy-eb665.firebaseio.com",
-    "project_id": "pregnancy-eb665",
-    "storage_bucket": "pregnancy-eb665.appspot.com"
+    "project_number": "261207760176",
+    "project_id": "pregnancydevelopment",
+    "storage_bucket": "pregnancydevelopment.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1083265767104:android:7c4afd59dc4964bd5a3f25",
+        "mobilesdk_app_id": "1:261207760176:android:97d6f2f12a541bb636bcf5",
         "android_client_info": {
-          "package_name": "pregnancy.beacon"
+          "package_name": "Beacon.PregnancyDiary.development"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1083265767104-u2llgbg7i8aitd7vc7ddbee04fdbnhhe.apps.googleusercontent.com",
+          "client_id": "261207760176-pe8csslhj9v4uiqv35qginjjlcjturgf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCk2vD3FsOeGw_R8pRAzEwL7EbumV_Hm8E"
+          "current_key": "AIzaSyASoUmPRizSn8xneGB8BEFsbO1B5WWBMHo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1083265767104-u2llgbg7i8aitd7vc7ddbee04fdbnhhe.apps.googleusercontent.com",
+              "client_id": "261207760176-pe8csslhj9v4uiqv35qginjjlcjturgf.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "1083265767104-ecqufs3070vsui91p6gq5oiq0eceg09f.apps.googleusercontent.com",
+              "client_id": "261207760176-kuu2etkfol6ninen6dgff64lpufdqv6m.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "Beacon.PregnancyDiary"
+                "bundle_id": "Beacon.PregnancyDiary.development"
               }
             }
           ]

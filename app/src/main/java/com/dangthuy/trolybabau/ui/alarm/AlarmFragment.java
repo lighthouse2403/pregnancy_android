@@ -4,12 +4,14 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.dangthuy.trolybabau.MainActivity;
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.customview.ToolBar;
 import com.dangthuy.trolybabau.common.utils.Constants;
@@ -59,7 +61,12 @@ public class AlarmFragment extends BaseFragment<AlarmViewModel> {
         fragment.setSaveListener(() -> {
             this.onRefreshData();
             viewModel.setAlarm(item);
-            startAlarm();
+            ((MainActivity) getActivity()).setPermissionListener(isAccepted -> {
+                if (isAccepted) {
+                    startAlarm();
+                }
+            });
+            ((MainActivity) getActivity()).requestPermission(2);
         });
         addFragment(R.id.container, fragment, DetailAlarmFragment.TAG, false);
     }
@@ -109,7 +116,8 @@ public class AlarmFragment extends BaseFragment<AlarmViewModel> {
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
         if (viewModel.isCheck()) {
-            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5 * 1000L, pendingIntent);
+            Log.d("thainh","startAlarm() viewModel.getCount() " + viewModel.count() + " current " + System.currentTimeMillis());
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, viewModel.count(), pendingIntent);
         } else {
             alarmManager.cancel(pendingIntent);
         }

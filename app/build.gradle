@@ -6,7 +6,7 @@ android {
     buildToolsVersion "30.0.1"
 
     defaultConfig {
-        applicationId "pregnancy.beacon"
+        applicationId "Beacon.PregnancyDiary.development"
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1

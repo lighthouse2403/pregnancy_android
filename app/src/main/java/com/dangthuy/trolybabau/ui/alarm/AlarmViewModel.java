@@ -134,4 +134,14 @@ public class AlarmViewModel extends BaseViewModel {
         this.mAlarm = item;
         saveAlarm(mAlarm.getNote(), mAlarm.isStatus());
     }
+
+    public long count() {
+        long count = 0;
+        if (mAlarm != null) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(mAlarm.getYear(), mAlarm.getMonth(), mAlarm.getDayOfMonth(), mAlarm.getHour(), mAlarm.getMin());
+            count = calendar.getTimeInMillis();
+        }
+        return count;
+    }
 }

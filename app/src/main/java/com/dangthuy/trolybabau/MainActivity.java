@@ -23,7 +23,7 @@ import com.google.firebase.FirebaseApp;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static AppDatabase appDatabase;
-    private final String[] permission = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE};
+    private final String[] permission = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE, Manifest.permission.SYSTEM_ALERT_WINDOW};
 
     public interface IPermissionListener {
         void onPermissionDone(boolean isAccepted);
