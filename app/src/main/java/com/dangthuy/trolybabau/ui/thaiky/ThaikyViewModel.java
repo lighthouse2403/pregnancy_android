@@ -43,6 +43,7 @@ public class ThaikyViewModel extends BaseViewModel {
             babyIndexs.postValue(response.getDetails());
         }
     };
+    private int position;
 
     public ThaikyViewModel(@NonNull Application application) {
         super(application);
@@ -118,6 +119,14 @@ public class ThaikyViewModel extends BaseViewModel {
         calendar.set(Calendar.DAY_OF_MONTH, beginDay);
         calendar.add(Calendar.WEEK_OF_MONTH, week);
         return calendar.get(Calendar.DAY_OF_MONTH) + "/" + (calendar.get(Calendar.MONTH) + 1);
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 
 //    public int getWeek() {

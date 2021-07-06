@@ -44,7 +44,7 @@ public class HomeViewModel extends BaseViewModel {
         ArrayList<HomeMenu> list = new ArrayList<>();
         list.add(new HomeMenu(GOC_CHIA_SE, AppCompatResources.getDrawable(mContext, R.drawable.chia_se)));
         list.add(new HomeMenu(THEO_DOI_SO_LAN_DAP, AppCompatResources.getDrawable(mContext, R.drawable.foot)));
-        list.add(new HomeMenu(CAN_NANG_CUA_ME, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
+        list.add(new HomeMenu(CAN_NANG_CUA_ME, AppCompatResources.getDrawable(mContext, R.drawable.weight)));
         list.add(new HomeMenu(CAU_CHUYEN_SINH_NO, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
         list.add(new HomeMenu(NHAC_BAU_CHO_BE, AppCompatResources.getDrawable(mContext, R.drawable.playlist)));
         list.add(new HomeMenu(BAC_SI, AppCompatResources.getDrawable(mContext, R.drawable.doctor_list)));

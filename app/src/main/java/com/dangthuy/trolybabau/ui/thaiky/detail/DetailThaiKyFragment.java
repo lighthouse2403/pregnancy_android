@@ -1,7 +1,12 @@
 package com.dangthuy.trolybabau.ui.thaiky.detail;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -15,6 +20,8 @@ import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.thaiky.ThaikyViewModel;
 import com.dangthuy.trolybabau.ui.thaiky.adapter.ThaiKyDetailAdapter;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -51,6 +58,7 @@ public class DetailThaiKyFragment extends BaseFragment<ThaikyViewModel> {
     protected void initView() {
         binding = (FragmentThaikyDetailBinding) getBinding();
         if (getArguments() != null) {
+            viewModel.setPosition(getArguments().getInt(TAG));
             if (getArguments().getParcelable(PREGNANCY) != null) {
                 viewModel.setPregnancy(getArguments().getParcelable(PREGNANCY));
                 if (getArguments().getParcelable(BABYINDEX) != null) {
@@ -72,7 +80,10 @@ public class DetailThaiKyFragment extends BaseFragment<ThaikyViewModel> {
     }
 
     private void setLayoutView() {
-        Glide.with(this).load(R.drawable.babyyearold).into(binding.ivImage);
+        String imageName = "week_" + (viewModel.getPosition() + 1);
+        int id = getContext().getResources().getIdentifier(imageName, "drawable", getContext().getPackageName());
+        binding.ivImage.setImageResource(id);
+
         binding.tvTime.setText(String.format(getString(R.string.tv_tuan_s), viewModel.getmPregnancy().getWeek()));
         binding.tvWeight.setText(viewModel.getmBabyIndex().getEfwGh());
     }
