@@ -135,4 +135,8 @@
     <string name="tv_s_da_doc">%s\n đã đọc</string>
     <string name="tv_s_binh_luan">%s bình luận</string>
     <string name="tv_noi_dung">Nội dung</string>
+
+    <!-- AdMob ad unit IDs -->
+    <string name="banner_home_footer">ca-app-pub-3180650445840504/9246279259</string>
+<!--    <string name="interstitial_full_screen">ca-app-pub-3180650445840504/9246279259</string>-->
 </resources>

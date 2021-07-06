@@ -14,6 +14,7 @@ import com.dangthuy.trolybabau.data.model.Comment;
 import com.dangthuy.trolybabau.data.model.Share;
 import com.dangthuy.trolybabau.data.response.FavoriteShareResponse;
 import com.dangthuy.trolybabau.data.response.LoveResponse;
+import com.dangthuy.trolybabau.data.response.ThreadResponse;
 import com.dangthuy.trolybabau.ui.base.BaseViewModel;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +40,7 @@ public class ShareCornerViewModel extends BaseViewModel {
     private final MutableLiveData<List<Comment>> liveComment = new MutableLiveData<>();
     private final MutableLiveData<LoveResponse> liveLoveError = new MutableLiveData<>();
     private final MutableLiveData<FavoriteShareResponse> liveStarError = new MutableLiveData<>();
+    private final MutableLiveData<ThreadResponse> liveThread = new MutableLiveData<>();
     private List<Share> shares, pageShares;
 
     private static final String CONTENT = "content";
@@ -132,7 +134,6 @@ public class ShareCornerViewModel extends BaseViewModel {
                     list.add(comment);
                 });
                 liveComment.postValue(list);
-
             }
 
             @Override
@@ -154,8 +155,12 @@ public class ShareCornerViewModel extends BaseViewModel {
         Share share = new Share(content, sharedPrefs.get(Constants.MOM_NAME, String.class), System.currentTimeMillis(), title, UUID.randomUUID().toString());
         mDatabase.child(THREADS)
                 .push()
-                .setValue(share, (error, ref) ->
-                        Log.d("thainh", "error " + error));
+                .setValue(share, (error, ref) -> {
+                            ThreadResponse response = new ThreadResponse(error, share);
+                            liveThread.postValue(response);
+                            Log.d("thainh", "error " + error);
+                        }
+                );
     }
 
     private boolean validate(String title, String content) {
@@ -176,6 +181,10 @@ public class ShareCornerViewModel extends BaseViewModel {
 
     public MutableLiveData<List<Share>> getSharesLiveData() {
         return sharesLiveData;
+    }
+
+    public MutableLiveData<ThreadResponse> getLiveThread() {
+        return liveThread;
     }
 
     public void sendComment(Share share, String content) {

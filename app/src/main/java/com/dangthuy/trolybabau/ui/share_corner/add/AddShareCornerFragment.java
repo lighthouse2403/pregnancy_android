@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
+import com.dangthuy.trolybabau.data.response.ThreadResponse;
 import com.dangthuy.trolybabau.databinding.FragmentShareCornerAddBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.share_corner.ShareCornerViewModel;
@@ -40,6 +41,13 @@ public class AddShareCornerFragment extends BaseFragment<ShareCornerViewModel> {
             setLayoutView();
         }
         viewModel.getLiveToast().observe(this, this::showToast);
+        viewModel.getLiveThread().observe(this, this::process);
+    }
+
+    private void process(ThreadResponse threadResponse) {
+        if (threadResponse.getError() == null) {
+            getParentFragmentManager().popBackStack();
+        }
     }
 
     private void setLayoutView() {
