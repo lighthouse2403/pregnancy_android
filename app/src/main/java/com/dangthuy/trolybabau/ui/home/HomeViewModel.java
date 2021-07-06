@@ -45,12 +45,12 @@ public class HomeViewModel extends BaseViewModel {
         list.add(new HomeMenu(GOC_CHIA_SE, AppCompatResources.getDrawable(mContext, R.drawable.chia_se)));
         list.add(new HomeMenu(THEO_DOI_SO_LAN_DAP, AppCompatResources.getDrawable(mContext, R.drawable.foot)));
         list.add(new HomeMenu(CAN_NANG_CUA_ME, AppCompatResources.getDrawable(mContext, R.drawable.weight)));
-        list.add(new HomeMenu(CAU_CHUYEN_SINH_NO, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
+        list.add(new HomeMenu(CAU_CHUYEN_SINH_NO, AppCompatResources.getDrawable(mContext, R.drawable.story)));
         list.add(new HomeMenu(NHAC_BAU_CHO_BE, AppCompatResources.getDrawable(mContext, R.drawable.playlist)));
         list.add(new HomeMenu(BAC_SI, AppCompatResources.getDrawable(mContext, R.drawable.doctor_list)));
         list.add(new HomeMenu(DO_SO_SINH, AppCompatResources.getDrawable(mContext, R.drawable.newbornthings)));
         list.add(new HomeMenu(TEN_HAY_CHO_BE, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
-        list.add(new HomeMenu(DIA_CHI_TIEM_PHONG, AppCompatResources.getDrawable(mContext, R.drawable.baby_name)));
+        list.add(new HomeMenu(DIA_CHI_TIEM_PHONG, AppCompatResources.getDrawable(mContext, R.drawable.syringe)));
         list.add(new HomeMenu(MON_NGON_MOI_NGAY, AppCompatResources.getDrawable(mContext, R.drawable.mon_an)));
         list.add(new HomeMenu(NHAC_NHO, AppCompatResources.getDrawable(mContext, R.drawable.calendar)));
 //        this.week = sharedPrefs.get(Constants.WEEK_AGE, Integer.class);
