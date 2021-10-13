@@ -43,11 +43,6 @@ public class MainFragment extends BaseFragment<MainViewModel> {
         binding = (FragmentMainBinding) getBinding();
         setupViewPager();
         setupBottomBar();
-        binding.adView.setAdSize(AdSize.BANNER);
-        binding.adView.setAdUnitId(getString(R.string.banner_home_footer));
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
-        binding.adView.loadAd(adRequest);
     }
 
     @Override
@@ -111,7 +106,7 @@ public class MainFragment extends BaseFragment<MainViewModel> {
 
     @Override
     protected void onRefreshData() {
-//        viewModel.loadAds();
-//        viewModel.getLiveAd().observe(this, adRequest -> binding.adView.loadAd(adRequest));
+        viewModel.loadAds();
+        viewModel.getLiveAd().observe(this, adRequest -> binding.adView.loadAd(adRequest));
     }
 }

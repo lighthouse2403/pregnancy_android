@@ -48,6 +48,8 @@
             app:layout_constraintTop_toBottomOf="@id/toolBar"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_5sdp"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
             />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -72,7 +74,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/_5sdp"
             app:layout_constraintTop_toBottomOf="@id/etMomName"
-            android:layout_marginTop="@dimen/_10sdp"/>
+            android:layout_marginTop="@dimen/_10sdp"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvWeight"
@@ -101,7 +105,8 @@
             app:layout_constraintTop_toBottomOf="@id/etBabyName"
             android:layout_marginTop="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"
-            android:background="@drawable/ripple_react_background"/>
+            android:background="@drawable/ripple_react_background"
+            android:textStyle="bold"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvExpect"
@@ -114,7 +119,8 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="@dimen/_5sdp"
             app:layout_constraintTop_toTopOf="@id/btnExpect"
-            app:layout_constraintBottom_toBottomOf="@id/btnExpect" />
+            app:layout_constraintBottom_toBottomOf="@id/btnExpect"
+            android:textStyle="bold"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnExpect"
@@ -123,13 +129,13 @@
             android:fontFamily="@font/roboto"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:text="@string/tv_them_chi_so_thai_nhi"
             app:layout_constraintStart_toEndOf="@id/guildLine"
             android:layout_marginStart="@dimen/_5sdp"
             app:layout_constraintTop_toBottomOf="@id/btnBabyInfo"
             android:layout_marginTop="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"
-            android:background="@drawable/ripple_react_background"/>
+            android:background="@drawable/ripple_react_background"
+            android:textStyle="bold"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAge"
@@ -151,13 +157,13 @@
             android:fontFamily="@font/roboto"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:text="@string/tv_them_chi_so_thai_nhi"
             app:layout_constraintStart_toEndOf="@id/guildLine"
             android:layout_marginStart="@dimen/_5sdp"
             app:layout_constraintTop_toBottomOf="@id/btnExpect"
             android:layout_marginTop="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"
-            android:background="@drawable/ripple_react_background"/>
+            android:background="@drawable/ripple_react_background"
+            android:textStyle="bold"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvKyKinhCuoi"
@@ -179,12 +185,12 @@
             android:fontFamily="@font/roboto"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:text="@string/tv_them_chi_so_thai_nhi"
             app:layout_constraintStart_toEndOf="@id/guildLine"
             android:layout_marginStart="@dimen/_5sdp"
             app:layout_constraintTop_toBottomOf="@id/btnAge"
             android:layout_marginTop="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"
+            android:textStyle="bold"
             android:background="@drawable/ripple_react_background"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
