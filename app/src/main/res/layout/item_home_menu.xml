@@ -2,9 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/clContent"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_100sdp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_item_home_menu">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:background="@drawable/background_item_home_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivImage"
@@ -24,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@id/ivImage"
         android:layout_marginTop="@dimen/_2sdp"
         android:textSize="13sp"
-        android:textColor="#FFABC9"
+        android:textColor="@color/pink"
         android:fontFamily="@font/roboto"
         android:text="Góc chia sẻ"/>
 

@@ -84,9 +84,10 @@ public class MainActivity extends AppCompatActivity {
         appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "pregnancy-database").build();
     }
 
-    private void addFragment(Fragment fragment) {
+    public void addFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.mainContainer, fragment)
+                .addToBackStack("Main")
                 .commit();
     }
 }

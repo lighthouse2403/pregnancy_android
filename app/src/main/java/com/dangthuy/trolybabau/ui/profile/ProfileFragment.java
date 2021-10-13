@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.dangthuy.trolybabau.MainActivity;
 import com.dangthuy.trolybabau.R;
 import com.dangthuy.trolybabau.common.customview.ToolBar;
 import com.dangthuy.trolybabau.common.utils.ToolBarType;
@@ -84,6 +85,12 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
             viewModel.setProfile(profile);
             updateView();
         });
+        if (viewModel.isSetup()) {
+            viewModel.setExpectToday();
+            binding.btnExpect.setText(viewModel.getDayExpect() + " " + getString(R.string.tv_thang) + " " + (viewModel.getMonth() + 1) + ", " + viewModel.getYear());
+            binding.btnAge.setText(viewModel.getWeek() + " " + getString(R.string.tv_tuan) + ((viewModel.getDay() > 0) ? (" " + viewModel.getDay() + " " + getString(R.string.tv_ngay)) : ""));
+            binding.btnKyKinhCuoi.setText(viewModel.getBeginDay() + " " + getString(R.string.tv_thang) + " " + (viewModel.getBeginMonth() + 1) + ", " + viewModel.getBeginYear());
+        }
     }
 
     private void updateView() {
@@ -134,7 +141,11 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
             dialog.show(getChildFragmentManager(), BottomSheetDateDialog.TAG);
         });
         binding.btnBabyInfo.setOnClickListener(view -> {
-            addFragment(R.id.container, BabyInfoFragment.newInstance(false), BabyInfoFragment.TAG, false);
+            if (viewModel.isSetup()) {
+                ((MainActivity) requireActivity()).addFragment(BabyInfoFragment.newInstance(false));
+            } else {
+                addFragment(R.id.container, BabyInfoFragment.newInstance(false), BabyInfoFragment.TAG, false);
+            }
         });
         binding.toolBar.setListener(onToolBarClickListener);
     }
