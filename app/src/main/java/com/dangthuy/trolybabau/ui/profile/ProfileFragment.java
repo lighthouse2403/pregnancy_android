@@ -142,7 +142,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel> {
         });
         binding.btnBabyInfo.setOnClickListener(view -> {
             if (viewModel.isSetup()) {
-                ((MainActivity) requireActivity()).addFragment(BabyInfoFragment.newInstance(false));
+                ((MainActivity) requireActivity()).addFragment(BabyInfoFragment.newInstance(false), BabyInfoFragment.TAG);
             } else {
                 addFragment(R.id.container, BabyInfoFragment.newInstance(false), BabyInfoFragment.TAG, false);
             }
