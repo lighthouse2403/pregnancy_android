@@ -183,19 +183,23 @@ public class InfomartionViewModel extends BaseViewModel {
         values = new float[365];
         dayVal = new ArrayList<>();
         if (mType == TYPE_MOM) {
-            for (MomWeight momWeight : momWeights) {
-                int day = momWeight.week * 7 + momWeight.dayOfWeek;
-                values[day] = Float.parseFloat(momWeight.weight);
-                dayVal.add(day);
+            if (momWeights.size() > 1) {
+                for (MomWeight momWeight : momWeights) {
+                    int day = momWeight.week * 7 + momWeight.dayOfWeek;
+                    values[day] = Float.parseFloat(momWeight.weight);
+                    dayVal.add(day);
+                }
             }
         } else {
-            for (BabyFoot babyFoot : babyFoots) {
-                Date date = DateUtils.parseDate(babyFoot.createdDate);
-                if (date != null) {
-                    calculateWeek(date);
-                    int day = getWeek() * 7 + getDay();
-                    values[day] = babyFoot.foot;
-                    dayVal.add(day);
+            if (babyFoots.size() > 1) {
+                for (BabyFoot babyFoot : babyFoots) {
+                    Date date = DateUtils.parseDate(babyFoot.createdDate);
+                    if (date != null) {
+                        calculateWeek(date);
+                        int day = getWeek() * 7 + getDay();
+                        values[day] = babyFoot.foot;
+                        dayVal.add(day);
+                    }
                 }
             }
         }

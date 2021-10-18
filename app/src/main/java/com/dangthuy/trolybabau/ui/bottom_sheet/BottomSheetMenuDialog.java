@@ -73,6 +73,8 @@ public class BottomSheetMenuDialog extends BottomSheetDialogFragment {
     private void setLayoutView(String typeMenu) {
         switch (typeMenu) {
             case CLOTHES:
+                binding.btnMenuOne.setVisibility(View.GONE);
+                binding.divider.setVisibility(View.GONE);
                 binding.btnMenuOne.setText(getString(R.string.tv_quan_ly_do_so_sinh));
                 binding.btnMenuTwo.setText(getString(R.string.tv_mang_vao_vien));
                 break;

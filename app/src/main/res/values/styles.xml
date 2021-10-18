@@ -19,6 +19,7 @@
     <style name="TextViewStyle" parent="AppTheme">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:lineSpacingExtra">5dp</item>
     </style>
 
     <style name="TextViewStyle.Black" parent="TextViewStyle">

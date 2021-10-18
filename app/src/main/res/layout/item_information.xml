@@ -7,9 +7,10 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
         android:text="5"
+        android:textAlignment="center"
         style="@style/TextViewStyle.Black"
         android:textColor="@color/red"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +27,7 @@
         app:layout_constraintStart_toEndOf="@id/tvWeight"
         android:layout_marginStart="@dimen/_5sdp"
         android:text="17 tháng 3, 2021"
-        style="@style/TextViewStyle.Black"
+        style="@style/TextViewStyle.White"
         />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -38,7 +39,7 @@
         app:layout_constraintStart_toEndOf="@id/tvWeight"
         android:layout_marginStart="@dimen/_5sdp"
         android:text="32 tuần 5 ngày"
-        style="@style/TextViewStyle.Black"
+        style="@style/TextViewStyle.White"
         />
 
 

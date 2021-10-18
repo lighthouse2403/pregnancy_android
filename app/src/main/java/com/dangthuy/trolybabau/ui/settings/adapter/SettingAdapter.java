@@ -31,6 +31,7 @@ public class SettingAdapter extends BaseQuickAdapter<Setting, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, Setting item) {
         ItemCommonBinding binding = ItemCommonBinding.bind(helper.itemView);
+        binding.tvTitle.setTextColor(R.color.black);
         binding.tvTitle.setText(item.getTitle());
         binding.clContent.setOnClickListener(view -> listener.onClick(item));
     }

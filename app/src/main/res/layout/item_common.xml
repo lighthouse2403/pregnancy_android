@@ -18,14 +18,16 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:fontFamily="@font/roboto"
+        style="@style/TextViewStyle.White"
         android:textSize="12sp"
+        android:textColor="@color/pink_FF66A3"
         android:text="Ảnh nền"
         android:layout_marginStart="@dimen/_10sdp"
         android:padding="@dimen/_15sdp"
         app:layout_constraintStart_toEndOf="@id/ivImage"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

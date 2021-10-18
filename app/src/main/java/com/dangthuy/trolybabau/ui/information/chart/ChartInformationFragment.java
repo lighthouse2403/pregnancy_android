@@ -91,7 +91,7 @@ public class ChartInformationFragment extends BaseFragment<InfomartionViewModel>
 //        x.setLabelCount(6, false);
         x.setTextColor(Color.WHITE);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
-        x.setDrawGridLines(false);
+        x.setDrawGridLines(true);
         x.setGridColor(getContext().getResources().getColor(R.color.blue));
         x.setAxisLineColor(Color.WHITE);
 
@@ -159,8 +159,8 @@ public class ChartInformationFragment extends BaseFragment<InfomartionViewModel>
 //            set1.enableDashedLine(10f, 5f, 0f);
 
             // black lines and points
-            set1.setColor(Color.BLACK);
-            set1.setCircleColor(Color.BLACK);
+            set1.setColor(ContextCompat.getColor(requireContext(), R.color.green));
+            set1.setCircleColor(ContextCompat.getColor(requireContext(), R.color.green));
 
             // line thickness and point size
             set1.setLineWidth(1f);
