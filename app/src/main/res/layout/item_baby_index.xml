@@ -16,7 +16,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:padding="@dimen/_10sdp"
             style="@style/TextViewStyle.White"
-            android:textColor="@color/green_blur"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:text="@string/tv_tuoi_thai"
             android:background="@color/yellow_blur"/>

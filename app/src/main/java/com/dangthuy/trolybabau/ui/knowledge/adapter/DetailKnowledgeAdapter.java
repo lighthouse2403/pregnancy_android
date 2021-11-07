@@ -1,6 +1,7 @@
 package com.dangthuy.trolybabau.ui.knowledge.adapter;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -33,5 +34,6 @@ public class DetailKnowledgeAdapter extends BaseQuickAdapter<Knowledge, BaseView
         ItemCommonBinding binding = ItemCommonBinding.bind(helper.itemView);
         binding.clContent.setOnClickListener(view -> listener.onClick(item));
         binding.tvTitle.setText(item.getTitle());
+        binding.tvTitle.setTextColor(ContextCompat.getColor(mContext, R.color.white));
     }
 }

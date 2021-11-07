@@ -27,7 +27,10 @@
             app:layout_constraintTop_toBottomOf="@id/divider"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"/>
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etContent"
@@ -37,6 +40,8 @@
             app:layout_constraintTop_toBottomOf="@id/etTitle"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
             android:background="@drawable/background_edittext_profile"
             android:layout_marginTop="@dimen/_10sdp"/>
 

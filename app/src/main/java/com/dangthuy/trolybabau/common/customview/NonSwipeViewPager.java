@@ -62,4 +62,14 @@ public class NonSwipeViewPager extends ViewPager {
             super.startScroll(startX, startY, dx, dy, 350 /*1 secs*/);
         }
     }
+
+    @Override
+    public void setCurrentItem(int item) {
+        super.setCurrentItem(item, false);
+    }
+
+    @Override
+    public void setCurrentItem(int item, boolean smoothScroll) {
+        super.setCurrentItem(item, false);
+    }
 }

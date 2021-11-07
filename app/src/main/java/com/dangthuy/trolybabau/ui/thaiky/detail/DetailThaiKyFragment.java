@@ -85,7 +85,7 @@ public class DetailThaiKyFragment extends BaseFragment<ThaikyViewModel> {
         binding.ivImage.setImageResource(id);
 
         binding.tvTime.setText(String.format(getString(R.string.tv_tuan_s), viewModel.getmPregnancy().getWeek()));
-        binding.tvWeight.setText(viewModel.getmBabyIndex().getEfwGh());
+        binding.tvWeight.setText(String.format("%s gram", viewModel.getmBabyIndex().getEfwGh()));
     }
 
     @Override

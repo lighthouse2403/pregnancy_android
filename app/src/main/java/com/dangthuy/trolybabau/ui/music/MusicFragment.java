@@ -54,7 +54,7 @@ public class MusicFragment extends BaseFragment<MusicViewModel> {
     private void initAdapter() {
         mMusicAdapter = new MusicAdapter(new ArrayList<>());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        binding.recyclerView.addItemDecoration(new BetweenSpacesItemDecoration(5, 0));
+        binding.recyclerView.addItemDecoration(new BetweenSpacesItemDecoration(10, 0));
         binding.recyclerView.setAdapter(mMusicAdapter);
     }
 

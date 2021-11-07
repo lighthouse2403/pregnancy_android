@@ -2,6 +2,7 @@ package com.dangthuy.trolybabau.ui.baby_index;
 
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dangthuy.trolybabau.R;
@@ -80,15 +81,16 @@ public class BabyIndexFragment extends BaseFragment<BabyIndexViewModel> {
 
     private void setLayoutView() {
         binding.toolBar.setLayoutView(ToolBarType.ADD);
+        binding.ltTitle.tvBPD.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue));
+        binding.ltTitle.tvEFW.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue));
+        binding.ltTitle.tvFL.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue));
+        binding.ltTitle.tvAge.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue));
     }
 
     @Override
     protected void setOnClickListener() {
         binding.toolBar.setListener(toolbarListener);
         binding.ltTitle.clContent.setOnClickListener(view -> showHelp());
-        binding.ltTitle.tvBPD.setTextColor(getResources().getColor(R.color.green_blur));
-        binding.ltTitle.tvFL.setTextColor(getResources().getColor(R.color.green_blur));
-        binding.ltTitle.tvEFW.setTextColor(getResources().getColor(R.color.green_blur));
     }
 
     private void showHelp() {

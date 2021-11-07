@@ -82,7 +82,7 @@ public class ChartInformationFragment extends BaseFragment<InfomartionViewModel>
         binding.chart.setDrawGridBackground(false);
         binding.chart.setMaxHighlightDistance(300);
 //        if (binding.chart.getRendererXAxis() <)
-        binding.chart.setGridBackgroundColor(getContext().getResources().getColor(R.color.yellow));
+        binding.chart.setGridBackgroundColor(getContext().getResources().getColor(R.color.white));
 //        else
 //            binding.chart.setGridBackgroundColor(getContext().getResources().getColor(R.color.red));
 
@@ -92,7 +92,11 @@ public class ChartInformationFragment extends BaseFragment<InfomartionViewModel>
         x.setTextColor(Color.WHITE);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setDrawGridLines(true);
-        x.setGridColor(getContext().getResources().getColor(R.color.blue));
+//        if(x.getXOffset() % 2 == 0) {
+//            x.setGridColor(getContext().getResources().getColor(R.color.white));
+//        } else {
+//            x.setGridColor(getContext().getResources().getColor(R.color.blue));
+//        }
         x.setAxisLineColor(Color.WHITE);
 
         x.setValueFormatter(new MyValueFormater(dates));

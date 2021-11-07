@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_50sdp"
     android:background="@drawable/background_edittext_profile"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_common"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tvAge"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:background="@drawable/background_circle_white"/>
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvWeight"
-        android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="5"
-        android:textAlignment="center"
         style="@style/TextViewStyle.Black"
         android:textColor="@color/red"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/background_circle_white"
-        android:padding="@dimen/_20sdp"/>
+        app:layout_constraintTop_toTopOf="@id/view"
+        app:layout_constraintBottom_toBottomOf="@id/view"
+        app:layout_constraintStart_toStartOf="@id/view"
+        app:layout_constraintEnd_toEndOf="@id/view"
+        />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDate"
@@ -24,10 +42,12 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/tvWeight"
         app:layout_constraintBottom_toTopOf="@id/tvAge"
-        app:layout_constraintStart_toEndOf="@id/tvWeight"
+        app:layout_constraintStart_toEndOf="@id/view"
         android:layout_marginStart="@dimen/_5sdp"
         android:text="17 tháng 3, 2021"
         style="@style/TextViewStyle.White"
+        android:textStyle="bold"
+        android:textSize="14sp"
         />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -36,10 +56,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/tvWeight"
         app:layout_constraintTop_toBottomOf="@id/tvDate"
-        app:layout_constraintStart_toEndOf="@id/tvWeight"
+        app:layout_constraintStart_toEndOf="@id/view"
         android:layout_marginStart="@dimen/_5sdp"
         android:text="32 tuần 5 ngày"
-        style="@style/TextViewStyle.White"
+        style="@style/TextViewStyle.Black"
         />
 
 

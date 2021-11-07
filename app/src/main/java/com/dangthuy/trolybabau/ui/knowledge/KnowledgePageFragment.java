@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.dangthuy.trolybabau.R;
+import com.dangthuy.trolybabau.common.customview.BetweenSpacesItemDecoration;
 import com.dangthuy.trolybabau.databinding.FragmentCommonBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.home.adapter.HomeAdapter;
@@ -69,7 +70,8 @@ public class KnowledgePageFragment extends BaseFragment<KnowledgeViewModel> {
 
     private void initAdapter() {
         mHomeAdapter = new HomeAdapter(new ArrayList<>());
-        binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        binding.recyclerView.addItemDecoration(new BetweenSpacesItemDecoration(20, 20));
         binding.recyclerView.setAdapter(mHomeAdapter);
     }
 
