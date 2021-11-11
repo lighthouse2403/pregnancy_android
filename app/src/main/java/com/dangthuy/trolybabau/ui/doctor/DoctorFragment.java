@@ -18,6 +18,7 @@ import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.bottom_sheet.BottomSheetMenuDialog;
 import com.dangthuy.trolybabau.ui.diary.DiaryFragment;
 import com.dangthuy.trolybabau.ui.doctor.adapter.DoctorAdapter;
+import com.dangthuy.trolybabau.ui.doctor.detail.DetailDoctorFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -92,8 +93,8 @@ public class DoctorFragment extends BaseFragment<DoctorViewModel> {
             }
         });
         mDoctorAdapter.setListener((doctor, action) -> {
+            viewModel.setDoctor(doctor);
             if (action == DoctorAdapter.ACTION_CALL) {
-                viewModel.setDoctor(doctor);
                 BottomSheetMenuDialog dialog = BottomSheetMenuDialog.newInstance(BottomSheetMenuDialog.DOCTOR);
                 dialog.setText(viewModel.getPhone());
                 dialog.setListener(position -> {
@@ -107,6 +108,8 @@ public class DoctorFragment extends BaseFragment<DoctorViewModel> {
                     dialog.dismiss();
                 });
                 dialog.show(getChildFragmentManager(), BottomSheetMenuDialog.TAG);
+            } else {
+                addFragment(R.id.container, DetailDoctorFragment.newInstance(doctor), DetailDoctorFragment.TAG, false);
             }
         });
     }

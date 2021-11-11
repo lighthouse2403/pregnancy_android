@@ -138,5 +138,9 @@
 
     <!-- AdMob ad unit IDs -->
     <string name="banner_home_footer">ca-app-pub-3180650445840504/9246279259</string>
-<!--    <string name="interstitial_full_screen">ca-app-pub-3180650445840504/9246279259</string>-->
+    <string name="tv_thong_tin_bac_si">Thông tin bác sĩ</string>
+    <string name="tv_danh_gia_cua_ban">Đánh giá của bạn</string>
+    <string name="tv_nhan_xet">Nhận xét</string>
+    <string name="tv_an_danh">Ẩn danh</string>
+    <!--    <string name="interstitial_full_screen">ca-app-pub-3180650445840504/9246279259</string>-->
 </resources>

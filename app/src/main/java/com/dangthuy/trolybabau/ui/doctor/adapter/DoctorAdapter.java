@@ -58,6 +58,7 @@ public class DoctorAdapter extends BaseQuickAdapter<Doctor, BaseViewHolder> {
         binding.tvName.setOnClickListener(view -> listener.onClick(item, ACTION_VIEW));
         binding.tvPhone.setOnClickListener(view -> listener.onClick(item, ACTION_CALL));
         binding.ivPhone.setOnClickListener(view -> listener.onClick(item, ACTION_CALL));
+        binding.clItem.setOnClickListener(view -> listener.onClick(item, ACTION_VIEW));
         if (item.getStarRank() > 0) {
             binding.rate.setVisibility(View.VISIBLE);
             binding.rate.setRating(item.getStarRank());
