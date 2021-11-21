@@ -14,6 +14,7 @@ import com.dangthuy.trolybabau.data.model.DoctorComment;
 import com.dangthuy.trolybabau.data.model.Share;
 import com.dangthuy.trolybabau.data.repository.DoctorRepository;
 import com.dangthuy.trolybabau.ui.base.BaseViewModel;
+import com.dangthuy.trolybabau.ui.doctor.event.DoctorEvent;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,14 +25,17 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by nhongthai on 5/3/2021.
  */
 public class DoctorViewModel extends BaseViewModel {
-
+    private static final String DOCTOR_LIST = "doctor_list";
+    private static final String DOCTOR = "doctor";
     private final MutableLiveData<List<Doctor>> doctorLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<DoctorComment>> liveDoctorComment = new MutableLiveData<>();
+    private final MutableLiveData<DoctorEvent> liveDoctorEvent = new MutableLiveData<>();
     private List<Doctor> mData;
     private DatabaseReference mDatabase;
     private final DoctorRepository.LoadDoctorListener doctorListener = response -> {
@@ -108,15 +112,16 @@ public class DoctorViewModel extends BaseViewModel {
 
     private void loadDataFromFirebase() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Query query = mDatabase.child("doctor_list")
+        Query query = mDatabase.child(DOCTOR_LIST)
                 .limitToFirst(10);
 //        List<Share> shares = new ArrayList<>();
         mData = new ArrayList<>();
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Log.d("thainh", "onChildAdded");
-                Doctor doctor = snapshot.getValue(Doctor.class);
+                Log.d("DoctorViewModel", "onChildAdded " + new Gson().toJson(snapshot.getValue()));
+                Gson gson = new Gson();
+                Doctor doctor = gson.fromJson(gson.toJson(snapshot.getValue()), Doctor.class);
                 if (doctor != null) {
                     if (doctor.getStar() != null && !doctor.getStar().isEmpty()) {
                         String[] splitStar = doctor.getStar().split(",");
@@ -197,19 +202,20 @@ public class DoctorViewModel extends BaseViewModel {
         Log.d("DoctorViewModel", "DoctorViewModel fetchComment() " + mDoctor.getName());
         if (mDoctor != null && mDoctor.getId() != null) {
             mDatabase = FirebaseDatabase.getInstance().getReference();
-            Query query = mDatabase.child("doctor")
+            Query query = mDatabase.child(DOCTOR)
                     .child(mDoctor.getId())
                     .limitToFirst(10);
             mCommentData = new ArrayList<>();
             query.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    Log.d("DoctorViewModel onChildAdded() %s", new Gson().toJson(snapshot.getValue()));
+                    Log.d("DoctorViewModel", "onChildAdded() " + new Gson().toJson(snapshot.getValue()) + " key: " + snapshot.getKey());
                     DoctorComment doctorComment = snapshot.getValue(DoctorComment.class);
                     if (doctorComment != null) {
+                        doctorComment.setKey(snapshot.getKey());
                         mCommentData.add(doctorComment);
                     }
-                    new Handler().postDelayed(() -> liveDoctorComment.postValue(mCommentData),500);
+                    new Handler().postDelayed(() -> liveDoctorComment.postValue(mCommentData), 500);
                 }
 
                 @Override
@@ -237,5 +243,50 @@ public class DoctorViewModel extends BaseViewModel {
 
     public MutableLiveData<List<DoctorComment>> getLiveDoctorComment() {
         return liveDoctorComment;
+    }
+
+    public MutableLiveData<DoctorEvent> getLiveDoctorEvent() {
+        return liveDoctorEvent;
+    }
+
+    public void feedBack(String comment, float rating) {
+        addComment(comment);
+        doStar(rating);
+    }
+
+    private void doStar(float rating) {
+        Log.d("DoctorViewModel", "DoctorViewModel doStar() " + mDoctor.getName());
+        if (mDoctor != null && mDoctor.getId() != null) {
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+            mDoctor.setRank(mDoctor.getRank() + "," + UUID.randomUUID().toString().toUpperCase());
+            mDoctor.setStar(mDoctor.getStar() + "," + (int) rating);
+            mDatabase.child(DOCTOR_LIST)
+                    .child(mDoctor.getId())
+                    .updateChildren(mDoctor.toMap(), (error, ref) -> {
+                        if (error != null) {
+                            Log.d("DoctorViewModel", "error: " + error.getMessage());
+                        } else {
+
+                        }
+                    });
+        }
+    }
+
+    private void addComment(String content) {
+        if (mDoctor != null && mDoctor.getId() != null) {
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+            DoctorComment comment = new DoctorComment("", System.currentTimeMillis(), "Ẩn danh", content);
+            mDatabase.child(DOCTOR)
+                    .child(mDoctor.getId())
+                    .push()
+                    .setValue(comment, (error, ref) -> {
+                        if (error != null) {
+                            liveDoctorEvent.postValue(DoctorEvent.ADD_COMMENT_FAILED);
+                        } else {
+                            Log.d("DoctorViewModel", "add success");
+                            liveDoctorEvent.postValue(DoctorEvent.ADD_COMMENT_SUCCESS);
+                        }
+                    });
+        }
     }
 }

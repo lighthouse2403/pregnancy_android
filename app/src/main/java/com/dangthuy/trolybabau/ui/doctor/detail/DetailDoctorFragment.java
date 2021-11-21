@@ -3,7 +3,9 @@ package com.dangthuy.trolybabau.ui.doctor.detail;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -19,6 +21,7 @@ import com.dangthuy.trolybabau.databinding.FragmentDoctorDetailBinding;
 import com.dangthuy.trolybabau.ui.base.BaseFragment;
 import com.dangthuy.trolybabau.ui.doctor.DoctorViewModel;
 import com.dangthuy.trolybabau.ui.doctor.adapter.DoctorCommentAdapter;
+import com.dangthuy.trolybabau.ui.doctor.event.DoctorEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +67,17 @@ public class DetailDoctorFragment extends BaseFragment<DoctorViewModel> {
 
     private void setObserve() {
         viewModel.getLiveDoctorComment().observe(this, this::processComment);
+        viewModel.getLiveDoctorEvent().observe(this, this::processEvent);
+    }
+
+    private void processEvent(DoctorEvent doctorEvent) {
+        if (doctorEvent != DoctorEvent.NULL) {
+            binding.btnRate.setRating(0);
+            binding.etComment.setText("");
+            if (doctorEvent == DoctorEvent.ADD_COMMENT_SUCCESS) {
+                Toast.makeText(getActivity(), "Gửi đánh giá thành công", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void processComment(List<DoctorComment> doctorComments) {
@@ -76,7 +90,7 @@ public class DetailDoctorFragment extends BaseFragment<DoctorViewModel> {
         mDoctorCommentAdapter = new DoctorCommentAdapter(new ArrayList<>());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         binding.recyclerView.setAdapter(mDoctorCommentAdapter);
-        
+
     }
 
     private void setLayoutView() {
@@ -99,13 +113,20 @@ public class DetailDoctorFragment extends BaseFragment<DoctorViewModel> {
             binding.rate.setVisibility(View.GONE);
         }
         if (viewModel.getDoctor().getFullDescription() != null) {
-            binding.tvContent.setText(viewModel.getDoctor().getFullDescription());
+            binding.tvContent.setText(Html.fromHtml(viewModel.getDoctor().getFullDescription(), Html.FROM_HTML_MODE_COMPACT));
         }
     }
 
     @Override
     protected void setOnClickListener() {
         binding.toolBar.setListener(item -> getParentFragmentManager().popBackStack());
+        binding.tvSend.setOnClickListener(view -> {
+            if (binding.etComment.getText().toString() != null && !binding.etComment.getText().toString().isEmpty() && binding.btnRate.getRating() != 0) {
+                viewModel.feedBack(binding.etComment.getText().toString(), binding.btnRate.getRating());
+            } else {
+                Toast.makeText(getActivity(), "Vui lòng cho ý kiến và đánh giá", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

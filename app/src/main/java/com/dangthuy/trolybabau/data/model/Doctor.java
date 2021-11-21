@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by nhongthai on 5/3/2021.
  */
@@ -101,6 +104,14 @@ public class Doctor implements Parcelable {
         this.starRank = starRank;
     }
 
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public void setStar(String star) {
+        this.star = star;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -118,5 +129,19 @@ public class Doctor implements Parcelable {
         parcel.writeString(rank);
         parcel.writeString(star);
         parcel.writeInt(starRank);
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("address", address);
+        map.put("city", city);
+        map.put("full_description", fullDescription);
+        map.put("id", id);
+        map.put("image", image);
+        map.put("name", name);
+        map.put("phone", phone);
+        map.put("rank", rank);
+        map.put("star", star);
+        return map;
     }
 }
